@@ -11,9 +11,9 @@ namespace Testing3
         public void InstanceOK()
         { 
 
-        clsAddress AnAddress = new clsAddress();
+        clsSupplier ASupplier = new clsSupplier();
 
-        Assert.IsNotNull(AnAddress);
+        Assert.IsNotNull(ASupplier);
         
         }
     }
