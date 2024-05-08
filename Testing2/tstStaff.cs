@@ -75,16 +75,16 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void StaffSurnameNamePropertyOK()
+        public void StaffSurnamePropertyOK()
         {
             //create an instance of the class we want to create
             clsStaff aStaff = new clsStaff();
             //create some test data to assign to the property
             string TestData = "Khalid";
             //assign the data to the property
-            aStaff.StaffSurnameName = TestData;
+            aStaff.StaffSurname = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(aStaff.StaffSurnameName, TestData);
+            Assert.AreEqual(aStaff.StaffSurname, TestData);
         }
 
         [TestMethod]
