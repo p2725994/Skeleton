@@ -17,6 +17,19 @@ namespace Testing5
         }
 
         [TestMethod]
+        public void OrderIdPropertyOK()
+        {
+            //create an instance of the calss we want to create
+            clsOrder AnOrder = new clsOrder();
+            //create some test data to assign to the property
+            int TestData = 1;
+            //assign the data to the property
+            AnOrder.OrderId = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(AnOrder.OrderId, TestData);
+        }
+
+            [TestMethod]
         public void OrderTotalPropertyOK()
         {
             //create an instance of the calss we want to create
@@ -30,16 +43,16 @@ namespace Testing5
         }
 
         [TestMethod]
-        public void DateTimePlacedPropertyOK()
+        public void DatePlacedPropertyOK()
         {
             //create an instance of the calss we want to create
             clsOrder AnOrder = new clsOrder();
             //create some test data to assign to the property
             DateTime TestData = DateTime.Now.Date;
             //assign the data to the property
-            AnOrder.DateTimePlaced = TestData;
+            AnOrder.DatePlaced = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.DateTimePlaced, TestData);
+            Assert.AreEqual(AnOrder.DatePlaced, TestData);
         }
 
         [TestMethod]
