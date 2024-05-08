@@ -13,7 +13,7 @@ namespace Testing4
             //create an instance of the class we want to create
             clsStocks aStock = new clsStocks();
 
-            //test to see that it exists
+            //test to see that it exists.
             Assert.IsNotNull(aStock);
         }
     }
