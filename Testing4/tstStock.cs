@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using ClassLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 namespace Testing4
@@ -8,10 +9,12 @@ namespace Testing4
     {
         [TestMethod]
         public void InstanceOK()
-
         {
-            clsStock AnStock = new clsStock();
-            Assert.IsNotNull(AnStock);
+            //create an instance of the class we want to create
+            clsStocks aStock = new clsStocks();
+
+            //test to see that it exists
+            Assert.IsNotNull(aStock);
         }
     }
 }
