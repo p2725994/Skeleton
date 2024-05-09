@@ -20,7 +20,7 @@ public partial class _1Viewer : System.Web.UI.Page
         Response.Write(AStaff.StaffNo + "\n\n");
 
         //display the staff Firstname
-        Response.Write(AStaff.StaffFirstName + "\n\n");
+        Response.Write(AStaff.StaffFirstname + "\n\n");
 
         //display the staff Surname
         Response.Write(AStaff.StaffSurname + "\n\n");

@@ -24,7 +24,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         AStaff.StaffNo = Convert.ToInt32(txtStaffNo.Text);
 
         //capture staff firstname
-        AStaff.StaffFirstName = txtStaffFirstname.Text;
+        AStaff.StaffFirstname = txtStaffFirstname.Text;
 
         //capture staff surname
         AStaff.StaffSurname = txtStaffSurname.Text;
