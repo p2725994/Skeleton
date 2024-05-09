@@ -4,7 +4,7 @@ namespace ClassLibrary
 {
     public class clsSupplier
     {
-        public bool Active { get; set; }
+       
         public bool SupplierFromUk { get; set; }
         public DateTime Deliverydate { get; set; }
         public int SupplierID { get; set; }

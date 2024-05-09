@@ -5,7 +5,7 @@ using System;
 namespace Testing3
 {
     [TestClass]
-    public class tstSupplier
+    public class TstSupplier
     {
         [TestMethod]
         public void InstaneOK()
@@ -16,19 +16,6 @@ namespace Testing3
             Assert.IsNotNull(ASupplier);
         }
 
-        [TestMethod]
-        public void ActivePropertyOK()
-        {
-            clsSupplier ASupplier = new clsSupplier();
-
-            Boolean TestData = true;
-
-            ASupplier.Active = TestData;
-
-            Assert.AreEqual(ASupplier.Active, TestData);
-
-
-        }
         [TestMethod]
         public void SupplierFromUkOK()
         {
