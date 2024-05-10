@@ -137,19 +137,37 @@ namespace ClassLibrary
         }
   
 
-        public bool Find(int staffNo)
+        public bool Find(int StaffNo)
         {
-            //set the private data members to the test data value
-            mStaffNo = 21;
-            mStaffFirstname = "Afnan";
-            mStaffSurname = "Khalid";
-            mStaffEmail = "AfnanKhalid@gmail.com";
-            mStaffPassword = "Afnan123";
-            mDateJoined = Convert.ToDateTime("23/12/2022");
-            mIsOnShift = true;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the StaffNo to search for
+            DB.AddParameter("@StaffNo", StaffNo);
+            //execute the stored procedures
+            DB.Execute("sproc_tblStaff_FilterbyStaffNo");
+            //if one record is found (there should be either 1 or 0)
+            if (DB.Count == 1)
+            {
+                //set the private data members to the test data value
+                mStaffNo = Convert.ToInt32(DB.DataTable.Rows[0]["StaffNo"]);
+                mStaffFirstname = Convert.ToString(DB.DataTable.Rows[0]["StaffFirstname"]);
+                mStaffSurname = Convert.ToString(DB.DataTable.Rows[0]["StaffSurname"]);
+                mStaffEmail = Convert.ToString(DB.DataTable.Rows[0]["StaffEmail"]);
+                mStaffPassword = Convert.ToString(DB.DataTable.Rows[0]["StaffPassword"]);
+                mDateJoined = Convert.ToDateTime(DB.DataTable.Rows[0]["DateJoined"]);
+                mIsOnShift = Convert.ToBoolean(DB.DataTable.Rows[0]["IsOnShift"]);
 
-            //always return True
-            return true;
+                //return that everything worked
+                return true;
+
+            }
+
+            //if no record was found
+            else 
+            {
+                //return false indicating a problem
+                return false;
+            }
         }
     }
 }
