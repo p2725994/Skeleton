@@ -1,6 +1,8 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq.Expressions;
+using Xunit.Sdk;
 
 namespace Testing3
 {
@@ -122,6 +124,34 @@ namespace Testing3
             //test to see that the two values are the same
             Assert.AreEqual(ASupplier.SupplierProducts, TestData);
         }
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsSupplier ASupplier = new clsSupplier();
+            Boolean Found = false;
+            Int32 SupplierId = 3;
+
+            Found = ASupplier.Find(SupplierId);
+            Assert.IsTrue(Found);
+        }
+
+        public void TestSupplierIdFound()
+        {
+            clsSupplier ASupplier = new clsSupplier();
+            // create a boolean variable to store the result of the serach 
+            Boolean Found = false;
+            // create a boolean varaible to record if he data is ok
+            Boolean OK = true;
+            //create some test data to use with the method 
+            Int32 SupplierId = 3;
+            Found = ASupplier.Find(SupplierId);
+            if(ASupplier.SupplierID != 3)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
 
 
 
