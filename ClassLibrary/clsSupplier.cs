@@ -12,5 +12,11 @@ namespace ClassLibrary
         public string SupplierEmail { get; set; }
         public string SupplierAddress { get; set; }
         public string SupplierProducts { get; set; }
+
+        public bool Find(int supplierId)
+        {
+            return true;
+        }
+     
     }
 }
