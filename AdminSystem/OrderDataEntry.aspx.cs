@@ -20,7 +20,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //capture the Order Id
         AnOrder.OrderId = Convert.ToInt32(txtOrderId.Text);
         //capture the Order Total
-        AnOrder.OrderTotal = Convert.ToInt32(txtOrderTotal.Text);
+        AnOrder.OrderTotal = Convert.ToDecimal(txtOrderTotal.Text);
         //capture the Date Placed
         AnOrder.DatePlaced = Convert.ToDateTime(txtDatePlaced.Text);
         //capture the Purchased check box
@@ -35,5 +35,31 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Session["AnOrder"] = AnOrder;
         //navigate to the view page
         Response.Redirect("OrderViewer.aspx");
+    }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //create an instance of the order class
+        clsOrder AnOrder = new clsOrder();
+        //create a variable to store the result of the find operation
+        Int32 OrderId;
+        //create a variable to store the result of the find operation
+        Boolean Found = false;
+        //get the primary key entered by the user
+        OrderId = Convert.ToInt32(txtOrderId.Text);
+        //find the record
+        Found = AnOrder.Find(OrderId);
+        //if found
+        if (Found == true)
+        {
+            //display the values of the properties in the forn
+            txtOrderTotal.Text = AnOrder.OrderTotal.ToString();
+            txtDatePlaced.Text = AnOrder.DatePlaced.ToString();
+            chkPurchased.Checked = AnOrder.Purchased;
+            txtDeliveryAddress.Text = AnOrder.DeliveryAddress;
+            txtNoOfItems.Text = AnOrder.NoOfItems.ToString();
+            chkIsGift.Checked = AnOrder.IsGift;
+
+        }
     }
 }
