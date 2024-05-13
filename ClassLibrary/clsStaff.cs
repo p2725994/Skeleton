@@ -175,30 +175,84 @@ namespace ClassLibrary
             //create a string variable to store the error
             String Error = "";
 
+            //create a temporary variable to store the date values
+            DateTime DateTemp;
+
             //if the StaffFirstname is blank
             if (staffFirstname.Length == 0)
             {
-                //recor the error
+                //record the error
                 Error = Error + "Staff name may not be blank: ";
             }
             //if the StaffFirstname is 30+ char
             if (staffFirstname.Length > 30)
             {
-                //recor the error
+                //record the error
                 Error = Error + "Staff name must be less than 30 characters: ";
             }
 
             //if the StaffSurname is blank
             if (staffSurname.Length == 0)
             {
-                //recor the error
+                //record the error
                 Error = Error + "Staff surname may not be blank: ";
             }
             //if the StaffSurname is 20+ char
             if (staffSurname.Length > 20)
             {
-                //recor the error
+                //record the error
                 Error = Error + "Staff surname must be less than 20 characters: ";
+            }
+
+            //if the StaffEmail is blank
+            if (staffEmail.Length == 0)
+            {
+                //record the error
+                Error = Error + "Staff email may not be blank: ";
+            }
+            //if the StaffEmail is 50+ char
+            if (staffEmail.Length > 50)
+            {
+                //record the error
+                Error = Error + "Staff email must be less than 50 characters: ";
+            }
+
+            //if the StaffPassword is blank
+            if (staffPassword.Length == 0)
+            {
+                //record the error
+                Error = Error + "Staff password may not be blank: ";
+            }
+            //if the StaffPassword is 16+ char
+            if (staffPassword.Length > 16)
+            {
+                //record the error
+                Error = Error + "Staff password must be less than 16 characters: ";
+            }
+
+
+            try
+            {
+                //copy the DateJoined value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(dateJoined);
+
+                //if the DateJoined is less than today's date
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past: ";
+                }
+                //if the DateJoined is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future: ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date: ";
             }
 
             //return any error messages
