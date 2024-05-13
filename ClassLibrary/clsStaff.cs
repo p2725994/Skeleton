@@ -169,5 +169,40 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string staffFirstname, string staffSurname, string staffEmail, string staffPassword, string dateJoined)
+        {
+            //create a string variable to store the error
+            String Error = "";
+
+            //if the StaffFirstname is blank
+            if (staffFirstname.Length == 0)
+            {
+                //recor the error
+                Error = Error + "Staff name may not be blank: ";
+            }
+            //if the StaffFirstname is 30+ char
+            if (staffFirstname.Length > 30)
+            {
+                //recor the error
+                Error = Error + "Staff name must be less than 30 characters: ";
+            }
+
+            //if the StaffSurname is blank
+            if (staffSurname.Length == 0)
+            {
+                //recor the error
+                Error = Error + "Staff surname may not be blank: ";
+            }
+            //if the StaffSurname is 20+ char
+            if (staffSurname.Length > 20)
+            {
+                //recor the error
+                Error = Error + "Staff surname must be less than 20 characters: ";
+            }
+
+            //return any error messages
+            return Error;
+        }
     }
 }
