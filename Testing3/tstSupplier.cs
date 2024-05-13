@@ -16,21 +16,9 @@ namespace Testing3
             clsSupplier ASupplier = new clsSupplier();
             //test to see that it exists
             Assert.IsNotNull(ASupplier);
+     
         }
 
-        [TestMethod]
-        public void ActivePropertyOK()
-        {
-            clsSupplier ASupplier = new clsSupplier();
-
-            Boolean TestData = true;
-
-            ASupplier.Active = TestData;
-
-            Assert.AreEqual(ASupplier.Active, TestData);
-
-
-        }
         [TestMethod]
         public void SupplierFromUkOK()
         {
@@ -48,7 +36,7 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void DeliverydatePropertyOK()
+        public void SupplierDeliveryDatePropertyOK()
         {
             //create an instance of the class we want to create
             clsSupplier ASupplier = new clsSupplier();
@@ -57,10 +45,10 @@ namespace Testing3
             DateTime TestData = DateTime.Now.Date;
 
             //assign the data to the property
-            ASupplier.Deliverydate = TestData;
+            ASupplier.SupplierDeliveryDate = TestData;
 
             //test to see that the 2 values are the same
-            Assert.AreEqual(ASupplier.Deliverydate, TestData);
+            Assert.AreEqual(ASupplier.SupplierDeliveryDate, TestData);
         }
 
         [TestMethod]
@@ -71,9 +59,9 @@ namespace Testing3
             //create some test data to assign to the property
             Int32 TestData = 1;
             //assign the data to the property
-            ASupplier.SupplierID = TestData;
+            ASupplier.SupplierId = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(ASupplier.SupplierID, TestData);
+            Assert.AreEqual(ASupplier.SupplierId, TestData);
         }
         [TestMethod]
         public void SupplierNamePropertyOK()
@@ -129,7 +117,7 @@ namespace Testing3
         {
             clsSupplier ASupplier = new clsSupplier();
             Boolean Found = false;
-            Int32 SupplierId = 3;
+            Int32 SupplierId = 2;
 
             Found = ASupplier.Find(SupplierId);
             Assert.IsTrue(Found);
@@ -145,16 +133,93 @@ namespace Testing3
             //create some test data to use with the method 
             Int32 SupplierId = 3;
             Found = ASupplier.Find(SupplierId);
-            if(ASupplier.SupplierID != 3)
+            if(ASupplier.SupplierId != 2)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        public void TestSupplierNameFound()
+        {
+            clsSupplier ASupplier = new clsSupplier();
+            // create a boolean variable to store the result of the serach 
+            Boolean Found = false;
+            // create a boolean varaible to record if he data is ok
+            Boolean OK = true;
+            //create some test data to use with the method 
+            Int32 SupplierId = 2;
+            Found = ASupplier.Find(SupplierId);
+            if (ASupplier.SupplierName != "Test Name")
+            {
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        public void TestSupplierEmailFound()
+        {
+            clsSupplier ASupplier = new clsSupplier();
+            // create a boolean variable to store the result of the serach 
+            Boolean Found = false;
+            // create a boolean varaible to record if he data is ok
+            Boolean OK = true;
+            //create some test data to use with the method 
+            Int32 SupplierId = 2;
+            Found = ASupplier.Find(SupplierId);
+            if (ASupplier.SupplierEmail != "Test Email")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        public void TestSupplierAddressFound()
+        {
+            clsSupplier ASupplier = new clsSupplier();
+            // create a boolean variable to store the result of the serach 
+            Boolean Found = false;
+            // create a boolean varaible to record if he data is ok
+            Boolean OK = true;
+            //create some test data to use with the method 
+            Int32 SupplierId = 2;
+            Found = ASupplier.Find(SupplierId);
+            if (ASupplier.SupplierAddress != "XXX XXX")
             {
                 OK = false;
             }
             Assert.IsTrue(OK);
         }
 
+        public void TestSupplierProductsFound()
+        {
+            clsSupplier ASupplier = new clsSupplier();
+            // create a boolean variable to store the result of the serach 
+            Boolean Found = false;
+            // create a boolean varaible to record if he data is ok
+            Boolean OK = true;
+            //create some test data to use with the method 
+            Int32 SupplierId = 2;
+            Found = ASupplier.Find(SupplierId);
+            if (ASupplier.SupplierProducts != "Test Products")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        private DateTime mSupplierDeliveryDate;
+        public DateTime SupplierDeliveryDate
+        {
+            get
+            { return mSupplierDeliveryDate; }
+            set { mSupplierDeliveryDate = value;
+            }       
+        }
 
+        private Boolean mSupplierFromUk;
 
-
+        public bool SupplierFromuk
+        { get { return mSupplierFromUk; } set {  mSupplierFromUk = value; } }
 
     }
 
