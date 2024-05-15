@@ -92,7 +92,7 @@ namespace Testing1
             //create an instance of the class we want to create
             clsCustomer ACustomer = new clsCustomer();
             //create some test data to assign to the property
-            int TestData = 0771234567;
+            int TestData = 077123456;
             //assign the data to the property
             ACustomer.CustomerPhone = TestData;
             //test to see that the two values are the same
@@ -105,7 +105,7 @@ namespace Testing1
             //create an instance of the class we want to create
             clsCustomer ACustomer = new clsCustomer();
             //create some test data to assign to the property
-            int TestData = 1;
+            int TestData = 2;
             //assign the data to the property
             ACustomer.CustomerID = TestData;
             //test to see that the two values are the same
@@ -122,7 +122,7 @@ namespace Testing1
             //create a Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 2;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //test to see if the result is true
@@ -141,11 +141,11 @@ namespace Testing1
             //create a boolean variable to record if data is OK
             Boolean OK = true;
             //create some test data to use w record
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 2;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //check the customer ID
-            if (ACustomer.CustomerID != 1)
+            if (ACustomer.CustomerID != 2)
             {
                 OK = false; 
             }
@@ -163,11 +163,11 @@ namespace Testing1
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 2;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //check the firstname property
-            if (ACustomer.CustomerFirstname != "Ahsan")
+            if (ACustomer.CustomerFirstname != "Afnan")
             {
                 OK = false;
             }
@@ -185,11 +185,11 @@ namespace Testing1
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 2;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //check the firstname property
-            if (ACustomer.CustomerLastname != "Ijaz")
+            if (ACustomer.CustomerLastname != "Khalid")
             {
                 OK = false;
             }
@@ -207,11 +207,11 @@ namespace Testing1
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 2;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //check the firstname property
-            if (ACustomer.CustomerEmail != "ahsanijaz@gmail.com")
+            if (ACustomer.CustomerEmail != "afnan@yahoo.com")
             {
                 OK = false;
             }
@@ -229,11 +229,11 @@ namespace Testing1
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 2;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //check the firstname property
-            if (ACustomer.CustomerBirthdate != Convert.ToDateTime("20/08/2001"))
+            if (ACustomer.CustomerBirthdate != Convert.ToDateTime("09/12/2003"))
             {
                 OK = false;
             }
@@ -251,11 +251,11 @@ namespace Testing1
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 2;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //check the firstname property
-            if (ACustomer.CustomerPhone != null)
+            if (ACustomer.CustomerPhone != 77323232)
             {
                 OK = false;
             }
@@ -273,7 +273,7 @@ namespace Testing1
             //create a Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 CustomerID = 1;
+            Int32 CustomerID = 2;
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //check the firstname property
