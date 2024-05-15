@@ -277,7 +277,7 @@ namespace Testing1
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //check the firstname property
-            if (ACustomer.Verified != true)
+            if (ACustomer.Verified != false)
             {
                 OK = false;
             }

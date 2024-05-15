@@ -12,7 +12,7 @@
         <p>
             &nbsp;</p>
         <p>
-            &nbsp;</p>
+            &nbsp;<asp:Button runat="server" Text="Button"></asp:Button></p>
         <p>
             <asp:TextBox ID="txtCustomerFirstname" runat="server" BorderColor="White" height="22px" OnTextChanged="TextBox1_TextChanged1" style="z-index: 1; left: 201px; top: 106px; position: absolute" width="128px"></asp:TextBox>
         </p>

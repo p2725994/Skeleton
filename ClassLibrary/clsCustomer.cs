@@ -126,17 +126,31 @@ namespace ClassLibrary
         /*******FIND METHOD********/
         public bool Find(int CustomerID)
         {
-            //set the private data members to the test value
-            mCustomerID = 2;
-            mCustomerFirstname = "Afnan";
-            mCustomerLastname = "Khalid";
-            mCustomerEmail = "afnan@yahoo.com";
-            mCustomerPhone = 77323232;
-            mCustomerBirthdate = Convert.ToDateTime("09/12/2003");
-            mVerified = true;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for customer id to search for
+            DB.AddParameter("@CustomerID", CustomerID);
+            //execute stored procedure
+            DB.Execute("sproc_tblCustomer_FilterByCustomerID");
+            //if one record is found
+            if (DB.Count == 1)
+            {
+                //set the private data members to the test value
+                mCustomerID = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerID"]);
+                mCustomerFirstname = Convert.ToString(DB.DataTable.Rows[0]["CustomerFirstname"]);
+                mCustomerLastname = Convert.ToString(DB.DataTable.Rows[0]["CustomerLastname"]);
+                mCustomerEmail = Convert.ToString(DB.DataTable.Rows[0]["CustomerEmail"]);
+                mCustomerPhone = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerPhone"]);
+                mCustomerBirthdate = Convert.ToDateTime(DB.DataTable.Rows[0]["CustomerBirthdate"]);
+                mVerified = Convert.ToBoolean(DB.DataTable.Rows[0]["Verified"]);
 
-            //always return true
-            return true;
+                //always return true
+                return true;
+            }
+            else
+            { 
+                return false; 
+            }
         }
 
     }
