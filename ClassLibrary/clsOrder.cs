@@ -6,7 +6,7 @@ namespace ClassLibrary
     {
         //private data members
         private Int32 mOrderId;
-        private float mOrderTotal;
+        private decimal mOrderTotal;
         private DateTime mDatePlaced;
         private Boolean mPurchased;
         private string mDeliveryAddress;
@@ -25,7 +25,7 @@ namespace ClassLibrary
                 mOrderId = value;
             }
         }
-        public float OrderTotal
+        public decimal OrderTotal
         {
             get
             {
@@ -95,16 +95,32 @@ namespace ClassLibrary
         //methods
         public bool Find(int OrderId)
         {
-            //set the private data members to the test data value
-            mOrderId = 21;
-            mOrderTotal = 34.99f;
-            mDatePlaced = Convert.ToDateTime("01/01/2024");
-            mPurchased = true;
-            mDeliveryAddress = "Test Address";
-            mNoOfItems = 5;
-            mIsGift = true;
-            //always return true
-            return true;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter fro the address id to search from
+            DB.AddParameter("@OrderId", OrderId);
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrder_FilterByOrderId");
+            //if one record is found (there should either be one or zero)
+            if (DB.Count == 1)
+            {
+                //copy the data from the database to the private data members
+                mOrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]);
+                mOrderTotal = Convert.ToDecimal(DB.DataTable.Rows[0]["OrderTotal"]);
+                mDatePlaced = Convert.ToDateTime(DB.DataTable.Rows[0]["DatePlaced"]);
+                mPurchased = Convert.ToBoolean(DB.DataTable.Rows[0]["Purchased"]);
+                mDeliveryAddress = Convert.ToString(DB.DataTable.Rows[0]["DeliveryAddress"]);
+                mNoOfItems = Convert.ToInt32(DB.DataTable.Rows[0]["NoOfItems"]);
+                mIsGift = Convert.ToBoolean(DB.DataTable.Rows[0]["IsGift"]);
+                //return that everything worked OK
+                return true;
+            }
+            //if no record was found 
+            else 
+            {
+                //return false indicating there is a problem
+                return false;
+            }
         }
 
     }
