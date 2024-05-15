@@ -182,7 +182,7 @@ namespace ClassLibrary
             if (staffFirstname.Length == 0)
             {
                 //record the error
-                Error = Error + "Staff name may not be blank: ";
+                Error = Error + "Staff name is blank: ";
             }
             //if the StaffFirstname is 30+ char
             if (staffFirstname.Length > 30)
@@ -195,7 +195,7 @@ namespace ClassLibrary
             if (staffSurname.Length == 0)
             {
                 //record the error
-                Error = Error + "Staff surname may not be blank: ";
+                Error = Error + "Staff surname is blank: ";
             }
             //if the StaffSurname is 20+ char
             if (staffSurname.Length > 20)
@@ -208,7 +208,7 @@ namespace ClassLibrary
             if (staffEmail.Length == 0)
             {
                 //record the error
-                Error = Error + "Staff email may not be blank: ";
+                Error = Error + "Staff email is blank: ";
             }
             //if the StaffEmail is 50+ char
             if (staffEmail.Length > 50)
@@ -221,7 +221,7 @@ namespace ClassLibrary
             if (staffPassword.Length == 0)
             {
                 //record the error
-                Error = Error + "Staff password may not be blank: ";
+                Error = Error + "Staff password is blank: ";
             }
             //if the StaffPassword is 16+ char
             if (staffPassword.Length > 16)
