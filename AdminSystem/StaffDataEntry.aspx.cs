@@ -21,31 +21,60 @@ public partial class _1_DataEntry : System.Web.UI.Page
         clsStaff AStaff = new clsStaff();
 
         //capture Staff Number
-        AStaff.StaffNo = Convert.ToInt32(txtStaffNo.Text);
+        string StaffNo = txtStaffNo.Text;
 
         //capture staff firstname
-        AStaff.StaffFirstname = txtStaffFirstname.Text;
+        string StaffFirstname = txtStaffFirstname.Text;
 
         //capture staff surname
-        AStaff.StaffSurname = txtStaffSurname.Text;
+        string StaffSurname = txtStaffSurname.Text;
 
         //capture staff email
-        AStaff.StaffEmail = txtStaffEmail.Text;
+        string StaffEmail = txtStaffEmail.Text;
 
         //capture staff password
-        AStaff.StaffPassword = txtStaffPassword.Text;
+        string StaffPassword = txtStaffPassword.Text;
 
         //capture date joined
-        AStaff.DateJoined = Convert.ToDateTime(DateTime.Now);
-        
+        string DateJoined =txtDateJoined.Text;
+
         //capture Is On Shift check box
-        AStaff.IsOnShift = chkIsOnShift.Checked;
+        string IsOnShift = chkIsOnShift.Text;
 
-        //Store the Staff in the session object
-        Session["AStaff"] = AStaff;
+        //variable to store any error messages
+        string Error = "";
 
-        //navigate to the view page
-        Response.Redirect("StaffViewer.aspx");
+        //validate data
+        Error = AStaff.Valid(StaffFirstname, StaffSurname, StaffEmail, StaffPassword, DateJoined);
+        if (Error == "")
+        {
+            //capture staff name
+            AStaff.StaffFirstname = StaffFirstname;
+
+            //capture staff surname
+            AStaff.StaffSurname = StaffSurname;
+
+            //capture staff email
+            AStaff.StaffEmail = StaffEmail;
+
+            //capture staff password
+            AStaff.StaffPassword = StaffPassword;
+
+            //capture date joined
+            AStaff.DateJoined = Convert.ToDateTime(DateJoined);
+
+            //Store the Staff in the session object
+            Session["AStaff"] = AStaff;
+
+            //navigate to the view page
+            Response.Redirect("StaffViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
+
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
@@ -72,5 +101,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
             chkIsOnShift.Checked = aStaff.IsOnShift;
 
         }
+
     }
 }
