@@ -1,124 +1,142 @@
 ﻿using System;
 
 namespace ClassLibrary
-{ 
-        public class clsSupplier
+{
+    public class clsSupplier
+    {
+        //private data memeber for the supplier id
+        private Int32 mSupplierId;
+
+        public Int32 SupplierId
         {
-            //private data memeber for the supplier id
-            private Int32 mSupplierId;
-
-            public Int32 SupplierId
+            get
             {
-                get
-                {
-                    return mSupplierId;
-                }
-                set
-                {
-                    mSupplierId = value;
-                }
+                return mSupplierId;
             }
-
-
-            //private data member for the Supplier Name 
-            private string mSupplierName;
-
-            public string SupplierName
+            set
             {
-                get
-                {
-                    return mSupplierName;
-                }
-                set
-                {
-                    mSupplierName = value;
-                }
+                mSupplierId = value;
             }
+        }
 
-            //private data member for the supplier email 
-            private string mSupplierEmail;
 
-            public string SupplierEmail
+        //private data member for the Supplier Name 
+        private string mSupplierName;
+
+        public string SupplierName
+        {
+            get
             {
-                get
-                {
-                    return mSupplierEmail;
-                }
-                set
-                {
-                    mSupplierEmail = value;
-                }
+                return mSupplierName;
             }
-
-            //private data member for the supplier email
-            private string mSupplierAddress;
-
-            public string SupplierAddress
+            set
             {
-                get
-                {
-                    return mSupplierAddress;
-                }
-                set
-                {
-                    mSupplierAddress = value;
-                }
+                mSupplierName = value;
             }
+        }
 
-            //private data member for the supplier Products 
-            private string mSupplierProducts;
+        //private data member for the supplier email 
+        private string mSupplierEmail;
 
-            public string SupplierProducts
+        public string SupplierEmail
+        {
+            get
             {
-                get
-                {
-                    return mSupplierProducts;
-                }
-                set
-                {
-                    mSupplierProducts = value;
-                }
+                return mSupplierEmail;
             }
-
-            //private data member for the supplier delivery date
-            private DateTime mSupplierDeliveryDate;
-            public DateTime SupplierDeliveryDate
+            set
             {
-                get
-                {
-                    return mSupplierDeliveryDate;
-                }
-                set
-                {
-                    mSupplierDeliveryDate = value;
-                }     
+                mSupplierEmail = value;
             }
-            //private data member for the supplier from the UK
+        }
 
-            private Boolean mSupplierFromUk;
-            public Boolean SupplierFromUk
+        //private data member for the supplier email
+        private string mSupplierAddress;
+
+        public string SupplierAddress
+        {
+            get
             {
-                get
-                {
-                    return mSupplierFromUk;
-                }
-                set
-                { 
-                    mSupplierFromUk = value;
-                }
+                return mSupplierAddress;
             }
-            /**FIND METHOD***/
-            public bool Find (int SupplierId)
+            set
+            {
+                mSupplierAddress = value;
+            }
+        }
+
+        //private data member for the supplier Products 
+        private string mSupplierProducts;
+
+        public string SupplierProducts
+        {
+            get
+            {
+                return mSupplierProducts;
+            }
+            set
+            {
+                mSupplierProducts = value;
+            }
+        }
+
+        //private data member for the supplier delivery date
+        private DateTime mSupplierDeliveryDate;
+        public DateTime SupplierDeliveryDate
+        {
+            get
+            {
+                return mSupplierDeliveryDate;
+            }
+            set
+            {
+                mSupplierDeliveryDate = value;
+            }
+        }
+        //private data member for the supplier from the UK
+
+        private Boolean mSupplierFromUk;
+        public Boolean SupplierFromUk
+        {
+            get
+            {
+                return mSupplierFromUk;
+            }
+            set
+            {
+                mSupplierFromUk = value;
+            }
+        }
+        /**FIND METHOD***/
+        public bool Find(int SupplierId)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the address id to search for 
+            DB.AddParameter("@SupplierId", SupplierId);
+            // if one record is found 
+            DB.Execute("sproc_tblSupplier_FilterBySupplierId");
+
+            if (DB.Count == 1)
             {
                 //set the private data members to test data value 
-                mSupplierId = 2;
-                mSupplierName = "Test name";
-                mSupplierEmail = "Test email";
-                mSupplierAddress = "XXX XXX";
-                mSupplierProducts = "Test Products";
-                mSupplierDeliveryDate = Convert.ToDateTime("00/00/0000");
-                mSupplierFromUk= true;
+                mSupplierId = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierId"]);
+                mSupplierName = Convert.ToString(DB.DataTable.Rows[0]["SupplierName"]);
+                mSupplierEmail = Convert.ToString(DB.DataTable.Rows[0]["SupplierEmail"]);
+                mSupplierAddress = Convert.ToString(DB.DataTable.Rows[0]["SupplierAddress"]);
+                mSupplierProducts = Convert.ToString(DB.DataTable.Rows[0]["SupplierProducts"]);
+                mSupplierDeliveryDate = Convert.ToDateTime(DB.DataTable.Rows[0]["SupplierDeliveryDate"]);
+                mSupplierFromUk = Convert.ToBoolean(DB.DataTable.Rows[0]["SupplierFromUk"]);
                 return true;
             }
+            else
+            {
+                return false;
+            }
+        }
+
+        public string Valid(string supplierName, string supplierEmail, string supplierProducts, string supplierAddress, string supplierDeliveryDate)
+        {
+            return "";
+        }
     }
 }

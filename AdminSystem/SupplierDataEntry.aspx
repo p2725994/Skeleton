@@ -25,15 +25,18 @@
         <p>
             &nbsp;</p>
         <p>
-            <asp:TextBox ID="txtSupplierDeliveryDate" runat="server" style="z-index: 1; left: 133px; top: 221px; position: absolute"></asp:TextBox>
+            <asp:TextBox ID="txtSupplierDeliveryDate" runat="server" style="z-index: 1; left: 133px; top: 221px; position: absolute; bottom: 595px;"></asp:TextBox>
             <asp:TextBox ID="txtSupplierProduct" runat="server" style="z-index: 1; left: 138px; top: 175px; position: absolute; height: 20px;"></asp:TextBox>
         </p>
-        <asp:CheckBox ID="SupplierFromUK" runat="server" style="z-index: 1; left: 12px; top: 301px; position: absolute" />
+        <asp:CheckBox ID="chkSupplierFromUk" runat="server" style="z-index: 1; left: 16px; top: 321px; position: absolute" Text="SupplierFromUK" />
         <asp:Button ID="btnOK" runat="server"  style="z-index: 1; left: 10px; top: 505px; position: absolute" Text="OK" OnClick="btnOK_Click1" />
         <p>
             <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 92px; top: 507px; position: absolute" Text="Cancel" OnClick="btnCancel_Click"  />
+            <asp:TextBox ID="txtSupplierAddress" runat="server" style="z-index: 1; left: 138px; top: 265px; position: absolute"></asp:TextBox>
         </p>
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 8px; top: 428px; position: absolute; height: 19px"></asp:Label>
+        <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 545px; top: 59px; position: absolute" Text="Find" />
+        <asp:Label ID="lblSupplierAddress" runat="server" style="z-index: 1; left: 8px; top: 265px; position: absolute" Text="SupplierAddress"></asp:Label>
     </form>
 </body>
 </html>
