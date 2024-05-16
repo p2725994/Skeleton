@@ -153,5 +153,25 @@ namespace ClassLibrary
             }
         }
 
+        public string Valid(string customerFirstname, string customerLastname, string customerEmail, string customerBirthdate, string customerPhone)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //if customerfirstname is blank
+            if (customerFirstname.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Firstname can not be blank : ";
+            }
+            //if the house no is greater than 20 chars
+            if (customerFirstname.Length > 21) 
+            {
+                //record the error
+                Error = Error + "The Firstname should not be more than 20 characters : ";
+            }
+            
+            //return any error message
+            return Error;
+        }
     }
 }
