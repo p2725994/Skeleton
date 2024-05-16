@@ -18,32 +18,58 @@ public partial class _1_DataEntry : System.Web.UI.Page
         // create a new instance of clsStock
         clsStocks aStock = new clsStocks();
 
+        // capture the product Id
+        string Product_Id = txtProduct_Id.Text;
 
-        aStock.Product_Id = Convert.ToInt32(txtProduct_Id.Text);
+        // capture the product name
+        string Product_Name = txtProduct_Name.Text;
 
+        // capture product description
+        string Product_Description = txtProduct_Description.Text;
 
-        aStock.Product_Name = txtProduct_Name.Text;
+        // capture product quantity
+        string Product_Quantity = txtProduct_Quantity.Text;
 
+        // capture product price
+        string Product_Price = txtProduct_Price.Text;
 
-        aStock.Product_Description = txtProduct_Description.Text;
+        // capture product expiry
+        string Product_Expiry = txtProduct_Expiry.Text;
 
+        // capture available check box
+        string Available = chkAvailable.Text;
 
-        aStock.Product_Quantity = Convert.ToInt32(txtProduct_Quantity.Text);
+        //variable to store error message
+        string Error = "";
+        Error = aStock.Valid(Product_Description, Product_Name, Product_Expiry, Product_Quantity, Product_Price);
+        if (Error == "")
+        {
+            // capture the product name
+            aStock.Product_Name = Product_Name;
 
+            // capture product description
+            aStock.Product_Description = Product_Description;
 
-        aStock.Product_Price = Convert.ToDouble(txtProduct_Price.Text);
+            // capture product quantity
+            aStock.Product_Quantity = Convert.ToInt32(Product_Quantity);
 
+            // capture product price
+            aStock.Product_Price = (float)Convert.ToDecimal(Product_Price);
 
-        aStock.Product_Expiry = Convert.ToDateTime(DateTime.Now);
+            // capture product expiry
+            aStock.Product_Expiry = Convert.ToDateTime(Product_Expiry);
 
+            // store stock in the session object
+            Session["AStock"] = aStock;
 
-        aStock.Available = chkAvailable.Checked;
-
-
-        Session["AStock"] = aStock;
-
-        //navigate to the view page
-        Response.Redirect("StockViewer.aspx");
+            //navigate to the view page
+            Response.Redirect("StockViewer.aspx");
+        }
+        else
+        {
+            //display the error message#
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)

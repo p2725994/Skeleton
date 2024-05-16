@@ -61,8 +61,8 @@ namespace ClassLibrary
             }
         }
 
-        private Double mProduct_Price;
-        public double Product_Price
+        private float mProduct_Price;
+        public float Product_Price
         {
             get
             {
@@ -117,7 +117,7 @@ namespace ClassLibrary
                 mProduct_Name = Convert.ToString(DB.DataTable.Rows[0]["Product_Name"]);
                 mProduct_Description = Convert.ToString(DB.DataTable.Rows[0]["Product_Description"]);
                 mProduct_Quantity = Convert.ToInt32(DB.DataTable.Rows[0]["Product_Quantity"]);
-                mProduct_Price = Convert.ToDouble(DB.DataTable.Rows[0]["Product_Price"]);
+                mProduct_Price = (float)Convert.ToDecimal(DB.DataTable.Rows[0]["Product_Price"]);
                 mProduct_Expiry = Convert.ToDateTime(DB.DataTable.Rows[0]["Product_Expiry"]);
                 mAvailable = Convert.ToBoolean(DB.DataTable.Rows[0]["Available"]);
 
@@ -216,7 +216,7 @@ namespace ClassLibrary
             {
                 Error += "The product price cannot be negative. ";
             }
-            else if (Convert.ToDecimal(product_Price) > 99999.99m)
+            if (Convert.ToDecimal(product_Price) > 99999.99m)
             {
                 Error += "The product price exceeds the maximum allowed value. ";
             }
