@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Runtime.Remoting.Channels;
 
 namespace ClassLibrary
 {
@@ -80,7 +82,7 @@ namespace ClassLibrary
                 mNoOfItems = value;
             }
         }
-        public bool IsGift 
+        public bool IsGift
         {
             get
             {
@@ -116,12 +118,109 @@ namespace ClassLibrary
                 return true;
             }
             //if no record was found 
-            else 
+            else
             {
                 //return false indicating there is a problem
                 return false;
             }
         }
+
+        public string Valid(string datePlaced,
+                            string deliveryAddress,
+                            string orderTotal)
+        {
+            //create a string variable to store the error
+            string Error = "";
+            //create a temporary variable to store the date values
+            DateTime DateTemp;
+            //create a temporary variable to store decimal values
+            decimal TotalTemp;
+
+            //create an inastance of DateTime to compare with DateTemp
+            //in the if statements
+            DateTime DateComp = DateTime.Now.Date;
+
+            try
+            {
+                //copy the datePlaced value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(datePlaced);
+
+                if (DateTemp < DateComp) //compate datePlaced with Date
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateComp)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+
+            //if the DeliveryAddress is blank
+            if (deliveryAddress.Length == 0)
+            {
+                //record the error
+                Error = Error + "The delivery address may not be blank : ";
+            }
+            //if the delivery address is greater than 50 characters
+            if (deliveryAddress.Length > 50)
+            {
+                //record the error
+                Error = Error + "The delivey address must be less than 50 characters : ";
+            }
+
+            /**
+            //copy the datePlaced value to the DateTemp variable
+            DateTemp = Convert.ToDateTime(datePlaced);
+            //check to see if the date is less than today's date
+            if (DateTemp < DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the past : ";
+            }
+            //check to see if the date is more than today's date
+            if (DateTemp > DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the future : ";
+            }
+
+            **/
+            
+            try
+            {
+                //copy the orderTotal value to the TotalTemp variable
+                TotalTemp = Convert.ToDecimal(orderTotal);
+                //round the orderTotal value to two decimal places
+                Math.Round(TotalTemp, 2);
+
+                //if the orderTotal is negative
+                if (TotalTemp < 0.00m)
+                {
+                    //record the error
+                    Error = Error + "The order total cannot be negative : ";
+                }
+                //if the order total is above the asigned limit
+                if (TotalTemp > 9999999.99m)
+                {
+                    //record the error
+                    Error = Error + "The order total is larger than the decimal limit : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The order total was not a valid decimal : ";
+            }
+            //return any error messages
+            return Error;
+        }
+
 
     }
 }
