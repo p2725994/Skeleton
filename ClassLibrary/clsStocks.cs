@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Linq.Expressions;
 namespace ClassLibrary
 {
     public class clsStocks
@@ -130,6 +132,104 @@ namespace ClassLibrary
                 //return false indicating a problem
                 return false;
             }
+
+
+
+
+        }
+
+        public string Valid(string product_Description, string product_Name, string product_Expiry, string product_Quantity, string product_Price)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary variable to store date values
+            DateTime DateTemp;
+            //if the product name is blank
+            if (product_Name.Length == 0)
+            {
+                //record the error
+                Error = Error + "The product name may not be blank : ";
+            }
+            //if the hproduct name is greater than 30 characters
+            if (product_Name.Length > 30)
+            {
+                //record the error
+                Error = Error + "The product_Name must be less than 30 characters : ";
+            }
+
+
+            if (product_Description.Length == 0)
+            {
+                //record the error
+                Error = Error + "The product description may not be blank : ";
+            }
+
+            //if the product description is greater than 50 characters
+            if (product_Description.Length > 50)
+            {
+                //record the error
+                Error = Error + "The product description    must be less than 50 characters : ";
+            }
+
+            // testing invalid date
+            //create an instance of DateTime to compare with DateTemp
+            //in the if statements
+            DateTime DateComp = DateTime.Now.Date;
+            try
+            {
+
+                //copy the dateAdded value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(product_Expiry);
+
+                if (DateTemp < DateComp) // comnpare product expiry
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date :";
+            }
+            //is the product quantity blank
+            if (product_Quantity.Length == 0)
+            {
+                //record the error
+                Error = Error + "There sould be some quantity inside: ";
+            }
+            //if the post code is too long
+            if (product_Quantity.Length > 10)
+            {
+                //record the error
+                Error = Error + "There should be less than 10 char: ";
+            }
+
+            // Assuming minimum price is £0.00 and maximum price is £99999.99
+            if (Convert.ToDecimal(product_Price) < 0.00m)
+            {
+                Error += "The product price cannot be negative. ";
+            }
+            else if (Convert.ToDecimal(product_Price) > 99999.99m)
+            {
+                Error += "The product price exceeds the maximum allowed value. ";
+            }
+
+            return Error; // Return any validation error
+
+
+
+
+
         }
     }
 }
+
+
+    
