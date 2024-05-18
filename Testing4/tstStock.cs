@@ -90,7 +90,7 @@ namespace Testing4
             //create some test data to assign to the property
             Double TestData = 2;
             //assign the data to the property
-            aStock.Product_Price = TestData;
+            aStock.Product_Price = (float)TestData;
             //test to see that the two values are the same
             Assert.AreEqual(aStock.Product_Price, TestData);
         }
@@ -780,7 +780,7 @@ namespace Testing4
             //invoke the method
             Error = aStock.Valid(Product_Description, Product_Name, Product_Expiry, Product_Quantity, Product_Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         private void padRight(int v1, char v2)
@@ -801,7 +801,7 @@ namespace Testing4
             //invoke the method
             Error = aStock.Valid(Product_Description, Product_Name, Product_Expiry, Product_Quantity, Product_Price);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         // test product price
         [TestMethod]
