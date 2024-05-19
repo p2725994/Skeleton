@@ -136,7 +136,28 @@ namespace ClassLibrary
 
         public string Valid(string supplierName, string supplierEmail, string supplierProducts, string supplierAddress, string supplierDeliveryDate)
         {
-            return "";
+            String Error = "";
+            DateTime DateTemp;
+            if(supplierName.Length == 0)
+            {
+                Error = Error + "The supplier name can not be left blank :";
+            }
+            if (supplierName.Length > 30)
+            {
+                Error = Error + "The house name must be less then 30 characters ";
+
+            }
+            DateTemp = Convert.ToDateTime(supplierDeliveryDate);
+            //check to see if the date is less than today's date 
+            if (DateTemp < DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the past:";
+            }
+            if (DateTemp > DateTime.Now.Date)
+            {
+                Error = Error + "The date cannnot be in the future";
+            }
+            return Error;
         }
     }
 }
