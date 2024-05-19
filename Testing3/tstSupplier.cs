@@ -1,5 +1,6 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework.Internal;
 using System;
 using System.Linq.Expressions;
 using Xunit.Sdk;
@@ -13,8 +14,8 @@ namespace Testing3
         string SupplierName = "RedBull";
         string SupplierEmail = "RedBull@gmail.com";
         string SupplierAddress = "293 TBH";
-        string SupplierProducts ="RedBull Energy";
-        string SupplierDeliveryDate =  DateTime.Now.ToShortDateString();
+        string SupplierProducts = "RedBull Energy";
+        string SupplierDeliveryDate = DateTime.Now.ToShortDateString();
 
         [TestMethod]
         public void InstaneOK()
@@ -159,8 +160,8 @@ namespace Testing3
             Int32 SupplierId = 1;
             Found = ASupplier.Find(SupplierId);
             if (ASupplier.SupplierName != "RedBull")
-            { 
-                OK = false; 
+            {
+                OK = false;
             }
             Assert.IsTrue(OK);
         }
@@ -255,9 +256,222 @@ namespace Testing3
         {
             clsSupplier ASupplier = new clsSupplier();
             String Error = "";
-            Error = ASupplier.Valid(SupplierName,SupplierEmail,SupplierProducts,SupplierAddress,SupplierDeliveryDate );
+            Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
 
         }
+        [TestMethod]
+
+        public void SupplierNameMinLessOne()
+        {
+            //create an instance of the class we want
+            clsSupplier ASupplier = new ASupplier();
+            string Error = "";
+            string SupplierName = "";
+            //invoke the method
+            Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
+            Assert.AreNotEqual(Error, "");
+        
+        }
+        [TestMethod]
+
+        public void SupplierNameMin()
+        {
+            //create an instance of the class we want
+            clsSupplier ASupplier = new ASupplier();
+            string Error = "";
+            string SupplierName = "a";
+            //invoke the method
+            Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void SupplierNameMinPlusOne()
+        {
+            //create an instance of the class we want
+            clsSupplier ASupplier = new ASupplier();
+            string Error = "";
+            string SupplierName = "aa";
+            //invoke the method
+            Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void SupplierNameMaxLessOne()
+        {
+            //create an instance of the class we want
+            clsSupplier ASupplier = new ASupplier();
+            string Error = "";
+            string SupplierName = "aaaaa";
+            //invoke the method
+            Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void SupplierNameMax()
+        {
+            //create an instance of the class we want
+            clsSupplier ASupplier = new ASupplier();
+            string Error = "";
+            string SupplierName = "aaaaaa";
+            //invoke the method
+            Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void SupplierNameMaxPlusOne()
+        {
+            //create an instance of the class we want
+            clsSupplier ASupplier = new ASupplier();
+            string Error = "";
+            string SupplierName = "aaaaaaa";
+            //invoke the method
+            Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void SupplierNameExtremeMax()
+        {
+            //create an instance of the class we want
+            clsSupplier ASupplier = new ASupplier();
+            string Error = "";
+            string SupplierName = "";
+            SupplierName = SupplierName.PadRight(500, 'a');
+            //invoke the method
+            Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void SupplierDeliveryDateExtremeMin()
+        {
+            //create an instance of the class we want
+            clsSupplier ASupplier = new ASupplier();
+            string Error = "";
+
+           DateTime TestDate;
+            //set the date to todays date 
+            TestDate = DateTime.NowDate;
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddYears(-100);
+            //convert the date variable to a string variable
+            string SupplierDeliveryDate = TestDate.ToString();
+            //invoke the method
+            Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void SupplierDeliveryDateMinLessOne()
+        {
+            //create an instance of the class we want
+            clsSupplier ASupplier = new ASupplier();
+            string Error = "";
+
+            DateTime TestDate;
+            //set the date to todays date 
+            TestDate = DateTime.NowDate;
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddYears(-1);
+            //convert the date variable to a string variable
+            string SupplierDeliveryDate = TestDate.ToString();
+            //invoke the method
+            Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void SupplierDeliveryDateMin()
+        {
+            //create an instance of the class we want
+            clsSupplier ASupplier = new ASupplier();
+            string Error = "";
+
+            DateTime TestDate;
+            //set the date to todays date 
+            TestDate = DateTime.NowDate;
+            //change the date to whatever the date is less 100 years
+            string SupplierDeliveryDate = TestDate.ToString();
+            //convert the date variable to a string variable
+            string SupplierDeliveryDate = TestDate.ToString();
+            //invoke the method
+            Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void SupplierDeliveryDateMinPlusOne()
+        {
+            //create an instance of the class we want
+            clsSupplier ASupplier = new ASupplier();
+            string Error = "";
+
+            DateTime TestDate;
+            //set the date to todays date 
+            TestDate = DateTime.NowDate;
+            //change the date to whatever the date is plus 1 day
+            TestDate = TestDate.AddYears(1);
+            //convert the date variable to a string variable
+            string SupplierDeliveryDate = TestDate.ToString();
+            //invoke the method
+            Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void SupplierDeliveryDateExtremeMax()
+        {
+            //create an instance of the class we want
+            clsSupplier ASupplier = new ASupplier();
+            string Error = "";
+
+            DateTime TestDate;
+            //set the date to todays date 
+            TestDate = DateTime.NowDate;
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddYears(100);
+            //convert the date variable to a string variable
+            string SupplierDeliveryDate = TestDate.ToString();
+            //invoke the method
+            Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+
+        public void SupplierDeliveryDateInvalidDate()
+        {
+            //create an instance of the class we want
+            clsSupplier ASupplier = new ASupplier();
+            string Error = "";
+
+            //convert the date variable to a string variable
+            string SupplierDeliveryDate = "this is not a date";
+            //invoke the method
+            Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+
+
+
+
+
     }
 }
 
