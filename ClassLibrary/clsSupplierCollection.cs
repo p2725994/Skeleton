@@ -7,6 +7,7 @@ namespace ClassLibrary
     {
         public clsSupplierCollection()
         {
+
             //variable for the index
             Int32 Index = 0;
 
@@ -45,6 +46,8 @@ namespace ClassLibrary
 
         //private data member for supplier list
         List<clsSupplier> mSupplierList = new List<clsSupplier>();
+        private clsSupplier mThisSupplier;
+
         //public property for supplier list
         public List<clsSupplier> SupplierList
         {
@@ -71,7 +74,27 @@ namespace ClassLibrary
                 //later
             }
         }
-        public clsSupplier ThisSupplier { get; set; }
+
+       
+
+        public clsSupplier ThisSupplier { get
+            { return mThisSupplier; }
+
+                set{
+                mThisSupplier = value;
+            } 
+        }
+
+        public int Add()
+        {
+            //add a record to the database based on the value of mThisSupplier
+            //connect to the database 
+            clsDataConnection DB = new clsDataConnection();
+            //set the 
+            mThisSupplier.SupplierId = 123;
+            // return the primary key of the new record 
+            return mThisSupplier.SupplierId;
+        }
     }
 }
 

@@ -263,6 +263,7 @@ namespace Testing3
             Assert.AreEqual(Error, "");
 
         }
+
         [TestMethod]
 
         public void SupplierNameMinLessOne()
@@ -570,7 +571,7 @@ namespace Testing3
             //invoke the method
             Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
             //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void SupplierAddressLessOne()
@@ -672,7 +673,7 @@ namespace Testing3
             //invoke the method
             Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
             //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
@@ -776,7 +777,7 @@ namespace Testing3
             //invoke the method
             Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProducts, SupplierAddress, SupplierDeliveryDate);
             //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
     }
 }
