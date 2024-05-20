@@ -31,9 +31,19 @@ public partial class _1_List : System.Web.UI.Page
         lstStaffList.DataValueField = "StaffNo";
 
         //set the data field to display
-        lstStaffList.DataTextField = "StaffFirstname";
+        lstStaffList.DataTextField = "StaffEmail";
 
         //bind the data to the list
         lstStaffList.DataBind();
+    }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        //store -1 in the session object to indicate is a new session
+        Session["StaffNo"] = -1;
+
+        //redirect to the data entry page
+        Response.Redirect("StaffDataEntry.aspx");
+
     }
 }
