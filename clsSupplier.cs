@@ -134,7 +134,12 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string supplierName, string supplierEmail, string supplierProducts, string supplierAddress, string supplierDeliveryDate)
+        public string Valid(
+            string supplierName, 
+            string supplierEmail, 
+            string supplierProducts,
+            string supplierAddress, 
+            string supplierDeliveryDate)
         {
             String Error = "";
             DateTime DateTemp;
@@ -156,7 +161,52 @@ namespace ClassLibrary
             if (DateTemp > DateTime.Now.Date)
             {
                 Error = Error + "The date cannnot be in the future";
+
             }
+
+            DateTime DateComp = DateTime.Now.Date;
+            try
+            {
+                DateTemp = Convert.ToDateTime(supplierDeliveryDate);
+                if (DateTemp < DateComp)
+                {
+                    Error = Error + "The date cannot be in the past";
+                }
+                if (DateTemp > DateComp)
+                {
+                    Error = Error + "The date cannot be in the future";
+                }
+            }
+            catch
+            {
+                Error = Error + "The date was not valid date";
+            }
+            if (supplierEmail.Length == 0)
+            {
+                Error = Error + "The email code may not be blank ";
+            }
+            if (supplierEmail.Length > 40)
+            {
+                Error = Error + "The post cannot be less then 40 character";
+            }
+            if (supplierAddress.Length == 0)
+            {
+                Error = Error + "The email code may not be blank ";
+            }
+            if (supplierAddress.Length > 10)
+            {
+                Error = Error + "The post cannot be less then 40 character";
+            }
+            if (supplierProducts.Length == 0)
+            {
+                Error = Error + "The email code may not be blank ";
+            }
+            if (supplierProducts.Length > 10)
+            {
+                Error = Error + "The post cannot be less then 40 character";
+            }
+
+
             return Error;
         }
     }
