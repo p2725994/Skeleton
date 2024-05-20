@@ -5,36 +5,34 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ClassLibrary;
+using System.Collections;
 
-public partial class _1Viewer : System.Web.UI.Page
+public partial class _1_List : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        // if this is the first code the page is displayed
+        if (!IsPostBack == false)
+        {
+            //update the list box
+            DisplayStock();
+        }
+    }
+    void DisplayStock()
+    {
+        //create an instance of the stock collection
+        ClsStockCollection astock = new ClsStockCollection();
+        //set the data source to list stock in the collection
+       lstStockList.DataSource = astock.StockList;
+        //set the name of the primary key
+        lstStockList.DataValueField = "Product_No";
+        //set the data field to display      
 
-        clsStocks aStock = new clsStocks();
+        lstStockList.DataTextField = "Product_Name";
+        // bind the data to the list
+        lstStockList.DataBind();
 
-
-        aStock = (clsStocks)Session["AStock"];
-
-
-        Response.Write(aStock.Product_Id + "\n\n");
-
-
-        Response.Write(aStock.Product_Name + "\n\n");
-
-
-        Response.Write(aStock.Product_Description + "\n\n");
-
-
-        Response.Write(aStock.Product_Quantity + "\n\n");
-
-
-        Response.Write(aStock.Product_Price + "\n\n");
-
-
-        Response.Write(aStock.Product_Expiry + "\n\n");
-
-
-        Response.Write(aStock.Available + "\n\n");
     }
 }
+
