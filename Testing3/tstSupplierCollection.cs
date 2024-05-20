@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Security.Policy;
 
 namespace Testing3
 {
@@ -110,6 +111,33 @@ namespace Testing3
 
             //test to see that the two values are the same
             Assert.AreEqual(AllSupplier.Count, TestList.Count);
+
+        }
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an instance of the class we want to create 
+            clsSupplierCollection AllSupplier = new clsSupplierCollection();
+            //create the item of test data
+            clsSupplier TestItem = new clsSupplier();
+            Int32 PrimaryKey = 0;
+            TestItem.SupplierId = 1;
+            TestItem.SupplierName = "RedBull";
+            TestItem.SupplierEmail = "RedBull@gmail.com";
+            TestItem.SupplierAddress = "123 456";
+            TestItem.SupplierProducts = "RedBull Energy";
+            TestItem.SupplierDeliveryDate = DateTime.Now;
+            TestItem.SupplierFromUk = true;
+
+            AllSupplier.ThisSupplier =TestItem;
+            //add the record
+            PrimaryKey = AllSupplier.Add();
+            //Set the primary key of the test data 
+
+            TestItem.SupplierId =PrimaryKey;
+
+            AllSupplier.ThisSupplier.Find(PrimaryKey);
+            Assert.AreEqual(AllSupplier.ThisSupplier, TestItem);
 
         }
      
