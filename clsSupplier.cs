@@ -149,30 +149,18 @@ namespace ClassLibrary
             }
             if (supplierName.Length > 30)
             {
-                Error = Error + "The house name must be less then 30 characters ";
+                Error = Error + "The supplier name must be less then 30 characters ";
 
             }
-            DateTemp = Convert.ToDateTime(supplierDeliveryDate);
-            //check to see if the date is less than today's date 
-            if (DateTemp < DateTime.Now.Date)
-            {
-                Error = Error + "The date cannot be in the past:";
-            }
-            if (DateTemp > DateTime.Now.Date)
-            {
-                Error = Error + "The date cannnot be in the future";
-
-            }
-
-            DateTime DateComp = DateTime.Now.Date;
+           
             try
             {
                 DateTemp = Convert.ToDateTime(supplierDeliveryDate);
-                if (DateTemp < DateComp)
+                if (DateTemp < DateTime.Now.Date)
                 {
                     Error = Error + "The date cannot be in the past";
                 }
-                if (DateTemp > DateComp)
+                if (DateTemp > DateTime.Now.Date)
                 {
                     Error = Error + "The date cannot be in the future";
                 }
@@ -201,7 +189,7 @@ namespace ClassLibrary
             {
                 Error = Error + "The email code may not be blank ";
             }
-            if (supplierProducts.Length > 10)
+            if (supplierProducts.Length > 50)
             {
                 Error = Error + "The post cannot be less then 40 character";
             }
