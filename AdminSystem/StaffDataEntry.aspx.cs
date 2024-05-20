@@ -63,11 +63,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //capture date joined
             AStaff.DateJoined = Convert.ToDateTime(DateJoined);
 
-            //Store the Staff in the session object
-            Session["AStaff"] = AStaff;
+            //capture is on shift
+            AStaff.IsOnShift =chkIsOnShift.Checked;
 
-            //navigate to the view page
-            Response.Redirect("StaffViewer.aspx");
+            //create a new instance of the staff collection
+            clsStaffCollection StaffList = new clsStaffCollection();
+
+            //set the ThisStaff property
+            StaffList.ThisStaff = AStaff;
+
+            //add the new record
+            StaffList.Add();
+
+            //redirect back to the list page
+            Response.Redirect("StaffList.aspx");
         }
         else
         {
