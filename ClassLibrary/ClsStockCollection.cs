@@ -1,44 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ClassLibrary
 {
     public class ClsStockCollection
     {
+
+        //private data member for the list
+        List<clsStocks> mStockList = new List<clsStocks>();
+        //private member data for ThisStock
+        clsStocks mThisStock = new clsStocks();
+        public clsStocks ThisStock
+        {
+            get
+            {
+                //return the private data
+                return mThisStock;
+            }
+
+            set
+            {
+                //set the private data
+                mThisStock = value;
+            }
+        }
         public List<clsStocks> StockList { get; set; }
         public int Count
         {
             get
             {
                 //return the count of the list
-                return StockList.Count;
+                return mStockList.Count;
             }
             set
             {
                 // we shall know about this later
             }
         }
-          
-        public clsStocks ThisStock { get; set; }
-        // private data member for the list
-        List<clsStocks> mStockList = new List<clsStocks>();
-      
-        // Public property for the address list
-        public List<clsStocks> StosckLlist
+
+        public object Public { get; private set; }
+
+        public int Add()
         {
-            get
-            {
-                //return the private data
-                return mStockList;
-            }
-            set
-            {
-                //set the private
-                mStockList = value;
-            }
+            //adds a record to the database on the value of mThisStock
+            //set the primary key value of the new record
+            mThisStock.Product_Id = 1;
+            //return the primarykey of the new record
+            return mThisStock.Product_Id;
         }
-      
-       
+
+
+
+
         // constructor for the class
         public ClsStockCollection()
         {
@@ -73,6 +87,28 @@ namespace ClassLibrary
 
 
             }
+
+            public void Update()
+
+
+            {
+                //update an existing record based on the values of thisstock
+                //connect to the databse
+                ClsStockCollection Allstocks = new ClsStockCollection();
+                //set the parameters for the new stored procedure
+                DB.AddParameter("@Product_Id", mThisStock.Product_Id);
+                DB.AddParameter("@Product_Name", mThisStock.Product_Name);
+                DB.AddParameter("@Product_Description", mThisStock.Product_Description);
+                DB.AddParameter("@Product_Quantity", mThisStock.Product_Quantity);
+                DB.AddParameter("@Product_Price", mThisStock.Product_Price);
+                DB.AddParameter("@Product_Expiry", mThisStock.Product_Expiry);
+                DB.AddParameter("@Available", mThisStock.Available);
+
+                //execute the stored procedure
+                DB.Execute("sproc_tblStock_Update");
+
+            }
+
         }
     }
 }

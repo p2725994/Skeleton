@@ -1,6 +1,8 @@
-﻿using ClassLibrary;
+﻿using ASP;
+using ClassLibrary;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -8,9 +10,26 @@ using System.Web.UI.WebControls;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 Product_Id;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the number of stock to be processed
+        Product_Id = Convert.ToInt32(Session["Product_Id"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if(Product_Id != -1)
+            {
+                //display the current data for the record
+                DisplayStock();
 
+            }
+        }
+    }
+
+    private void DisplayStock()
+    {
+        throw new NotImplementedException();
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -58,12 +77,18 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
             // capture product expiry
             aStock.Product_Expiry = Convert.ToDateTime(Product_Expiry);
+            //capture active
+            aStock.Available = chkAvailable.Checked;
+            //create a new instance of stock collection
+            ClsStockCollection StockList = new ClsStockCollection();
 
-            // store stock in the session object
-            Session["AStock"] = aStock;
+            //set the ThisStock property
+            StockList.ThisStock = aStock;
+            // add the new record
+            StockList.Add();
 
-            //navigate to the view page
-            Response.Redirect("StockViewer.aspx");
+            //redirect back to the list page
+            Response.Redirect("StockList.aspx");
         }
         else
         {
@@ -95,6 +120,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtProduct_Expiry.Text = aStock.Product_Expiry.ToString();
             chkAvailable.Checked = aStock.Available;
 
+        
         }
+      
+
+       
+       
     }
 }
