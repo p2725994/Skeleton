@@ -46,4 +46,35 @@ public partial class _1_List : System.Web.UI.Page
         Response.Redirect("StaffDataEntry.aspx");
 
     }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        //variable to store the PK value of the record to be edited
+        Int32 StaffNo;
+
+        //if a record has been selected from the list
+        if (lstStaffList.SelectedIndex != -1) 
+        {
+            //get the PK value of the record to edit
+            StaffNo = Convert.ToInt32(lstStaffList.SelectedValue);
+
+            //store the data in te sesision object
+            Session["StaffNo"] = StaffNo;
+
+            //redirect to the edit page
+            Response.Redirect("StaffDataEntry.aspx");
+        }
+        else //if no record has been recorded 
+        {
+            lblError.Text = "Please select a record from the list to edit.";
+        }
+
+        /*
+         *  1.	First check to see if the list has been selected. 
+            2.	If it has, pick up the primary key value via the SelectedValue property of the list box.
+            3.	Assuming it has we then place the primary key value into the session object.
+            4.	Then we redirect to the page AnAddress.aspx.
+            5.	The error label will display a message to the user if a list item hasn’t been selected.
+         */
+    }
 }
