@@ -168,12 +168,39 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The Firstname can not be blank : ";
             }
-            //if the house no is greater than 20 chars
+            //if the lastname is greater than 20 chars
             if (customerFirstname.Length > 20) 
             {
                 //record the error
                 Error = Error + "The Firstname should not be more than 20 characters : ";
             }
+
+            //if customerlastname is blank
+            if (customerLastname.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Lastname can not be blank : ";
+            }
+            //if the lastname is greater than 20 chars
+            if (customerLastname.Length > 20)
+            {
+                //record the error
+                Error = Error + "The Lastname should not be more than 20 characters : ";
+            }
+
+
+
+            //if email is >50 chars
+            if (customerEmail.Length > 50)
+            {
+                //record the error
+                Error = Error + "The Email should not be more than 50 characters : ";
+            }
+
+
+
+
+
             //copy the customerbirthdate value to the DateTemp variable
             // validate birthdate
             if (!DateTime.TryParse(customerBirthdate, out DateTemp))
