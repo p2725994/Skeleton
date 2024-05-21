@@ -9,19 +9,45 @@ using System.Web.UI.WebControls;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store PK with page level scope
+    Int32 StaffNo;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //get the number of the staff to be processed
+        StaffNo = Convert.ToInt32(Session["StaffNo"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (StaffNo != -1)
+            {
+                //display the current data for the record
+                DisplayStaff();
+            }
+        }
     }
 
+    void DisplayStaff()
+    {
+        //create an instance of Staff Book
+        clsStaffCollection StaffBook = new clsStaffCollection();
+
+        //find the record to update
+        StaffBook.ThisStaff.Find(StaffNo);
+
+        //display the data for the record
+        txtStaffNo.Text =        StaffBook.ThisStaff.StaffNo.ToString();
+        txtStaffFirstname.Text = StaffBook.ThisStaff.StaffFirstname.ToString();
+        txtStaffSurname.Text =   StaffBook.ThisStaff.StaffSurname.ToString();
+        txtStaffEmail.Text =     StaffBook.ThisStaff.StaffEmail.ToString();
+        txtStaffPassword.Text =  StaffBook.ThisStaff.StaffPassword.ToString();
+        txtDateJoined.Text =     StaffBook.ThisStaff.DateJoined.ToString();
+        chkIsOnShift.Checked =   StaffBook.ThisStaff.IsOnShift;
+    }
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new instance of clsStaff
         clsStaff AStaff = new clsStaff();
-
-        //capture Staff Number
-        string StaffNo = txtStaffNo.Text;
 
         //capture staff firstname
         string StaffFirstname = txtStaffFirstname.Text;
@@ -48,6 +74,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = AStaff.Valid(StaffFirstname, StaffSurname, StaffEmail, StaffPassword, DateJoined);
         if (Error == "")
         {
+            //capturethe StaffNo
+            AStaff.StaffNo = StaffNo;
+
             //capture staff name
             AStaff.StaffFirstname = StaffFirstname;
 
@@ -69,12 +98,27 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //create a new instance of the staff collection
             clsStaffCollection StaffList = new clsStaffCollection();
 
-            //set the ThisStaff property
-            StaffList.ThisStaff = AStaff;
+            //if this is a new record
+            if (StaffNo == -1)
+            {
+                //set the ThisStaff property
+                StaffList.ThisStaff = AStaff;
 
-            //add the new record
-            StaffList.Add();
+                //add the new record
+                StaffList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update
+                StaffList.ThisStaff.Find(StaffNo);
 
+                //set the ThisStaff property
+                StaffList.ThisStaff = AStaff;
+
+                //add the new record
+                StaffList.Update();
+            }
             //redirect back to the list page
             Response.Redirect("StaffList.aspx");
         }
