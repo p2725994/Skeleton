@@ -200,6 +200,110 @@ namespace Testing2
 
         }
 
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //create an instance of the class
+            clsStaffCollection AllStaff = new clsStaffCollection();
 
+            //create the item of the data
+            clsStaff TestItem = new clsStaff();
+
+            //variable to store primary key
+            Int32 PrimaryKey = 0;
+
+            //set its property
+            TestItem.StaffNo = 12;
+            TestItem.StaffFirstname = "Afnan";
+            TestItem.StaffSurname = "Khalid";
+            TestItem.StaffEmail = "Afnankhalid@gmail.com";
+            TestItem.StaffPassword = "Afnan123";
+            TestItem.DateJoined = DateTime.Now;
+            TestItem.IsOnShift = true;
+
+            //set ThisStaf to test data
+            AllStaff.ThisStaff = TestItem;
+
+            //Add the record
+            PrimaryKey = AllStaff.Add();
+
+            //add the item to the test list
+            TestItem.StaffNo = PrimaryKey;
+
+            //find record
+            AllStaff.ThisStaff.Find(PrimaryKey);
+
+            //delete the record
+            AllStaff.Delete();
+
+            //now find the record
+            Boolean Found = AllStaff.ThisStaff.Find(PrimaryKey);
+
+            //test to see that the two values are the same
+            Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void ReportByEmailMethodOK()
+        {
+            //create an instance of the unfiltered class
+            clsStaffCollection AllStaff = new clsStaffCollection();
+
+            //create an instance of the filtered class
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+
+            //apply a blank string(should return all records);
+            FilteredStaff.ReportByEmail("");
+
+            //test to see that the two values are the same
+            Assert.AreEqual(AllStaff.Count, FilteredStaff.Count);
+        }
+
+        [TestMethod]
+        public void ReportByEmailNoneFound()
+        {
+            //create an instance of the filtered class
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+
+            //apply an email that doesnt exist;
+            FilteredStaff.ReportByEmail("xxxxxxxxxxxx@xxxxxxx.xxx");
+
+            //test to see that the two values are the same
+            Assert.AreEqual(0, FilteredStaff.Count);
+        }
+
+        [TestMethod]
+        public void ReportByEmailTestDataFound()
+        {
+            //create an instance of the filtered class
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+
+            //variable to store the outcome
+            Boolean OK = true;
+
+            //apply an email that doesnt exist;
+            FilteredStaff.ReportByEmail("asda");
+
+            //check that the correct number of records are found
+            if (FilteredStaff.Count == 2)
+            {
+                //check to see that the first record is 10
+                if (FilteredStaff.StaffList[0].StaffNo != 10) 
+                { 
+                    OK = false;
+                }
+                //check to see that the first record is 11
+                if (FilteredStaff.StaffList[1].StaffNo != 11)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are no records
+            Assert.IsTrue(OK);
+        }
     }
 }
