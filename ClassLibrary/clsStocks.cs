@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Linq.Expressions;
+
 namespace ClassLibrary
 {
+
     public class clsStocks
     {
         private Int32 mProduct_Id;
@@ -232,4 +234,4 @@ namespace ClassLibrary
 }
 
 
-    
+

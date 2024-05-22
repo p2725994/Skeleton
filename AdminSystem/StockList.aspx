@@ -8,8 +8,14 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-        </div>
+        <asp:ListBox ID="lstStockList" runat="server" style="z-index: 1; left: 18px; top: 7px; position: absolute; height: 376px; width: 423px"></asp:ListBox>
+        <asp:Button ID="btnAdd" runat="server" style="z-index: 1; left: 32px; top: 416px; position: absolute" Text="Add" />
+        <asp:Button ID="btnEdit" runat="server" style="z-index: 1; left: 109px; top: 414px; position: absolute" Text="Edit" />
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <asp:Button ID="lblError" runat="server" style="z-index: 1; left: 30px; top: 460px; position: absolute" Text="Error" />
     </form>
 </body>
 </html>
