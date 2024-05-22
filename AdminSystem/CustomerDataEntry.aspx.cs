@@ -25,24 +25,38 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        //create a new instance of clsCustomer
         clsCustomer ACustomer = new clsCustomer();
-        //capture the Firstname
-        ACustomer.CustomerFirstname = txtCustomerFirstname.Text;
-        //capture the Lastname
-        ACustomer.CustomerLastname = txtCustomerLastname.Text;
-        //capture the Email
-        ACustomer.CustomerEmail = txtCustomerEmail.Text;
-        //capture the Birthdate
-        ACustomer.CustomerBirthdate = Convert.ToDateTime(DateTime.Now);
-        //capture the Phone number
-        ACustomer.CustomerPhone = Convert.ToInt32(txtCustomerPhone.Text);
-        //capture the verified check box
-        ACustomer.Verified = chkVerified.Checked;
-        //store the firstname in the session object
-        Session["ACustomer"] = ACustomer;
-        //navigate to the view page
-        Response.Redirect("CustomerViewer.aspx");
+        string CustomerFirstname = txtCustomerFirstname.Text;
+        string CustomerLastname = txtCustomerLastname.Text;
+        string CustomerEmail = txtCustomerEmail.Text;
+        string CustomerPhone = txtCustomerPhone.Text;
+        string CustomerBirthdate = txtCustomerBirthdate.Text;
+        string Verified = chkVerified.Text;
+        string Error = "";
+        Error = ACustomer.Valid(CustomerFirstname, CustomerLastname, CustomerEmail, CustomerBirthdate, CustomerPhone);
+
+        if (Error == "")
+        { 
+            //capture the Firstname
+            ACustomer.CustomerFirstname = CustomerFirstname;
+            //capture the Lastname
+            ACustomer.CustomerLastname = CustomerLastname;
+            //capture the Email
+            ACustomer.CustomerEmail = CustomerEmail;
+            //capture the Birthdate
+            ACustomer.CustomerBirthdate = Convert.ToDateTime(CustomerBirthdate);
+            //capture the Phone number
+            ACustomer.CustomerPhone = Convert.ToInt32(CustomerPhone);
+            //store the firstname in the session object
+            Session["ACustomer"] = ACustomer;
+            //navigate to the view page
+            Response.Redirect("CustomerViewer.aspx");
+        }
+        else
+        {
+            //display error mesg
+            lblError.Text = Error;
+        }
     }
 
     protected void txtCustomerID_TextChanged(object sender, EventArgs e)
@@ -68,7 +82,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //find the record
         Found = ACustomer.Find(CustomerID);
         //if found
-        if (Found == true) 
+        if (Found == true)
         {
             //display the values of the properties in the form
             txtCustomerFirstname.Text = ACustomer.CustomerFirstname;
