@@ -16,6 +16,11 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
         //get the number of the staff to be deleted from the session object
         StaffNo = Convert.ToInt32(Session["StaffNo"]);
     }
+    protected void btnNo_Click(object sender, EventArgs e)
+    {
+        //redirect back to the main page
+        Response.Redirect("StaffList.aspx");
+    }
 
     protected void btnYes_Click(object sender, EventArgs e)
     {
@@ -25,12 +30,6 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
         //find the record to delete
         StaffBook.Delete();
 
-        //redirect back to the main page
-        Response.Redirect("StaffList.aspx");
-    }
-
-    protected void btnNo_Click(object sender, EventArgs e)
-    {
         //redirect back to the main page
         Response.Redirect("StaffList.aspx");
     }
