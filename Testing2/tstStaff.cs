@@ -132,7 +132,7 @@ namespace Testing2
             //create a Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 StaffNo = 1;
+            Int32 StaffNo = 2;
             //invoke the method
             Found = aStaff.Find(StaffNo);
             //test to see that the two values are the same
@@ -152,13 +152,13 @@ namespace Testing2
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 StaffNo = 1;
+            Int32 StaffNo = 2;
 
             //invoke the method
             Found = aStaff.Find(StaffNo);
 
             //check the StaffNo
-            if (aStaff.StaffNo != 1)
+            if (aStaff.StaffNo != 2)
             {
                 OK = false;
             }
@@ -180,13 +180,13 @@ namespace Testing2
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 StaffNo = 1;
+            Int32 StaffNo = 2;
 
             //invoke the method
             Found = aStaff.Find(StaffNo);
 
             //check the StaffNo
-            if (aStaff.StaffFirstname != "Afnan")
+            if (aStaff.StaffFirstname != "Ahsan")
             {
                 OK = false;
             }
@@ -208,13 +208,13 @@ namespace Testing2
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 StaffNo = 1;
+            Int32 StaffNo = 2;
 
             //invoke the method
             Found = aStaff.Find(StaffNo);
 
             //check the StaffNo
-            if (aStaff.StaffSurname != "Khalid")
+            if (aStaff.StaffSurname != "ijaz")
             {
                 OK = false;
             }
@@ -236,13 +236,13 @@ namespace Testing2
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 StaffNo = 1;
+            Int32 StaffNo = 2;
 
             //invoke the method
             Found = aStaff.Find(StaffNo);
 
             //check the StaffNo
-            if (aStaff.StaffEmail != "afnankhalid@gmail.com")
+            if (aStaff.StaffEmail != "Aj@gmail.com")
             {
                 OK = false;
             }
@@ -264,7 +264,7 @@ namespace Testing2
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 StaffNo = 1;
+            Int32 StaffNo = 2;
 
             //invoke the method
             Found = aStaff.Find(StaffNo);
@@ -292,7 +292,7 @@ namespace Testing2
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 StaffNo = 1;
+            Int32 StaffNo = 2;
 
             //invoke the method
             Found = aStaff.Find(StaffNo);
@@ -320,7 +320,7 @@ namespace Testing2
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 StaffNo = 1;
+            Int32 StaffNo = 2;
 
             //invoke the method
             Found = aStaff.Find(StaffNo);

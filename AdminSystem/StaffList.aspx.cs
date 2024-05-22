@@ -78,30 +78,6 @@ public partial class _1_List : System.Web.UI.Page
          */
     }
 
-    protected void btnDelete_Click(object sender, EventArgs e)
-    {
-        //variable to store the PK value of the record to be edited
-        Int32 StaffNo;
-
-        //if a record has been selected from the list
-        if (lstStaffList.SelectedIndex != -1)
-        {
-            //get the PK value of the record to edit
-            StaffNo = Convert.ToInt32(lstStaffList.SelectedValue);
-
-            //store the data in te sesision object
-            Session["StaffNo"] = StaffNo;
-
-            //redirect to the edit page
-            Response.Redirect("StaffConfirmDelete.aspx");
-        }
-        else //if no record has been recorded 
-        {
-            lblError.Text = "Please select a record from the list to delete.";
-        }
-
-    }
-
     protected void btnApplyFilter_Click(object sender, EventArgs e)
     {
         //create an instance of Staff Collection
@@ -147,5 +123,28 @@ public partial class _1_List : System.Web.UI.Page
         //bind the data to the list
         lstStaffList.DataBind();
     }
-  
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //variable to store the PK value of the record to be edited
+        Int32 StaffNo;
+
+        //if a record has been selected from the list
+        if (lstStaffList.SelectedIndex != -1)
+        {
+            //get the PK value of the record to edit
+            StaffNo = Convert.ToInt32(lstStaffList.SelectedValue);
+
+            //store the data in te sesision object
+            Session["StaffNo"] = StaffNo;
+
+            //redirect to the edit page
+            Response.Redirect("StaffConfirmDelete.aspx");
+        }
+        else //if no record has been recorded 
+        {
+            lblError.Text = "Please select a record from the list to delete.";
+        }
+    }
+
 }
