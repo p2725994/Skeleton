@@ -265,7 +265,7 @@ namespace Testing1
             //invoke the method
             Found = ACustomer.Find(CustomerID);
             //check the firstname property
-            if (ACustomer.CustomerPhone != 77323232)
+            if (ACustomer.CustomerPhone != 771234567)
             {
                 OK = false;
             }

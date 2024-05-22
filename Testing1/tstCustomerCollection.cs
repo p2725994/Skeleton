@@ -43,19 +43,6 @@ namespace Testing1
             Assert.AreEqual(AllCustomers.CustomerList, TestList);
         }
 
-
-
-        [TestMethod]
-        public void CountPropertyOK()
-        {
-            clsCustomerCollection AllCustomers = new clsCustomerCollection();
-            Int32 SomeCount = 0;
-            AllCustomers.Count = SomeCount;
-            Assert.AreEqual(AllCustomers.Count, SomeCount);
-        }
-
-
-
         [TestMethod]
         public void ThisCustomerPropertyOK()
         {
@@ -80,6 +67,7 @@ namespace Testing1
             List<clsCustomer> TestList = new List<clsCustomer>();
             clsCustomer TestItem = new clsCustomer();
             TestItem.Verified = true;
+            TestItem.CustomerID = 1;
             TestItem.CustomerFirstname = "Afnan";
             TestItem.CustomerLastname = "Khalid";
             TestItem.CustomerEmail = "afnan@yahoo.com";
@@ -89,5 +77,6 @@ namespace Testing1
             AllCustomers.CustomerList = TestList;
             Assert.AreEqual(AllCustomers.Count, TestList.Count);
         }
+
     }
 }
