@@ -157,19 +157,71 @@ namespace ClassLibrary
         {
             //create a string variable to store the error
             String Error = "";
+            //create a temporary variable  store the data values
+            DateTime DateTemp;
+            // define maximum and minimum valid birthdates
+            DateTime minBirthdate = DateTime.Now.Date.AddYears(-16); // 16 years ago from today
+            DateTime maxBirthdate = DateTime.Now.Date.AddYears(100); // 100 years from today
             //if customerfirstname is blank
             if (customerFirstname.Length == 0)
             {
                 //record the error
                 Error = Error + "The Firstname can not be blank : ";
             }
-            //if the house no is greater than 20 chars
-            if (customerFirstname.Length > 21) 
+            //if the lastname is greater than 20 chars
+            if (customerFirstname.Length > 20) 
             {
                 //record the error
                 Error = Error + "The Firstname should not be more than 20 characters : ";
             }
-            
+
+            //if customerlastname is blank
+            if (customerLastname.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Lastname can not be blank : ";
+            }
+            //if the lastname is greater than 20 chars
+            if (customerLastname.Length > 20)
+            {
+                //record the error
+                Error = Error + "The Lastname should not be more than 20 characters : ";
+            }
+
+
+
+            //if email is >50 chars
+            if (customerEmail.Length > 50)
+            {
+                //record the error
+                Error = Error + "The Email should not be more than 50 characters : ";
+            }
+
+
+
+
+
+            //copy the customerbirthdate value to the DateTemp variable
+            // validate birthdate
+            if (!DateTime.TryParse(customerBirthdate, out DateTemp))
+            {
+                // if the birthdate is not a valid date
+                Error += "The Birthdate is not a valid date: ";
+            }
+            else
+            {
+                // check to see if the date is less than the minimum allowed date
+                if (DateTemp < minBirthdate)
+                {
+                    Error += "The Customer must be minimum 16 years old: ";
+                }
+                // check to see if the date is in the future
+                if (DateTemp > maxBirthdate)
+                {
+                    Error += "The Birthdate cannot be more than 100 years ago: ";
+                }
+            }
+
             //return any error message
             return Error;
         }

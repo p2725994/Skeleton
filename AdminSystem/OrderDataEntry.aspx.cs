@@ -18,23 +18,46 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new insatance of clsOrder
         clsOrder AnOrder = new clsOrder();
         //capture the Order Id
-        AnOrder.OrderId = Convert.ToInt32(txtOrderId.Text);
+        string OrderId = txtOrderId.Text;
         //capture the Order Total
-        AnOrder.OrderTotal = Convert.ToDecimal(txtOrderTotal.Text);
+        string OrderTotal = txtOrderTotal.Text;
         //capture the Date Placed
-        AnOrder.DatePlaced = Convert.ToDateTime(txtDatePlaced.Text);
+        string DatePlaced = txtDatePlaced.Text;
         //capture the Purchased check box
-        AnOrder.Purchased = chkPurchased.Checked;
+        string Purchased = chkPurchased.Text;
         //capture the Delivery Address
-        AnOrder.DeliveryAddress = txtDeliveryAddress.Text;
+        string DeliveryAddress = txtDeliveryAddress.Text;
         //capture the No of Items
-        AnOrder.NoOfItems = Convert.ToInt32(txtNoOfItems.Text);
+        string NoOfItems = txtNoOfItems.Text;
         //capture the Is Gift check box
-        AnOrder.IsGift = chkIsGift.Checked;
-        //store the order in the session object
-        Session["AnOrder"] = AnOrder;
-        //navigate to the view page
-        Response.Redirect("OrderViewer.aspx");
+        string IsGift = chkIsGift.Text;
+        //variable to store any error messages
+        string Error = "";
+        //validate the data
+        Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+        if (Error == "")
+        {
+            //capture the Order Id
+            AnOrder.OrderId = Convert.ToInt32(OrderId);
+            //capture the Order Total
+            AnOrder.OrderTotal = Convert.ToDecimal(OrderTotal);
+            //capture the Date Placed
+            AnOrder.DatePlaced = Convert.ToDateTime(DatePlaced);
+            //capture the delivery address
+            AnOrder.DeliveryAddress = DeliveryAddress;
+            //capture the No of Items
+            AnOrder.NoOfItems = Convert.ToInt32(NoOfItems);
+            //store the order in the session object
+            Session["AnOrder"] = AnOrder;
+            //navigate to the view page
+            Response.Redirect("OrderViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
+        
     }
 
     protected void btnFind_Click(object sender, EventArgs e)

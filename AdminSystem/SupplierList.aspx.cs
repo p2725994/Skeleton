@@ -27,7 +27,7 @@ public partial class _1_List : System.Web.UI.Page
         lstSupplierList.DataValueField = "SupplierId";
 
         //set the data field to display
-        lstSupplierList.DataTextField = "SuppliuerName";
+        lstSupplierList.DataTextField = "SupplierName";
 
         //bind the data to the list
         lstSupplierList.DataBind();
