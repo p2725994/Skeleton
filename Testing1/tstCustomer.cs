@@ -830,8 +830,6 @@ namespace Testing1
         }
 
 
-
-
         [TestMethod]
         public void CustomerPhoneMinLessOne() 
         {
