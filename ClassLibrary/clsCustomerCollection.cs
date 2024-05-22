@@ -45,6 +45,8 @@ namespace ClassLibrary
 
         //private data member for the list
         List<clsCustomer> mCustomerList = new List<clsCustomer>();
+        //private member data for thiscustomer
+        clsCustomer mThisCustomer = new clsCustomer();
         public List<clsCustomer> CustomerList
         {
             get
@@ -70,6 +72,29 @@ namespace ClassLibrary
                
             }
         }
-        public clsCustomer ThisCustomer { get; set; }
+        public clsCustomer ThisCustomer
+        {
+            get
+            {
+                return mThisCustomer;
+            }
+            set
+            {
+                mThisCustomer = value;
+            }
+        }
+
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("CustomerFirstname", mThisCustomer.CustomerFirstname);
+            DB.AddParameter("CustomerLastname", mThisCustomer.CustomerLastname);
+            DB.AddParameter("CustomerEmail", mThisCustomer.CustomerEmail);
+            DB.AddParameter("CustomerPhone", mThisCustomer.CustomerPhone);
+            DB.AddParameter("CustomerBirthdate", mThisCustomer.CustomerBirthdate);
+            DB.AddParameter("Verified", mThisCustomer.Verified);
+
+            return DB.Execute("sproc_tblCustomer_Insert");
+        }
     }
 }
