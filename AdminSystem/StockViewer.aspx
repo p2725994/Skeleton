@@ -6,6 +6,10 @@
 <head runat="server">
     <title></title>
 </head>
-<body style="height: 422px">
-    </body>
+<body>
+    <form id="form1" runat="server">
+        <div>
+        </div>
+    </form>
+</body>
 </html>

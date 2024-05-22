@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Security.Cryptography.X509Certificates;
 
 namespace ClassLibrary
+
 {
     public class ClsStockCollection
     {
@@ -50,6 +52,25 @@ namespace ClassLibrary
             return mThisStock.Product_Id;
         }
 
+        public void Update()
+        {
+            //update an existing record based on the values of thisstock
+            //connect to the databse
+            ClsStockCollection Allstocks = new ClsStockCollection();
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the new stored procedure
+            DB.AddParameter("@Product_Id", mThisStock.Product_Id);
+            DB.AddParameter("@Product_Name", mThisStock.Product_Name);
+            DB.AddParameter("@Product_Description", mThisStock.Product_Description);
+            DB.AddParameter("@Product_Quantity", mThisStock.Product_Quantity);
+            DB.AddParameter("@Product_Price", mThisStock.Product_Price);
+            DB.AddParameter("@Product_Expiry", mThisStock.Product_Expiry);
+            DB.AddParameter("@Available", mThisStock.Available);
+
+            //execute the stored procedure
+            DB.Execute("sproc_tblStock_Update");
+        }
+
 
 
 
@@ -88,26 +109,7 @@ namespace ClassLibrary
 
             }
 
-            public void Update()
 
-
-            {
-                //update an existing record based on the values of thisstock
-                //connect to the databse
-                ClsStockCollection Allstocks = new ClsStockCollection();
-                //set the parameters for the new stored procedure
-                DB.AddParameter("@Product_Id", mThisStock.Product_Id);
-                DB.AddParameter("@Product_Name", mThisStock.Product_Name);
-                DB.AddParameter("@Product_Description", mThisStock.Product_Description);
-                DB.AddParameter("@Product_Quantity", mThisStock.Product_Quantity);
-                DB.AddParameter("@Product_Price", mThisStock.Product_Price);
-                DB.AddParameter("@Product_Expiry", mThisStock.Product_Expiry);
-                DB.AddParameter("@Available", mThisStock.Available);
-
-                //execute the stored procedure
-                DB.Execute("sproc_tblStock_Update");
-
-            }
 
         }
     }

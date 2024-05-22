@@ -29,8 +29,21 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     private void DisplayStock()
     {
-        throw new NotImplementedException();
+        //create an instance of the address collection
+        ClsStockCollection StockList = new ClsStockCollection();
+        //find the record to update
+        StockList.ThisStock.Find(Product_Id);
+        //display the data for the record
+        txtProduct_Id.Text = StockList.ThisStock.Product_Id.ToString();
+        txtProduct_Description.Text = StockList.ThisStock.Product_Description.ToString();
+        txtProduct_Name.Text = StockList.ThisStock.Product_Name.ToString();
+        txtProduct_Quantity.Text = StockList.ThisStock.Product_Quantity.ToString();
+        txtProduct_Price.Text = StockList.ThisStock.Product_Price.ToString();
+        txtProduct_Expiry.Text = StockList.ThisStock.Product_Expiry.ToString();
+        chkAvailable.Text = StockList.ThisStock.Available.ToString();
     }
+
+
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
@@ -122,6 +135,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         
         }
+
       
 
        

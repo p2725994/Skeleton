@@ -7,17 +7,25 @@ using System.Web.UI.WebControls;
 using ClassLibrary;
 public partial class _1_List : System.Web.UI.Page
 {
+    Int32 Product_Id;
     protected void Page_Load(object sender, EventArgs e)
-
     {
-        //if this is the first time the page is displayed
-        if (!IsPostBack)
+        //get the number of the address to be processed
+        Product_Id = Convert.ToInt32(Session["product_Id"]);
+
+
+
         {
-            //update the list box
-            DisplayStocks();
+            //if this is the first time the page is displayed
+            if (!IsPostBack == false)
+                //if this is not a new record
+                if (Product_Id != -1)
+            {
+                //display the current data for the record
+                DisplayStocks();
+            }
         }
     }
-
     private void DisplayStocks()
   
         {
