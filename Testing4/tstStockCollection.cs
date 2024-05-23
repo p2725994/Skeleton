@@ -175,7 +175,7 @@ namespace Testing4
             // create an item of test data
             clsStocks TestItem = new clsStocks();
             //Variable to store the primary key
-            int32 PrimaryaKey = 0;
+            Int32 PrimaryKey = 0;
             //set its properties
             TestItem.Product_Id = 1;
             TestItem.Product_Name = "Rockstar";

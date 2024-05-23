@@ -20,27 +20,27 @@ public partial class _1_List : System.Web.UI.Page
             if (!IsPostBack == false)
                 //if this is not a new record
                 if (Product_Id != -1)
-            {
-                //display the current data for the record
-                DisplayStocks();
-            }
+                {
+                    //display the current data for the record
+                    DisplayStocks();
+                }
         }
     }
     private void DisplayStocks()
-  
-        {
-            //create an instance of the address collection
-            ClsStockCollection Stock = new ClsStockCollection();
-            //set the data source to list of stick in the collection
-            lstStockList.DataSource = Stock.StockList;
-            //set the name of the primay key
-            lstStockList.DataValueField = "Product_Id";
-            //set the data field to display
-            lstStockList.DataTextField = "Product_Name";
-            //bind the data to the list
-            lstStockList.DataBind();
-        }
-    
+
+    {
+        //create an instance of the address collection
+        ClsStockCollection Stock = new ClsStockCollection();
+        //set the data source to list of stick in the collection
+        lstStockList.DataSource = Stock.StockList;
+        //set the name of the primay key
+        lstStockList.DataValueField = "Product_Id";
+        //set the data field to display
+        lstStockList.DataTextField = "Product_Name";
+        //bind the data to the list
+        lstStockList.DataBind();
+    }
+
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         //store -1 into the session object to indicate this is a new record
@@ -69,9 +69,40 @@ public partial class _1_List : System.Web.UI.Page
         }
 
 
+    }
+
+
+    protected void lstStockList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+
+        //variable to store the primary key value the record to be deleted
+        Int32 Product_Id;
+        //if a record has been selected from the list
+        if(lstStockList.SelectedIndex != -1)
+
+        {
+            //get the primary key value of the record delete
+            Product_Id = Convert.ToInt32(lstStockList.SelectedValue);
+            //store the data in the session object
+            Session[Product_Id] = Product_Id;
+            //redirrect to delete page
+            Response.Redirect("StockDataEntry.aspx");
+
+        }
+        else // if no record has been selected
+        {
+            //display an error message
+            lblError.Text = "Please select a record from the list to edit";
+
         }
 
     }
+}
         
 
 

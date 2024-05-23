@@ -36,8 +36,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         StockList.ThisStock.Find(Product_Id);
         //display the data for the record
         txtProduct_Id.Text = StockList.ThisStock.Product_Id.ToString();
-        txtProduct_Description.Text = StockList.ThisStock.Product_Description.ToString();
         txtProduct_Name.Text = StockList.ThisStock.Product_Name.ToString();
+        txtProduct_Description.Text = StockList.ThisStock.Product_Description.ToString();
         txtProduct_Quantity.Text = StockList.ThisStock.Product_Quantity.ToString();
         txtProduct_Price.Text = StockList.ThisStock.Product_Price.ToString();
         txtProduct_Expiry.Text = StockList.ThisStock.Product_Expiry.ToString();
@@ -52,7 +52,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         clsStocks aStock = new clsStocks();
 
         // capture the product Id
-        string Product_Id = txtProduct_Id.Text;
+        //string Product_Id = txtProduct_Id.Text;
 
         // capture the product name
         string Product_Name = txtProduct_Name.Text;
@@ -74,7 +74,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         //variable to store error message
         string Error = "";
-        Error = aStock.Valid( Product_Description, Product_Name, Product_Expiry, Product_Quantity, Product_Price);
+        Error = aStock.Valid(Product_Description, Product_Name, Product_Expiry, Product_Quantity, Product_Price);
         if (Error == "")
         {
             //capture the Product_Id
