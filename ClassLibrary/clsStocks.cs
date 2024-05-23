@@ -230,6 +230,11 @@ namespace ClassLibrary
 
 
         }
+
+        public void Find(string product_Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

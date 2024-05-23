@@ -1,6 +1,7 @@
 ﻿using ASP;
 using ClassLibrary;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -40,7 +41,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtProduct_Quantity.Text = StockList.ThisStock.Product_Quantity.ToString();
         txtProduct_Price.Text = StockList.ThisStock.Product_Price.ToString();
         txtProduct_Expiry.Text = StockList.ThisStock.Product_Expiry.ToString();
-        chkAvailable.Text = StockList.ThisStock.Available.ToString();
+        chkAvailable.Checked = StockList.ThisStock.Available;
     }
 
 
@@ -73,9 +74,13 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         //variable to store error message
         string Error = "";
-        Error = aStock.Valid(Product_Description, Product_Name, Product_Expiry, Product_Quantity, Product_Price);
+        Error = aStock.Valid( Product_Description, Product_Name, Product_Expiry, Product_Quantity, Product_Price);
         if (Error == "")
         {
+            //capture the Product_Id
+            aStock.Product_Id = Product_Id;
+
+
             // capture the product name
             aStock.Product_Name = Product_Name;
 
@@ -94,14 +99,31 @@ public partial class _1_DataEntry : System.Web.UI.Page
             aStock.Available = chkAvailable.Checked;
             //create a new instance of stock collection
             ClsStockCollection StockList = new ClsStockCollection();
+            // if this is a new record i.e Product_Id = -1 then add the data
 
-            //set the ThisStock property
-            StockList.ThisStock = aStock;
-            // add the new record
-            StockList.Add();
+            if(Product_Id == -1)
+            {
+                //set the ThisStock property
+                StockList.ThisStock = aStock;
+                // add the new record
+                StockList.Add();
 
+                
+            }
+
+            //otherwise it must be update
+            else
+            {
+                //find the record to update
+                StockList.ThisStock.Find(Product_Id);
+                // Set the ThisStock property
+                StockList.ThisStock = aStock;
+                //update the record
+                StockList.Update();
+
+            }
             //redirect back to the list page
-            Response.Redirect("StockList.aspx");
+            Response.Redirect("StockDataEntry.aspx");
         }
         else
         {
