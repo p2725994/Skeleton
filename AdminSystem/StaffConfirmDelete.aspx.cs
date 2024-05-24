@@ -27,9 +27,10 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
         //create a new instance of the staff book collection class
         clsStaffCollection StaffBook = new clsStaffCollection();
 
+        //find the record
         StaffBook.ThisStaff.Find(StaffNo);
 
-        //find the record to delete
+        //delete the record
         StaffBook.Delete();
 
         //redirect back to the main page
