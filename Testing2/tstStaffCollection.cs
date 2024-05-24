@@ -288,12 +288,12 @@ namespace Testing2
             if (FilteredStaff.Count == 2)
             {
                 //check to see that the first record is 10
-                if (FilteredStaff.StaffList[0].StaffNo != 10) 
+                if (FilteredStaff.StaffList[0].StaffNo != 50) 
                 { 
                     OK = false;
                 }
                 //check to see that the first record is 11
-                if (FilteredStaff.StaffList[1].StaffNo != 11)
+                if (FilteredStaff.StaffList[1].StaffNo != 51)
                 {
                     OK = false;
                 }

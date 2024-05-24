@@ -131,7 +131,7 @@ namespace Testing4
             //create a Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 Product_Id = 1;
+            Int32 Product_Id = 2;
             //invoke the method
             Found = aStock.Find(Product_Id);
             //test to see that the two values are the same
@@ -151,13 +151,13 @@ namespace Testing4
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 Product_Id = 1;
+            Int32 Product_Id = 2;
 
             //invoke the method
             Found = aStock.Find(Product_Id);
 
             //check the StaffNo
-            if (aStock.Product_Id != 1)
+            if (aStock.Product_Id != 2)
             {
                 OK = false;
             }
@@ -179,13 +179,13 @@ namespace Testing4
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 Product_Id = 1;
+            Int32 Product_Id = 2;
 
             //invoke the method
             Found = aStock.Find(Product_Id);
 
             //check the StaffNo
-            if (aStock.Product_Name != "R+sap strawberry")
+            if (aStock.Product_Name != "R+asap cherryrry")
             {
                 OK = false;
             }
@@ -207,13 +207,13 @@ namespace Testing4
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 Product_Id = 1;
+            Int32 Product_Id = 2;
 
             //invoke the method
             Found = aStock.Find(Product_Id);
 
             //check the StaffNo
-            if (aStock.Product_Description != "strawberry flavour")
+            if (aStock.Product_Description != " cherry flavour")
             {
                 OK = false;
             }
@@ -235,13 +235,13 @@ namespace Testing4
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 Product_Id = 1;
+            Int32 Product_Id = 2;
 
             //invoke the method
             Found = aStock.Find(Product_Id);
 
             //check the StaffNo
-            if (aStock.Product_Quantity != 2345)
+            if (aStock.Product_Quantity != 399)
             {
                 OK = false;
             }
@@ -263,7 +263,7 @@ namespace Testing4
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 Product_Id = 1;
+            Int32 Product_Id = 2;
 
             //invoke the method
             Found = aStock.Find(Product_Id);
@@ -291,7 +291,7 @@ namespace Testing4
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 Product_Id = 1;
+            Int32 Product_Id = 2;
 
             //invoke the method
             Found = aStock.Find(Product_Id);
@@ -320,7 +320,7 @@ namespace Testing4
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 Product_Id = 1;
+            Int32 Product_Id = 2;
 
             //invoke the method
             Found = aStock.Find(Product_Id);
