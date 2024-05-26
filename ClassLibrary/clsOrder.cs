@@ -127,7 +127,8 @@ namespace ClassLibrary
 
         public string Valid(string datePlaced,
                             string deliveryAddress,
-                            string orderTotal)
+                            string orderTotal,
+                            string noOfItems)
         {
             //create a string variable to store the error
             string Error = "";
@@ -135,11 +136,19 @@ namespace ClassLibrary
             DateTime DateTemp;
             //create a temporary variable to store decimal values
             decimal TotalTemp;
+            //create a temporary variable to store integer values
+            Int32 NoOfItemsTemp;
 
             //create an inastance of DateTime to compare with DateTemp
             //in the if statements
             DateTime DateComp = DateTime.Now.Date;
 
+            //if the DatePlaced is blank
+            if (datePlaced.Length == 0)
+            {
+                //record the error
+                Error = Error + "The date placed may not be blank : ";
+            }
             try
             {
                 //copy the datePlaced value to the DateTemp variable
@@ -173,7 +182,7 @@ namespace ClassLibrary
             if (deliveryAddress.Length > 50)
             {
                 //record the error
-                Error = Error + "The delivey address must be less than 50 characters : ";
+                Error = Error + "The delivey address must be less than 51 characters : ";
             }
 
             /**
@@ -191,7 +200,13 @@ namespace ClassLibrary
             }
 
             **/
-            
+
+            //if the OrderTotal is blank
+            if (orderTotal.Length == 0)
+            {
+                //record the error
+                Error = Error + "The order total may not be blank : ";
+            }
             try
             {
                 //copy the orderTotal value to the TotalTemp variable
@@ -217,10 +232,39 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The order total was not a valid decimal : ";
             }
+
+            //if the NoOfItems is blank
+            if (noOfItems.Length == 0)
+            {
+                //record the error
+                Error = Error + "The No Of Items may not be blank : ";
+            }
+            try
+            {
+                //copy the noOfItems value to the NoOfItemsTemp variable
+                NoOfItemsTemp = Convert.ToInt32(noOfItems);
+
+                //if the NoOfItems is less than one
+                if (NoOfItemsTemp < 1)
+                {
+                    //record the error
+                    Error = Error + "The No Of Items cannot be less than one : ";
+                }
+                //if the NoOfItems is more than 9999999
+                if (NoOfItemsTemp > 9999999)
+                {
+                    //record the error
+                    Error = Error + "The No Of Items cannot be more than 9999999 : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The No Of Items was not a valid integer : ";
+            }
+
             //return any error messages
             return Error;
         }
-
-
     }
 }

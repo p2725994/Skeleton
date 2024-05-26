@@ -13,6 +13,7 @@ namespace Testing5
         string DatePlaced = DateTime.Now.ToShortDateString();
         string DeliveryAddress = "123 test street, B12 3NG";
         string OrderTotal = "19.99";
+        string NoOfItems = "4";
 
         //============= ORDER OBJECT TESTING ===============
 
@@ -296,7 +297,7 @@ namespace Testing5
             //string variable to store any error message
             string Error = "";
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -313,7 +314,7 @@ namespace Testing5
             //create some test data to pass to the method
             string DeliveryAddress = ""; //this should trigger an error
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -328,7 +329,7 @@ namespace Testing5
             //create some test data to pass to the method
             string DeliveryAddress = "a"; //this should be ok
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -343,7 +344,7 @@ namespace Testing5
             //create some test data to pass to the method
             string DeliveryAddress = "aa"; //this should be ok
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -359,7 +360,7 @@ namespace Testing5
             string DeliveryAddress = "";
             DeliveryAddress = DeliveryAddress.PadRight(49, 'a'); //this should be ok
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems); 
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -375,7 +376,7 @@ namespace Testing5
             string DeliveryAddress = "";
             DeliveryAddress = DeliveryAddress.PadRight(50, 'a'); //this should be ok
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -391,7 +392,7 @@ namespace Testing5
             string DeliveryAddress = "";
             DeliveryAddress = DeliveryAddress.PadRight(51, 'a'); //this should trigger an error
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -407,7 +408,7 @@ namespace Testing5
             string DeliveryAddress = "";
             DeliveryAddress = DeliveryAddress.PadRight(25, 'a'); //this should be ok
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -423,7 +424,7 @@ namespace Testing5
             string DeliveryAddress = "";
             DeliveryAddress = DeliveryAddress.PadRight(500, 'a'); //this should trigger an error
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -446,7 +447,7 @@ namespace Testing5
             //convert the date variable to a string variable
             string DatePlaced = TestDate.ToString();
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -467,7 +468,7 @@ namespace Testing5
             //convert the date variable to a string variable
             string DatePlaced = TestDate.ToString();
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -486,7 +487,7 @@ namespace Testing5
             //convert the date variable to a string variable
             string DatePlaced = TestDate.ToString();
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -507,7 +508,7 @@ namespace Testing5
             //convert the date variable to a string variable
             string DatePlaced = TestDate.ToString();
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -528,7 +529,7 @@ namespace Testing5
             //convert the date variable to a string variable
             string DatePlaced = TestDate.ToString();
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -543,7 +544,7 @@ namespace Testing5
             //set the DatePlaced variable to a non date value
             string DatePlaced = "this is not a date!";
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -560,7 +561,7 @@ namespace Testing5
             //create some test data to pass the method
             string OrderTotal = "-9999999.99";
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -575,7 +576,7 @@ namespace Testing5
             //create some test data to pass the method
             string OrderTotal = "-0.01";
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -590,7 +591,7 @@ namespace Testing5
             //create some test data to pass the method
             string OrderTotal = "0.00";
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -605,7 +606,7 @@ namespace Testing5
             //create some test data to pass the method
             string OrderTotal = "0.01";
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -620,7 +621,7 @@ namespace Testing5
             //create some test data to pass the method
             string OrderTotal = "9999999.98";
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -635,7 +636,7 @@ namespace Testing5
             //create some test data to pass the method
             string OrderTotal = "9999999.99";
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -650,7 +651,7 @@ namespace Testing5
             //create some test data to pass the method
             string OrderTotal = "10000000.00";
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -665,7 +666,7 @@ namespace Testing5
             //create some test data to pass the method
             string OrderTotal = "4999999.995";
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -680,7 +681,7 @@ namespace Testing5
             //create some test data to pass the method
             string OrderTotal = "99999999.99";
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -695,9 +696,137 @@ namespace Testing5
             //create some test data to pass the method
             string OrderTotal = "this is not a decimal!";
             //invoke the method
-            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal);
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
+
+        //================= NO OF ITEMS VALIDATION TESTING ==============
+        [TestMethod]
+        public void NoOfItemsExtremeMin()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to srote any error message
+            string Error = "";
+            //create some test data to pass the method
+            string NoOfItems = "-100";
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NoOfItemsMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to srote any error message
+            string Error = "";
+            //create some test data to pass the method
+            string NoOfItems = "0";
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NoOfItemsMin()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to srote any error message
+            string Error = "";
+            //create some test data to pass the method
+            string NoOfItems = "1";
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NoOfItemsMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to srote any error message
+            string Error = "";
+            //create some test data to pass the method
+            string NoOfItems = "2";
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NoOfItemsMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to srote any error message
+            string Error = "";
+            //create some test data to pass the method
+            string NoOfItems = "9999998";
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NoOfItemsMax()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to srote any error message
+            string Error = "";
+            //create some test data to pass the method
+            string NoOfItems = "9999999";
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NoOfItemsMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to srote any error message
+            string Error = "";
+            //create some test data to pass the method
+            string NoOfItems = "10000000";
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NoOfItemsExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to srote any error message
+            string Error = "";
+            //create some test data to pass the method
+            string NoOfItems = "1000000000";
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NoOfItemsInvalidData()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to srote any error message
+            string Error = "";
+            //create some test data to pass the method
+            string NoOfItems = "This is not an integer!";
+            Error = AnOrder.Valid(DatePlaced, DeliveryAddress, OrderTotal, NoOfItems);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
     }
 }
