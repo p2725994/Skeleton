@@ -31,8 +31,7 @@
         </p>
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 100px; top: 315px; position: absolute" Text="Cancel" />
         <asp:CheckBox ID="chkIsGift" runat="server" style="z-index: 1; left: 163px; top: 228px; position: absolute" Text="Is a Gift" />
-        <p>
-            &nbsp;</p>
+        
         <p>
             <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 329px; top: 35px; position: absolute; right: 1117px" Text="Find" Width="39px" />
         </p>
