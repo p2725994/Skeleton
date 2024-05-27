@@ -161,7 +161,7 @@ namespace ClassLibrary
             DateTime DateTemp;
             // define maximum and minimum valid birthdates
             DateTime minBirthdate = DateTime.Now.Date.AddYears(-16); // 16 years ago from today
-            DateTime maxBirthdate = DateTime.Now.Date.AddYears(100); // 100 years from today
+       
             //if customerfirstname is blank
             if (customerFirstname.Length == 0)
             {
@@ -203,6 +203,7 @@ namespace ClassLibrary
 
             //copy the customerbirthdate value to the DateTemp variable
             // validate birthdate
+            
             if (!DateTime.TryParse(customerBirthdate, out DateTemp))
             {
                 // if the birthdate is not a valid date
@@ -210,18 +211,12 @@ namespace ClassLibrary
             }
             else
             {
-                // check to see if the date is less than the minimum allowed date
-                if (DateTemp < minBirthdate)
+                DateTemp = Convert.ToDateTime(customerBirthdate);
+                if (DateTemp > minBirthdate)
                 {
-                    Error += "The Customer must be minimum 16 years old: ";
-                }
-                // check to see if the date is in the future
-                if (DateTemp > maxBirthdate)
-                {
-                    Error += "The Birthdate cannot be more than 100 years ago: ";
+                    Error = Error + "The customer needs to be minimum 16 years old : ";
                 }
             }
-
             //return any error message
             return Error;
         }
