@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -72,11 +73,6 @@ public partial class _1_List : System.Web.UI.Page
     }
 
 
-    protected void lstStockList_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-    }
-
     protected void btnDelete_Click(object sender, EventArgs e)
     {
 
@@ -100,6 +96,62 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record from the list to edit";
 
         }
+
+    }
+
+    protected void BtnClearFilter_Click(object sender, EventArgs e)
+    {
+            //create an instance of Staff Collection
+            ClsStockCollection AStock = new ClsStockCollection();
+
+           //set an empty string
+            AStock.ReportByProduct_Name("");
+
+            //clear any existing filter to tidy up the interface
+            txtFilter.Text = "";
+
+            //set the data source to the list of names in the collection
+            lstStockList.DataSource = AStock.StockList;
+
+            //set the name of the PK
+            lstStockList.DataValueField = "Product_Id";
+
+             //set the name of the field
+            lstStockList.DataTextField = "Product_Name";
+
+            //bind the data to the list
+            lstStockList.DataBind();
+        
+
+    }
+   
+
+    protected void BtnApplyFilter_Click(object sender, EventArgs e)
+    {
+
+        //create an instance of Staff Collection
+        ClsStockCollection AStock = new ClsStockCollection();
+
+            //retrieve the value of product name in the presentation layer
+            AStock.ReportByProduct_Name(txtFilter.Text);
+
+            //set the data source to the list of Names in the collection
+            lstStockList.DataSource = AStock.StockList;
+
+            //set the name of the Primary key
+            lstStockList.DataValueField = "Product_Id";
+
+            //set the name of the field to display
+            lstStockList.DataTextField = "Product_Name";
+
+            //bind the data to the list
+            lstStockList.DataBind();
+
+        
+    }
+
+    protected void TxtFilter_TextChanged(object sender, EventArgs e)
+    {
 
     }
 }

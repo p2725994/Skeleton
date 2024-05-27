@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Testing4
 {
@@ -47,7 +48,7 @@ namespace Testing4
             //test to see that the two values are the same
             Assert.AreEqual(Allstocks.StockList, TestList);
         }
-    
+
 
         [TestMethod]
         public void ThisStockPropertyOK()
@@ -99,7 +100,8 @@ namespace Testing4
         }
 
         [TestMethod]
-        public void AddMethodOK() {
+        public void AddMethodOK()
+        {
             //create an instance of the class we want to create
             ClsStockCollection Allstocks = new ClsStockCollection();
             // create an item of test data
@@ -120,15 +122,15 @@ namespace Testing4
             TestItem.Product_Id = PrimaryKey;
             //find this method
             Allstocks.ThisStock.Find(primarykey);
-          //test to see that the two values are the same
+            //test to see that the two values are the same
             Assert.AreEqual(Allstocks.ThisStock, TestItem);
 
         }
         public void UpdateMethodOK()
         {
 
-       
-     
+
+
             //create an instance of the class we want to create
             ClsStockCollection Allstocks = new ClsStockCollection();
             // create an item of test data
@@ -167,8 +169,8 @@ namespace Testing4
         }
 
         [TestMethod]
-        
-        public  void DeleteMethodOK()
+
+        public void DeleteMethodOK()
         {
             //create an instance of the class we want to create
             ClsStockCollection Allstocks = new ClsStockCollection();
@@ -185,7 +187,7 @@ namespace Testing4
             TestItem.Product_Expiry = DateTime.Now;
             TestItem.Available = true;
             //set This stock to the test data
-            Allstocks.ThisStock = TestItem ;
+            Allstocks.ThisStock = TestItem;
             //add the record
             PrimaryKey = Allstocks.Add();
             //set the primary key of the test data
@@ -197,9 +199,69 @@ namespace Testing4
             //now find the record
             Boolean Found = Allstocks.ThisStock.Find(PrimaryKey);
             //test to see that the record was mot found
-            Assert.IsFalse( Found );
+            Assert.IsFalse(Found);
 
         }
+        [TestMethod]
+        public void ReportByProduct_NameMethodOK()
+        {
+            //create an instance of the class containing unfiltered results
+            ClsStockCollection Allstocks = new ClsStockCollection();
+            // create an instance of the filtered data
+            ClsStockCollection FilteredStocks = new ClsStockCollection();
+            //apply a blank string (should return all records);
+            FilteredStocks.ReportByProduct_Name("");
+            //test to see that the two values are the same
+            Assert.AreEqual(Allstocks.Count, FilteredStocks.Count);
 
+
+
+        }
+        [TestMethod]
+        public void ReportByProduct_NameNoneFound()
+        {
+
+            // create an instance of the class we want ton create
+            ClsStockCollection FilteredStocks = new ClsStockCollection();
+            //apply a post code that doesn't exist 
+            FilteredStocks.ReportByProduct_Name("xxx xxx");
+            //check that the correct number of records are found
+            Assert.AreEqual(0, FilteredStocks.Count);
+           
+            }
+        }
+
+        [TestMethod]
+        public void ReportByProduct_NameTestDataFound()
+        {
+
+            // create an instance of the class we want ton create
+            ClsStockCollection FilteredStocks = new ClsStockCollection();
+            Boolean OK = true;
+            //apply a post code that doesn't exist 
+            FilteredStocks.ReportByProduct_Name("YYY YYY");
+        //check that the correct number of records are found
+        if (FilteredStocks.Count == 1)
+        {
+            //check to see that the first record is  cherry flavour
+            if (FilteredStocks.StockList[0].Product_Id! = 3)
+                 {
+                OK = false;
+            }
+            //check to see thye first record is cherry flavour
+            if (FilteredStocks.StockList[1].Product_Id! = 5)
+            {
+                OK = false;
+            }
+        }
+        else
+        {
+            OK = false;
+        }
+
+                //test to see that the two values are the same
+                Assert.IsTrue(OK);
+            
+        }
     }
-}
+
