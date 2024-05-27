@@ -5,6 +5,8 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Data.OleDb;
 using System.Data;
+using ClassLibrary;
+using System.Collections;
 //using ClassControlLib; -> class lib 
 
 ///This class uses the ado.net sql classes to provide a connection to an Azure sql server database.
@@ -189,6 +191,8 @@ public class clsDataConnection
         return Convert.ToInt32(returnValue.Value);
     }
 
+
+
     public Int32 Count
     //property that returns the count of records in the query results
     {
@@ -213,4 +217,7 @@ public class clsDataConnection
             dataTable = value;
         }
     }
+  
+
+    
 }
