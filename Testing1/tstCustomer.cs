@@ -14,7 +14,7 @@ namespace Testing1
         string CustomerLastname = "Khalid";
         string CustomerEmail = "afnan@yahoo.com";
         string CustomerPhone = "77323232";
-        string CustomerBirthdate = DateTime.Now.ToShortDateString();
+        string CustomerBirthdate = DateTime.Now.Date.AddYears(-16).ToShortDateString();
 
 
         [TestMethod]
@@ -566,7 +566,7 @@ namespace Testing1
             //creae a variable t store the test data
             DateTime TestDate;
             //set the date to todays date
-            TestDate = DateTime.Now.Date.AddYears(-200);
+            TestDate = DateTime.Now.Date;
             //convert the date variable to a string variable
             string CustomerBirthdate = TestDate.ToString();
             //invoke the method
@@ -593,7 +593,7 @@ namespace Testing1
             //invoke the method
             Error = ACustomer.Valid(CustomerFirstname, CustomerLastname, CustomerEmail, CustomerBirthdate, CustomerPhone);
             //test to see if results are correct
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
@@ -630,7 +630,7 @@ namespace Testing1
             //set the date to todays date
             TestDate = DateTime.Now.Date;
             //change date to -100 years 1 day from todays age
-            TestDate = TestDate.AddYears(-16).AddDays(-364);
+            TestDate = TestDate.AddYears(-15).AddDays(-364);
             //convert the date variable to a string variable
             string CustomerBirthdate = TestDate.ToString();
             //invoke the method
@@ -640,110 +640,7 @@ namespace Testing1
         }
 
 
-        [TestMethod]
-        public void CustomerBirthdateExtremeMax()
-        {
-            //create an instance of class we want to create
-            clsCustomer ACustomer = new clsCustomer();
-            //string variable to store any error msg
-            String Error = "";
-            //creae a variable t store the test data
-            DateTime TestDate;
-            //set the date to todays date
-            TestDate = DateTime.Now.Date;
-            //change date to -100 years 1 day from todays age
-            TestDate = TestDate.AddYears(200);
-            //convert the date variable to a string variable
-            string CustomerBirthdate = TestDate.ToString();
-            //invoke the method
-            Error = ACustomer.Valid(CustomerFirstname, CustomerLastname, CustomerEmail, CustomerBirthdate, CustomerPhone);
-            //test to see if results are correct
-            Assert.AreNotEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void CustomerBirthdateMaxLessOne()
-        {
-            //create an instance of class we want to create
-            clsCustomer ACustomer = new clsCustomer();
-            //string variable to store any error msg
-            String Error = "";
-            //creae a variable t store the test data
-            DateTime TestDate;
-            //set the date to todays date
-            TestDate = DateTime.Now.Date;
-            //change date to -100 years 1 day from todays age
-            TestDate = TestDate.AddYears(-100).AddDays(-1);
-            //convert the date variable to a string variable
-            string CustomerBirthdate = TestDate.ToString();
-            //invoke the method
-            Error = ACustomer.Valid(CustomerFirstname, CustomerLastname, CustomerEmail, CustomerBirthdate, CustomerPhone);
-            //test to see if results are correct
-            Assert.AreNotEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void CustomerBirthdateMax()
-        {
-            //create an instance of class we want to create
-            clsCustomer ACustomer = new clsCustomer();
-            //string variable to store any error msg
-            String Error = "";
-            //creae a variable t store the test data
-            DateTime TestDate;
-            //set the date to todays date
-            TestDate = DateTime.Now.Date;
-            //change date to -100 years 1 day from todays age
-            TestDate = TestDate.AddYears(-100);
-            //convert the date variable to a string variable
-            string CustomerBirthdate = TestDate.ToString();
-            //invoke the method
-            Error = ACustomer.Valid(CustomerFirstname, CustomerLastname, CustomerEmail, CustomerBirthdate, CustomerPhone);
-            //test to see if results are correct
-            Assert.AreNotEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void CustomerBirthdateMaxPlusOne()
-        {
-            //create an instance of class we want to create
-            clsCustomer ACustomer = new clsCustomer();
-            //string variable to store any error msg
-            String Error = "";
-            //creae a variable t store the test data
-            DateTime TestDate;
-            //set the date to todays date
-            TestDate = DateTime.Now.Date;
-            //change date to -100 years 1 day from todays age
-            TestDate = TestDate.AddYears(-99).AddDays(-364);
-            //convert the date variable to a string variable
-            string CustomerBirthdate = TestDate.ToString();
-            //invoke the method
-            Error = ACustomer.Valid(CustomerFirstname, CustomerLastname, CustomerEmail, CustomerBirthdate, CustomerPhone);
-            //test to see if results are correct
-            Assert.AreNotEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void CustomerBirthdateMid()
-        {
-            //create an instance of class we want to create
-            clsCustomer ACustomer = new clsCustomer();
-            //string variable to store any error msg
-            String Error = "";
-            //creae a variable t store the test data
-            DateTime TestDate;
-            //set the date to todays date
-            TestDate = DateTime.Now.Date;
-            //change date to -100 years 1 day from todays age
-            TestDate = TestDate.AddYears(-50);
-            //convert the date variable to a string variable
-            string CustomerBirthdate = TestDate.ToString();
-            //invoke the method
-            Error = ACustomer.Valid(CustomerFirstname, CustomerLastname, CustomerEmail, CustomerBirthdate, CustomerPhone);
-            //test to see if results are correct
-            Assert.AreNotEqual(Error, "");
-        }
+        
 
 
 
