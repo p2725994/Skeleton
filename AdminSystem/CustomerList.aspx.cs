@@ -29,4 +29,11 @@ public partial class _1_List : System.Web.UI.Page
     {
 
     }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        //store -1 into the session obj to indicate this is a new record
+        Session["CustomerID"] = -1;
+        Response.Redirect("CustomerDataEntry.aspx");
+    }
 }

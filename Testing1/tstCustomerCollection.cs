@@ -90,11 +90,11 @@ namespace Testing1
             //set its properties
             TestItem.Verified= true;
             TestItem.CustomerID = 1;
-            TestItem.CustomerFirstname = "Ahsan";
-            TestItem.CustomerLastname = "Ijaz";
-            TestItem.CustomerEmail = "ahsanijaz@gmail.com";
-            TestItem.CustomerPhone = 772203370;
-            TestItem.CustomerBirthdate = DateTime.Now.AddYears(-50);
+            TestItem.CustomerFirstname = "Michael";
+            TestItem.CustomerLastname = "JAckson";
+            TestItem.CustomerEmail = "michael@gmail.com";
+            TestItem.CustomerPhone = 771231231;
+            TestItem.CustomerBirthdate = DateTime.Now.AddYears(-49);
             //set thiscustomer to the test data
             AllCustomers.ThisCustomer = TestItem;
             //add the record

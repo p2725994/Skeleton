@@ -47,8 +47,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
             ACustomer.CustomerBirthdate = Convert.ToDateTime(CustomerBirthdate);
             //capture the Phone number
             ACustomer.CustomerPhone = Convert.ToInt32(CustomerPhone);
-            //store the firstname in the session object
-            Session["ACustomer"] = ACustomer;
+            //capture verification
+            ACustomer.Verified = chkVerified.Checked;
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+            CustomerList.ThisCustomer = ACustomer;
+            CustomerList.Add();
             //navigate to the view page
             Response.Redirect("CustomerViewer.aspx");
         }
