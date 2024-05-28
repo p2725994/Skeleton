@@ -197,5 +197,15 @@ namespace ClassLibrary
 
             return Error;
         }
+
+        public void Find(System.Web.UI.WebControls.Label lblSupplierId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Find(object supplierId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

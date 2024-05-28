@@ -9,6 +9,8 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    public int SupplierId { get; private set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -31,12 +33,34 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = ASupplier.Valid(SupplierName, SupplierEmail, SupplierProduct, SupplierAddress, SupplierDeliveryDate);
         if (Error == "")
         {
+            //capture the data 
+            ASupplier.SupplierId = SupplierId;
             ASupplier.SupplierName = SupplierName;
             ASupplier.SupplierEmail = SupplierEmail;
             ASupplier.SupplierProducts = SupplierProduct;
             ASupplier.SupplierAddress = SupplierAddress;
             ASupplier.SupplierDeliveryDate = Convert.ToDateTime(SupplierDeliveryDate);
-            Session["ASupplier"] = ASupplier;
+            ASupplier.SupplierFromUk = chkSupplierFromUk.Checked;
+            clsSupplierCollection SupplierList = new clsSupplierCollection();
+            //set the ThisSupplier Property
+
+            if (SupplierId == -1)
+            {
+                SupplierList.ThisSupplier = ASupplier;
+                //add the new record
+                SupplierList.Add();
+
+            }
+            else//find the record to update
+            {
+                SupplierList.ThisSupplier.Find(SupplierId);
+                SupplierList.ThisSupplier = ASupplier;
+                SupplierList.Update();
+
+            }
+
+
+          
             Response.Redirect("SupplierViewer.aspx");
 
         }
@@ -79,6 +103,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
             }
 
 
+
         }
+    protected void DisplaySupplier()
+    { //create an instance of the address book 
+        clsSupplierCollection Supplier =new clsSupplierCollection();
+        //find the record to update 
+        Supplier.ThisSupplier.Find(SupplierId);
+        txtSupplierId.Text =Supplier.ThisSupplier.SupplierId.ToString();
+        txtSupplierName.Text = Supplier.ThisSupplier.SupplierName.ToString();
+        txtSupplierEmail.Text = Supplier.ThisSupplier.SupplierEmail.ToString();
+        txtSupplierProduct.Text = Supplier.ThisSupplier.SupplierProducts.ToString();
+        txtSupplierAddress.Text = Supplier.ThisSupplier.SupplierAddress.ToString();
+        chkSupplierFromUk.Checked = Supplier.ThisSupplier.SupplierFromUk;
+        txtSupplierDeliveryDate.Text = Supplier.ThisSupplier.SupplierDeliveryDate.ToString();
+
+        //display the data fot the record
+    }
 
     }
