@@ -227,8 +227,45 @@ namespace Testing4
             FilteredStocks.ReportByProduct_Name("xxx xxx");
             //check that the correct number of records are found
             Assert.AreEqual(0, FilteredStocks.Count);
-           
+
+
+        }
+        [TestMethod]
+        public void ReportByProduct_NameTestDataFound()
+        {
+            // create an instance of the class we want ton create
+            ClsStockCollection FilteredStock = new ClsStockCollection();
+
+            //variable to store the outcome
+            Boolean OK = true;
+
+            //apply a product name that doesn't exist
+            FilteredStock.ReportByProduct_Name("R+sap tropical");
+            //check that the correct number of records are found
+            if (FilteredStock.Count == 2)
+            {
+                //check to see that the first record is R+sap tropical
+                if (FilteredStock.StockList[0].Product_Id != 5)
+                {
+                    OK = false;
+
+                }
+                // //check to see that the first record is R+sap tropical
+                if (FilteredStock.StockList[1].Product_Id != 6)
+                {
+                    OK = false;
+                }
             }
-        }        
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are no records
+            Assert.IsTrue(OK);  
+        }
     }
+}
+   
+
+
 

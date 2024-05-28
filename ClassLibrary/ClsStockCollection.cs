@@ -8,9 +8,50 @@ namespace ClassLibrary
 {
     public class ClsStockCollection
     {
+        // constructor for the class
+        public ClsStockCollection()
+        {
+            //object for the data connect
+            clsDataConnection DB = new clsDataConnection();
+            //execute the stored procedure
+            DB.Execute("sproc_tblstock_SelectAll");
+            // populate the array list with the data table
+            PopulateArray(DB);
+        }
 
-        //private data member for the list
-        List<clsStocks> mStockList = new List<clsStocks>();
+        void PopulateArray(clsDataConnection DB)
+        {
+            //populates the array list on the data table in the parameter DB
+            //Variable for the index
+            Int32 Index = 0;
+            //variable to store the record count
+            Int32 RecordCount;
+            //get the count of records
+            RecordCount = DB.Count;
+            //Clear the private array List
+            mStockList = new List<clsStocks>();
+            //while there are records to process
+            while (Index < RecordCount)
+            {
+                //create a blank stock object
+                clsStocks AStock = new clsStocks();
+                //read in the fields from the current record
+                //read in the fields for the current record
+
+                AStock.Product_Id = Convert.ToInt32(DB.DataTable.Rows[Index]["Product_Id"]);
+                AStock.Product_Description = Convert.ToString(DB.DataTable.Rows[Index]["Product_Description"]);
+                AStock.Product_Name = Convert.ToString(DB.DataTable.Rows[Index]["Product_Name"]);
+                AStock.Product_Expiry = Convert.ToDateTime(DB.DataTable.Rows[Index]["Product_Expiry"]);
+                AStock.Product_Quantity = Convert.ToInt32(DB.DataTable.Rows[Index]["Product_Quantity"]);
+                AStock.Product_Price = (float)Convert.ToDecimal(DB.DataTable.Rows[Index]["Product_Price"]);
+                AStock.Available = Convert.ToBoolean(DB.DataTable.Rows[Index]["Available"]);
+                //add the record to private data member
+                mStockList.Add(AStock);
+                //point at the next record
+                Index++;
+            }
+        }
+   
         //private member data for ThisStock
         clsStocks mThisStock = new clsStocks();
         public clsStocks ThisStock
@@ -27,7 +68,22 @@ namespace ClassLibrary
                 mThisStock = value;
             }
         }
-        public List<clsStocks> StockList { get; set; }
+
+        //private data member for the list
+        List<clsStocks> mStockList = new List<clsStocks>();
+        public List<clsStocks> StockList 
+        {
+            get 
+            {
+                //return the private data
+                return mStockList;
+            }
+            set 
+            {
+                //set the private data
+                mStockList = value;
+            } 
+        }
         public int Count
         {
             get
@@ -94,80 +150,7 @@ namespace ClassLibrary
             //populate the array list with the data table
             PopulateArray(DB);
 
-
-
-
-        }
-        // constructor for the class
-        /*public ClsStockCollection()
-        {
-            //variable for the index
-            Int32 Index = 0;
-            //variable to store the record count
-            Int32 RecordCount = 0;
-            //object for the data connect
-            clsDataConnection DB = new clsDataConnection();
-            //send the Product Name parameter to the database
-            DB.AddParameter("@Product_Name", Product_Name);
-            //execute the stored procedure
-            DB.Execute("sproc_tblstock_SelectAll");
-            // populate the array list with the data table
-            PopulateArray(DB);
-
-
-            
-                //create a blank address
-                clsStocks Astock = new clsStocks();
-                //read in the fields for the current record
-                Astock.Available = Convert.ToBoolean(DB.DataTable.Rows[Index]["Available"]);
-                Astock.Product_Id = Convert.ToInt32(DB.DataTable.Rows[Index]["Product_Id"]);
-                Astock.Product_Name = Convert.ToString(DB.DataTable.Rows[Index]["Product_Name"]);
-                Astock.Product_Description = Convert.ToString(DB.DataTable.Rows[Index]["Product_Description"]);
-                Astock.Product_Quantity = Convert.ToInt32(DB.DataTable.Rows[Index]["Product_Quantity"]);
-                Astock.Product_Price = (float)Convert.ToDecimal(DB.DataTable.Rows[Index]["Product_Price"]);
-                Astock.Product_Expiry = Convert.ToDateTime(DB.DataTable.Rows[Index]["Product_Expiry"]);
-                //add the record to private data member
-                mStockList.Add(Astock);
-                //point at the next record
-                Index++;
-
-
-
-            }*/
-
-
-        void PopulateArray(clsDataConnection DB)
-        {
-            //populates the array list on the data table in the parameter DB
-            //Variable for the index
-            Int32 Index = 0;
-            //variable to store the record count
-            Int32 RecordCount;
-            //get the count of records
-            RecordCount = DB.Count;
-            //Clear the private array List
-            mStockList = new List<clsStocks>();
-            //while there are records to process
-            while (Index < RecordCount)
-            {
-                //create a blank stock object
-                clsStocks AStock = new clsStocks();
-                //read in the fields from the current record
-                //read in the fields for the current record
-
-                AStock.Product_Id = Convert.ToInt32(DB.DataTable.Rows[Index]["Product_Id"]);
-                AStock.Product_Description = Convert.ToString(DB.DataTable.Rows[Index]["Product_Description"]);
-                AStock.Product_Name = Convert.ToString(DB.DataTable.Rows[Index]["Product_Name"]);
-                AStock.Product_Expiry = Convert.ToDateTime(DB.DataTable.Rows[Index]["Product_Expiry"]);
-                AStock.Product_Quantity = Convert.ToInt32(DB.DataTable.Rows[Index]["Product_Quantity"]);
-                AStock.Product_Price = (float)Convert.ToDecimal(DB.DataTable.Rows[Index]["Product_Price"]);
-                AStock.Available = Convert.ToBoolean(DB.DataTable.Rows[Index]["Available"]);
-                //add the record to private data member
-                mStockList.Add(AStock);
-                //point at the next record
-                Index++;
-            }
-        }
+        }      
     }
 }
     
