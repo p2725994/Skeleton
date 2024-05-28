@@ -99,7 +99,7 @@ namespace ClassLibrary
 
         }
         // constructor for the class
-        public ClsStockCollection()
+        /*public ClsStockCollection()
         {
             //variable for the index
             Int32 Index = 0;
@@ -115,7 +115,7 @@ namespace ClassLibrary
             PopulateArray(DB);
 
 
-            {
+            
                 //create a blank address
                 clsStocks Astock = new clsStocks();
                 //read in the fields for the current record
@@ -133,8 +133,7 @@ namespace ClassLibrary
 
 
 
-            }
-        }
+            }*/
 
 
         void PopulateArray(clsDataConnection DB)

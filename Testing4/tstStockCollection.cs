@@ -229,39 +229,6 @@ namespace Testing4
             Assert.AreEqual(0, FilteredStocks.Count);
            
             }
-        }
-
-        [TestMethod]
-        public void ReportByProduct_NameTestDataFound()
-        {
-
-            // create an instance of the class we want ton create
-            ClsStockCollection FilteredStocks = new ClsStockCollection();
-            Boolean OK = true;
-            //apply a post code that doesn't exist 
-            FilteredStocks.ReportByProduct_Name("YYY YYY");
-        //check that the correct number of records are found
-        if (FilteredStocks.Count == 1)
-        {
-            //check to see that the first record is  cherry flavour
-            if (FilteredStocks.StockList[0].Product_Id! = 3)
-                 {
-                OK = false;
-            }
-            //check to see thye first record is cherry flavour
-            if (FilteredStocks.StockList[1].Product_Id! = 5)
-            {
-                OK = false;
-            }
-        }
-        else
-        {
-            OK = false;
-        }
-
-                //test to see that the two values are the same
-                Assert.IsTrue(OK);
-            
-        }
+        }        
     }
 

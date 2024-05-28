@@ -165,7 +165,7 @@ namespace Testing3
 
             TestItem.SupplierId = PrimaryKey;
             //modufy the test record 
-            TestItem.SupplierFromUk = flase;
+            TestItem.SupplierFromUk = false;
             TestItem.SupplierName = "Another Name";
             TestItem.SupplierEmail = "Another Email";
             TestItem.SupplierAddress = "123 ABC";
@@ -213,7 +213,7 @@ namespace Testing3
         public void ReportByPostCodeMethodOK()
         {
             clsSupplierCollection AllSupplier = new clsSupplierCollection();
-            clssSupplierCollection FilteredSupplier = new clsSuppplierCollection();
+            clsSupplierCollection FilteredSupplier = new clsSupplierCollection();
             FilteredSupplier.ReportByPostCode("");
             //test to see that the 2 vlaues are the saeme 
             Assert.AreEqual(AllSupplier.Count, FilteredSupplier.Count);
@@ -230,7 +230,7 @@ namespace Testing3
             Assert.AreEqual(0, FilteredSupplier.Count);
 
         }
-        [TestMethod]
+        /*[TestMethod]
         public void ReportByPostCode(string PostCode)
         {
             //filters the records based on a full or partial post code
@@ -241,12 +241,12 @@ namespace Testing3
             DB.Execute("sproc_tblSupplier_FilterBySupplierAddress");
             PopulateArray(DB);
 
-        }
+        }*/
         [TestMethod]
         public void ReportByPostCodeTestDataFound()
         {
             //create an instance of the filtered data
-            clsSupplierCollection FilteredSupplier = new clsSupplierColleciton();
+            clsSupplierCollection FilteredSupplier = new clsSupplierCollection();
             //variable to store the outcome 
             Boolean OK = true;
             FilteredSupplier.ReportByPostCode("yyy yyy");
