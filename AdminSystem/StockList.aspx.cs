@@ -149,11 +149,6 @@ public partial class _1_List : System.Web.UI.Page
 
         
     }
-
-    protected void TxtFilter_TextChanged(object sender, EventArgs e)
-    {
-
-    }
 }
         
 
