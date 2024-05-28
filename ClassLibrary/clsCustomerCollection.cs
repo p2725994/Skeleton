@@ -87,12 +87,12 @@ namespace ClassLibrary
         public int Add()
         {
             clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("CustomerFirstname", mThisCustomer.CustomerFirstname);
-            DB.AddParameter("CustomerLastname", mThisCustomer.CustomerLastname);
-            DB.AddParameter("CustomerEmail", mThisCustomer.CustomerEmail);
-            DB.AddParameter("CustomerPhone", mThisCustomer.CustomerPhone);
-            DB.AddParameter("CustomerBirthdate", mThisCustomer.CustomerBirthdate);
-            DB.AddParameter("Verified", mThisCustomer.Verified);
+            DB.AddParameter("@CustomerFirstname", mThisCustomer.CustomerFirstname);
+            DB.AddParameter("@CustomerLastname", mThisCustomer.CustomerLastname);
+            DB.AddParameter("@CustomerEmail", mThisCustomer.CustomerEmail);
+            DB.AddParameter("@CustomerPhone", mThisCustomer.CustomerPhone);
+            DB.AddParameter("@CustomerBirthdate", mThisCustomer.CustomerBirthdate);
+            DB.AddParameter("@Verified", mThisCustomer.Verified);
 
             return DB.Execute("sproc_tblCustomer_Insert");
         }
