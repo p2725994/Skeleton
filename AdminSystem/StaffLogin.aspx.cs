@@ -10,7 +10,7 @@ public partial class StaffLogin : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
 
     protected void btnLogin_Click(object sender, EventArgs e)
@@ -34,6 +34,8 @@ public partial class StaffLogin : System.Web.UI.Page
         //find the record
         Found = AnUser.FindUser(UserName, Password);
 
+        //add a session to capture the user name
+        Session["AnUser"] = AnUser;
         //if Username/Password is empty
         if (txtUserName.Text =="")
         {
@@ -56,5 +58,11 @@ public partial class StaffLogin : System.Web.UI.Page
             //record the error
             lblError.Text = "Login details are incorrect. Please try again! ";
         }
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        //redirect to the main page
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
