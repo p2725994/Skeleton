@@ -165,6 +165,11 @@ namespace ClassLibrary
                 Index++;
             }
         }
+
+        public void ReportByPostCode(object text)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
