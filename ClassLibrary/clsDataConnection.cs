@@ -221,3 +221,10 @@ public class clsDataConnection
 
     
 }
+
+namespace ClassLibrary
+{
+    public class ClsStockUser
+    {
+    }
+}
