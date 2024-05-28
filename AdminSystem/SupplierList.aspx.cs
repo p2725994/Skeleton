@@ -91,4 +91,48 @@ public partial class _1_List : System.Web.UI.Page
 
 
     }
+
+    protected void lstSupplierList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void TextBox1_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnApplyFilter_Click(object sender, EventArgs e)
+    {
+        //create an instance of the address object
+         clsSupplierCollection Asupplier = new clsSupplierCollection();
+        //retrieve the value of post from the presentaion layer
+        Asupplier.ReportByPostCode(txtFilter.Text);
+        lstSupplierList.DataSource = Asupplier.SupplierList;
+        //set the name of the primary key
+        lstSupplierList.DataValueField = "SupplierId";
+        //set the name of the field to display
+        lstSupplierList.DataTextField = "PostCode";
+        //bind the data to the list 
+        lstSupplierList.DataBind();
+
+
+    }
+
+    protected void btnClearFilter_Click(object sender, EventArgs e)
+    {
+        //create an instance of the supplier object 
+        clsSupplierCollection ASupplier = new clsSupplierCollection();
+        //set an empty string 
+        ASupplier.ReportByPostCode("");
+        txtFilter.Text = "";
+           lstSupplierList.DataSource = ASupplier.SupplierList;
+        lstSupplierList.DataValueField = "SupplierId";
+        //set the name of the field to display
+        lstSupplierList.DataTextField = "PostCode";
+        //bind the data to the list 
+        lstSupplierList.DataBind();
+
+
+    }
 }
