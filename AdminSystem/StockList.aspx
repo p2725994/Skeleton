@@ -14,7 +14,7 @@
         <p>
             &nbsp;</p>
         <p>
-        <asp:ListBox ID="lstStockList" runat="server" Style="z-index: 1; left: 3px; top: 14px; position: absolute; height: 376px; width: 423px" OnSelectedIndexChanged="lstStockList_SelectedIndexChanged"></asp:ListBox>
+        <asp:ListBox ID="lstStockList" runat="server" Style="z-index: 1; left: 3px; top: 14px; position: absolute; height: 376px; width: 423px"></asp:ListBox>
         </p>
         <p>
             &nbsp;</p>
