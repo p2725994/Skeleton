@@ -282,7 +282,7 @@ namespace Testing2
             Boolean OK = true;
 
             //apply an email that doesnt exist;
-            FilteredStaff.ReportByEmail("asda");
+            FilteredStaff.ReportByEmail("asda123@gmail.com");
 
             //check that the correct number of records are found
             if (FilteredStaff.Count == 2)

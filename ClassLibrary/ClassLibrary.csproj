@@ -54,6 +54,7 @@
     <Compile Include="..\clsSupplier.cs">
       <Link>clsSupplier.cs</Link>
     </Compile>
+    <Compile Include="clsStockUser.cs" />
     <Compile Include="clsSupplierCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

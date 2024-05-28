@@ -8,44 +8,39 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        sproc_tblstock_Delete
-          <asp:Button ID="btnAdd" runat="server" style="z-index: 1; left: 0px; top: 405px; position: absolute; height: 22px; width: 68px;" Text="Add" />
-        <asp:Button ID="btnEdit" runat="server" style="z-index: 1; left: 90px; top: 408px; position: absolute; width: 57px; height: 22px;" Text="Edit" />
+        <asp:Button ID="btnAdd" runat="server" style="z-index: 1; left: 10px; top: 312px; position: absolute; height: 22px; width: 68px;" Text="Add" />
+         <asp:Button ID="btnDelete" runat="server" style="z-index: 1; left: 219px; position: absolute; bottom: 335px; height: 22px;" Text="Delete" OnClick="btnDelete_Click" />
+        <asp:Button ID="btnEdit" runat="server" style="z-index: 1; left: 117px; top: 314px; position: absolute; width: 57px; height: 22px;" Text="Edit" />
+        <asp:ListBox ID="lstStockList" runat="server" Style="z-index: 1; left: -4px; top: -4px; position: absolute; height: 302px; width: 355px"></asp:ListBox>
         <p>
             &nbsp;</p>
         <p>
-        <asp:ListBox ID="lstStockList" runat="server" Style="z-index: 1; left: 3px; top: 14px; position: absolute; height: 376px; width: 423px"></asp:ListBox>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+        <asp:Label ID="lblEnterName" runat="server" Text="Enter a Name"></asp:Label>
+        <asp:TextBox ID="txtFilter" runat="server" style="z-index: 1; left: 124px; top: 376px; position: absolute; width: 118px;"></asp:TextBox>
         </p>
         <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-        <asp:Button runat="server" Text="Delete" ID="btnDelete" OnClick="btnDelete_Click" Height="21px" Width="51px"></asp:Button>
+        <asp:Button ID="btnApplyFilter" runat="server" OnClick="BtnApplyFilter_Click" Text="Apply Filter" Height="23px" style="margin-top: 6px" Width="101px" />
+        <asp:Button ID="btnClearFilter" runat="server" Height="27px" OnClick="BtnClearFilter_Click" Text="Clear Filter" style="margin-left: 38px" />
         </p>
         <p>
-        <asp:Button ID="lblError" runat="server" style="z-index: 1; left: 28px; top: 588px; position: absolute" Text="[Error]" />
-            <asp:Label ID="lblEnterName" runat="server" Text="Enter a Name"></asp:Label>
-            <asp:TextBox ID="txtFilter" runat="server" OnTextChanged="TxtFilter_TextChanged" Width="128px"></asp:TextBox>
+        <asp:Label ID="lblError" runat="server"></asp:Label>
         </p>
-        <p>
-            &nbsp;</p>
-        <asp:Button ID="btnApplyFilter" runat="server" OnClick="BtnApplyFilter_Click" Text="Apply Filter" />
-        <asp:Button ID="btnClearFilter" runat="server" Height="27px" OnClick="BtnClearFilter_Click" Text="Clear Filter" />
-        <p>
-            &nbsp;</p>
     </form>
 </body>
 </html>
