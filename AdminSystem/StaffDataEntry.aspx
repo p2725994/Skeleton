@@ -35,12 +35,13 @@
             <asp:CheckBox ID="chkIsOnShift" runat="server" style="z-index: 1; left: 114px; top: 227px; position: absolute" Text="  On Shift" />
         </div>
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 14px; top: 326px; position: absolute" width="72px"></asp:Label>
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 108px; top: 274px; position: absolute; width: 59px" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 103px; top: 274px; position: absolute; width: 59px" Text="Cancel" />
         <p>
             &nbsp;</p>
         <p>
             <asp:Button ID="btnFind" runat="server" Height="29px" style="z-index: 1; left: 304px; top: 17px; position: absolute"  Text="Find" width="59px" OnClick="btnFind_Click" />
-        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 14px; top: 274px; position: absolute" Text="OK" width="59px" />
+        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 25px; top: 274px; position: absolute" Text="OK" width="59px" />
+        <asp:Button ID="btnMenu" runat="server" OnClick="btnMenu_Click" style="z-index: 1; left: 176px; top: 274px; position: absolute" Text="Return to Main Menu" />
         </p>
     </form>
 </body>
