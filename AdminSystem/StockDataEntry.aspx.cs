@@ -12,6 +12,9 @@ using System.Web.UI.WebControls;
 public partial class _1_DataEntry : System.Web.UI.Page
 {
     Int32 Product_Id;
+
+    public object DisplayStocks { get; private set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         //get the number of stock to be processed
@@ -19,7 +22,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (IsPostBack == false)
         {
             //if this is not a new record
-            if(Product_Id != -1)
+            if (Product_Id != -1)
             {
                 //display the current data for the record
                 DisplayStock();
@@ -101,14 +104,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             ClsStockCollection StockList = new ClsStockCollection();
             // if this is a new record i.e Product_Id = -1 then add the data
 
-            if(Product_Id == -1)
+            if (Product_Id == -1)
             {
                 //set the ThisStock property
                 StockList.ThisStock = aStock;
                 // add the new record
                 StockList.Add();
 
-                
+
             }
 
             //otherwise it must be update
@@ -155,12 +158,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtProduct_Expiry.Text = aStock.Product_Expiry.ToString();
             chkAvailable.Checked = aStock.Available;
 
-        
+
         }
+    }
+
+    protected void btnMainMenu_Click(object sender, EventArgs e)
+    {
+        //redirect the user to the stock login page
+        Response.Redirect("TeamMainMenu.aspx");
+    }
+
+  
+}
 
       
 
        
        
-    }
-}
+    
+
