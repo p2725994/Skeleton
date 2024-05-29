@@ -135,5 +135,33 @@ namespace Testing1
             //test to see that the record was not found
             Assert.IsFalse(Found);
         }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            TestItem.Verified = true;
+            TestItem.CustomerFirstname = "Michael";
+            TestItem.CustomerLastname = "Jackson";
+            TestItem.CustomerEmail = "michael.J@gmail.com";
+            TestItem.CustomerPhone = 778908909;
+            TestItem.CustomerBirthdate = DateTime.Now.AddYears(-61);
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustomerID = PrimaryKey;
+            TestItem.Verified = false;
+            TestItem.CustomerFirstname = "Bob";
+            TestItem.CustomerLastname = "Ross";
+            TestItem.CustomerEmail = "bob@gmail.com";
+            TestItem.CustomerPhone = 776546543;
+            TestItem.CustomerBirthdate = DateTime.Now.AddYears(-74).AddDays(-72);
+            AllCustomers.ThisCustomer = TestItem;
+            AllCustomers.Update();
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+        }
+
     }
 }

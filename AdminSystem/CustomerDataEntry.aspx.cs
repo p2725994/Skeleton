@@ -8,9 +8,17 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 CustomerID;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        CustomerID = Convert.ToInt32(Session["CustomerID"]);
+        if (IsPostBack == false)
+        {
+            if (CustomerID != -1)
+            {
+                DisplayCustomer();
+            }
+        }
     }
 
     protected void TextBox1_TextChanged(object sender, EventArgs e)
@@ -37,6 +45,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         if (Error == "")
         { 
+            ACustomer.CustomerID = CustomerID;
             //capture the Firstname
             ACustomer.CustomerFirstname = CustomerFirstname;
             //capture the Lastname
@@ -50,10 +59,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //capture verification
             ACustomer.Verified = chkVerified.Checked;
             clsCustomerCollection CustomerList = new clsCustomerCollection();
-            CustomerList.ThisCustomer = ACustomer;
-            CustomerList.Add();
-            //navigate to the view page
-            Response.Redirect("CustomerViewer.aspx");
+
+            if (CustomerID == -1)
+                {
+                CustomerList.ThisCustomer = ACustomer;
+                CustomerList.Add();
+            }
+
+            else
+            {
+                CustomerList.ThisCustomer.Find(CustomerID);
+                CustomerList.ThisCustomer = ACustomer;
+                CustomerList.Update();
+            }
+            Response.Redirect("CustomerList.aspx");
         }
         else
         {
@@ -94,6 +113,19 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtCustomerPhone.Text = ACustomer.CustomerPhone.ToString();
             txtCustomerBirthdate.Text = ACustomer.CustomerBirthdate.ToString();
             chkVerified.Checked = ACustomer.Verified;
+        }
+
+        void DisplayCustomer()
+        {
+            clsCustomerCollection Customer = new clsCustomerCollection();
+            Customer.ThisCustomer.Find(CustomerID); 
+            txtCustomerID.Text = Customer.ThisCustomer.CustomerID.ToString();
+            txtCustomerFirstname.Text = Customer.ThisCustomer.CustomerFirstname.ToString();
+            txtCustomerLastname.Text = Customer.ThisCustomer.CustomerLastname.ToString();
+            txtCustomerEmail.Text = Customer.ThisCustomer.CustomerEmail.ToString();
+            txtCustomerPhone.Text = Customer.ThisCustomer.CustomerPhone.ToString();
+            txtCustomerBirthdate.Text = Customer.ThisCustomer.CustomerBirthdate.ToString();
+            chkVerified.Checked = Customer.ThisCustomer.Verified;
         }
 
     }
