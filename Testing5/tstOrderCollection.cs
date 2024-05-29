@@ -180,5 +180,93 @@ namespace Testing5
             //test to see if ThisOrder matches the test data
             Assert.AreEqual(AllOrders.ThisOrder, TestItem);
         }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //create an instance of the class we want to create 
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //create the item of test data
+            clsOrder TestItem = new clsOrder();
+            //variable to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.OrderTotal = 12.99m;
+            TestItem.Purchased = true;
+            TestItem.DatePlaced = DateTime.Now;
+            TestItem.DeliveryAddress = "123 Test Street, B12 3GT";
+            TestItem.NoOfItems = 3;
+            TestItem.IsGift = false;
+            //set ThisOrder to the test data
+            AllOrders.ThisOrder = TestItem;
+            //add the record
+            PrimaryKey = AllOrders.Add();
+            //set the primary key to the test data
+            TestItem.OrderId = PrimaryKey;
+            //find the record
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            //delete the record
+            AllOrders.Delete();
+            //now find the record
+            Boolean Found = AllOrders.ThisOrder.Find(PrimaryKey);
+            //test to see that the record was not found
+            Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void ReportbyDeliveryAddressMethodOK()
+        {
+            //create an instance of the class containing unfiltered results
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //create an instance of the filtered data
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            //apply a blank string (should return all records)
+            FilteredOrders.ReportByDeliveryAddress("");
+            //test to see that the two values are the same
+            Assert.AreEqual(AllOrders.Count, FilteredOrders.Count);
+        }
+
+        [TestMethod]
+        public void ReportByDeliveryAddressNonFound()
+        {
+            //create an instance of the class we want to create
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            //apply a delivery address that doesnt exist
+            FilteredOrders.ReportByDeliveryAddress("987 Fake Street, xxx xxx");
+            //test to see that there are no records
+            Assert.AreEqual(0, FilteredOrders.Count);
+        }
+
+        [TestMethod]
+        public void ReportByDeliveryAddressFound()
+        {
+            //create an instance of the filtered data
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            //variable to store the outcome
+            Boolean OK = true;
+            //apply a delivery address that doesnt exist
+            FilteredOrders.ReportByDeliveryAddress("999 Odd street, xxx xxx");
+            //check that the correct number of records are found
+            if (FilteredOrders.Count == 2)
+            {
+                //check to see that the first record is 1037
+                if (FilteredOrders.OrderList[0].OrderId != 1037)
+                {
+                    OK = false;
+                }
+                //check to see that the second record is 1038
+                if (FilteredOrders.OrderList[1].OrderId != 1038)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are no records
+            Assert.IsTrue(OK);
+        }
+
     }
 }
