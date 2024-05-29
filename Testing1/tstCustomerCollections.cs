@@ -1,12 +1,12 @@
-﻿using ClassLibrary;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using ClassLibrary;
 using System.Collections.Generic;
 
 namespace Testing1
 {
     [TestClass]
-    public class tstCustomerCollection
+    public class tstCustomerCollections
     {
         [TestMethod]
         public void InstanceOK()
@@ -15,10 +15,8 @@ namespace Testing1
             Assert.IsNotNull(AllCustomers);
         }
 
-
-
         [TestMethod]
-        public void CustomerListOK() 
+        public void CustomerListOK()
         {
             //create an instance of class
             clsCustomerCollection AllCustomers = new clsCustomerCollection();
@@ -47,13 +45,13 @@ namespace Testing1
         public void ThisCustomerPropertyOK()
         {
             clsCustomerCollection AllCustomers = new clsCustomerCollection();
-            clsCustomer TestCustomer = new clsCustomer();   
+            clsCustomer TestCustomer = new clsCustomer();
             TestCustomer.Verified = true;
             TestCustomer.CustomerFirstname = "Afnan";
             TestCustomer.CustomerLastname = "Khalid";
             TestCustomer.CustomerEmail = "afnan@yahoo.com";
             TestCustomer.CustomerPhone = 771234567;
-            TestCustomer.CustomerBirthdate= DateTime.Now.AddYears(-50);
+            TestCustomer.CustomerBirthdate = DateTime.Now.AddYears(-50);
             AllCustomers.ThisCustomer = TestCustomer;
             Assert.AreEqual(AllCustomers.ThisCustomer, TestCustomer);
         }
@@ -88,7 +86,7 @@ namespace Testing1
             //variable to store primary key
             Int32 PrimaryKey = 0;
             //set its properties
-            TestItem.Verified= true;
+            TestItem.Verified = true;
             TestItem.CustomerID = 1;
             TestItem.CustomerFirstname = "Michael";
             TestItem.CustomerLastname = "JAckson";
@@ -102,38 +100,6 @@ namespace Testing1
             //set the primary key of test data
             TestItem.CustomerID = PrimaryKey;
             Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
-        }
-
-        [TestMethod]
-        public void DeleteMethodOK()
-        {
-            //create an instance of the class we want to create 
-            clsOrderCollection AllOrders = new clsOrderCollection();
-            //create the item of test data
-            clsOrder TestItem = new clsOrder();
-            //variable to store the primary key
-            Int32 PrimaryKey = 0;
-            //set its properties
-            TestItem.OrderTotal = 12.99m;
-            TestItem.Purchased = true;
-            TestItem.DatePlaced = DateTime.Now;
-            TestItem.DeliveryAddress = "123 Test Street, B12 3GT";
-            TestItem.NoOfItems = 3;
-            TestItem.IsGift = false;
-            //set ThisOrder to the test data
-            AllOrders.ThisOrder = TestItem;
-            //add the record
-            PrimaryKey = AllOrders.Add();
-            //set the primary key to the test data
-            TestItem.OrderId = PrimaryKey;
-            //find the record
-            AllOrders.ThisOrder.Find(PrimaryKey);
-            //delete the record
-            AllOrders.Delete();
-            //now find the record
-            Boolean Found = AllOrders.ThisOrder.Find(PrimaryKey);
-            //test to see that the record was not found
-            Assert.IsFalse(Found);
         }
 
         [TestMethod]
@@ -163,5 +129,35 @@ namespace Testing1
             Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
         }
 
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            //create item of test data
+            clsCustomer TestItem = new clsCustomer();
+            //variable to store primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.Verified = true;
+            TestItem.CustomerFirstname = "Michael";
+            TestItem.CustomerLastname = "Jackson";
+            TestItem.CustomerEmail = "michael.J@gmail.com";
+            TestItem.CustomerPhone = 778908909;
+            TestItem.CustomerBirthdate = DateTime.Now.AddYears(-61);
+            //set thiscustomer data to the test data
+            AllCustomers.ThisCustomer = TestItem;
+            //add the record
+            PrimaryKey = AllCustomers.Add();
+            //set the primary key of the test data
+            TestItem.CustomerID = PrimaryKey;
+            //find the record
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            AllCustomers.Delete();
+            //now fiond the record
+            Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+
+        }
     }
 }

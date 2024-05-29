@@ -113,7 +113,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtCustomerPhone.Text = ACustomer.CustomerPhone.ToString();
             txtCustomerBirthdate.Text = ACustomer.CustomerBirthdate.ToString();
             chkVerified.Checked = ACustomer.Verified;
+
         }
+    }
 
         void DisplayCustomer()
         {
@@ -129,4 +131,3 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
 
     }
-}

@@ -42,7 +42,7 @@ public partial class _1_List : System.Web.UI.Page
     protected void btnEdit_Click1(object sender, EventArgs e)
     {
         Int32 CustomerID;
-        if (lstCustomerList.SelectedIndex != -1);
+        if (lstCustomerList.SelectedIndex != -1)
         {
             CustomerID = Convert.ToInt32(lstCustomerList.SelectedValue);
             Session["CustomerID"] = CustomerID;
@@ -52,6 +52,22 @@ public partial class _1_List : System.Web.UI.Page
         {
             lblError.Text = "Please select a record from the list to edit";
       
+        }
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //var to store the primary key
+        Int32 CustomerID;
+        if (lstCustomerList.SelectedIndex != -1)
+        {
+            CustomerID = Convert.ToInt32(lstCustomerList.SelectedValue);
+            Session["CustomerID"] = CustomerID;
+            Response.Redirect("CustomerConfirmDelete.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please select a record from the list to delte";
         }
     }
 }
