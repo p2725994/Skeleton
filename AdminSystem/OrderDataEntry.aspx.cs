@@ -140,4 +140,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //redirect to the list page
         Response.Redirect("OrderList.aspx");
     }
+
+    protected void btnMainMenu_Click(object sender, EventArgs e)
+    {
+        //redirect to the main menu
+        Response.Redirect("TeamMainMenu.aspx");
+    }
 }

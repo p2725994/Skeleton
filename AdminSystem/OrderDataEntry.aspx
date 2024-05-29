@@ -14,6 +14,7 @@
         <p>
             <asp:TextBox ID="txtOrderId" runat="server" style="z-index: 1; left: 164px; top: 35px; position: absolute"></asp:TextBox>
             <asp:CheckBox ID="chkPurchased" runat="server" style="z-index: 1; left: 163px; top: 132px; position: absolute" Text="Purchased" />
+            <asp:Button ID="btnMainMenu" runat="server" OnClick="btnMainMenu_Click" style="top: 315px; left: 250px; position: absolute; height: 26px; width: 130px" Text="Return to Main Menu" Width="130px" />
         </p>
         <asp:Label ID="lblOrderTotal" runat="server" style="z-index: 1; left: 42px; top: 71px; position: absolute" Text="Order Total" width="105px"></asp:Label>
         <asp:Label ID="lblDatePlaced" runat="server" style="z-index: 1; left: 42px; top: 107px; position: absolute;" Text="Date Placed" width="105px"></asp:Label>
