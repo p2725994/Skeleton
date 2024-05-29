@@ -185,12 +185,12 @@ namespace Testing3
 
             TestItem.SupplierId = PrimaryKey;
             //modufy the test record 
-            TestItem.SupplierFromUk = true;
             TestItem.SupplierName = "Another Name";
             TestItem.SupplierEmail = "Another Email";
             TestItem.SupplierAddress = "123 ABC";
             TestItem.SupplierProducts = "SupplierProducts";
             TestItem.SupplierDeliveryDate = DateTime.Now;
+            TestItem.SupplierFromUk = false;
             //set the record based on the new test data 
             AllSupplier.ThisSupplier = TestItem;
             //update the  record 
@@ -230,64 +230,60 @@ namespace Testing3
         }
 
         [TestMethod]
-        public void ReportByPostCodeMethodOK()
+        public void ReportBySupplierAddressMethodOK()
         {
             clsSupplierCollection AllSupplier = new clsSupplierCollection();
             clsSupplierCollection FilteredSupplier = new clsSupplierCollection();
-            FilteredSupplier.ReportByPostCode("");
+            FilteredSupplier.ReportBySupplierAddress("");
             //test to see that the 2 vlaues are the saeme 
             Assert.AreEqual(AllSupplier.Count, FilteredSupplier.Count);
 
 
         }
         [TestMethod]
-        public void ReportByPostCodeNoneFoundOK()
+        public void ReportBySupplierAddressNoneFoundOK()
         {
             clsSupplierCollection FilteredSupplier = new clsSupplierCollection();
             ;
-            FilteredSupplier.ReportByPostCode("XXX XXX");
+            FilteredSupplier.ReportBySupplierAddress("XXX XXX");
             //test to see that the 2 vlaues are the saeme 
             Assert.AreEqual(0, FilteredSupplier.Count);
 
         }
-        [TestMethod]
-        public void ReportByPostCode(string PostCode)
-        {
-            //filters the records based on a full or partial post code
-            clsDataConnection DB = new clsDataConnection();
-            //send the POSTCODE parameter to the database
-            DB.AddParameter("@SupplierAddress", PostCode);
-            //execute the stored procedure
-            DB.Execute("sproc_tblSupplier_FilterBySupplierAddress");
-            PopulateArray(DB);
 
-        }
-private void PopulateArray(clsDataConnection dB)
-        {
-            throw new NotImplementedException();
-        }
 
         [TestMethod]
-        public void ReportByPostCodeTestDataFound()
+        public void ReportBySupplierMethodTestDataFound()
         {
-            //create an instance of the filtered data
+            //create an instance of the filtered class
             clsSupplierCollection FilteredSupplier = new clsSupplierCollection();
-            //variable to store the outcome 
-            Boolean OK = true;
-            FilteredSupplier.ReportByPostCode("yyy yyy");
-            if (FilteredSupplier.Count == 1)
-            {
-                OK = false;
-            }
-            //check to see that the first is 2
-            if (FilteredSupplier.SupplierList[1].SupplierId != 2)
-            { OK = false; }
 
+
+            //variable to store the outcome
+            Boolean OK = true;
+
+            //apply an email that doesnt exist;
+            FilteredSupplier.ReportBySupplierAddress("123 457");
+
+            //check that the correct number of records are found
+            if (FilteredSupplier.Count == 2)
+            {
+                //check to see that the first record is 10
+                if (FilteredSupplier.SupplierList[0].SupplierId != 5)
+                {
+                    OK = false;
+                }
+                //check to see that the first record is 11
+                if (FilteredSupplier.SupplierList[1].SupplierId != 6)
+                {
+                    OK = false;
+                }
+            }
             else
             {
                 OK = false;
-
             }
+            //test to see that there are no records
             Assert.IsTrue(OK);
         }
     }
