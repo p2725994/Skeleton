@@ -10,20 +10,20 @@ namespace ClassLibrary
         //private data member for thisOrder
         clsOrder mThisOrder = new clsOrder();
 
-        public List<clsOrder> OrderList 
-        { 
+        public List<clsOrder> OrderList
+        {
             get
             {
                 //return the private data
                 return mOrderList;
             }
-            set 
+            set
             {
                 //set the private data
                 mOrderList = value;
             }
         }
-        public int Count 
+        public int Count
         {
             get
             {
@@ -35,8 +35,8 @@ namespace ClassLibrary
                 //later
             }
         }
-        public clsOrder ThisOrder 
-        { 
+        public clsOrder ThisOrder
+        {
             get
             {
                 //return the private data
@@ -52,35 +52,12 @@ namespace ClassLibrary
         //constructor for the class
         public clsOrderCollection()
         {
-
-            //variable for the index
-            Int32 Index = 0;
-            //variable to store the record count
-            Int32 RecordCount = 0;
             //object for the data connect
             clsDataConnection DB = new clsDataConnection();
             //execute the stored procedure
             DB.Execute("sproc_tblOrder_SelectAll");
-            //get the count of records
-            RecordCount = DB.Count;
-            //while there are records to process
-            while (Index < RecordCount)
-            {
-                //create a blank address 
-                clsOrder AnOrder = new clsOrder();
-                //read in the fields for the current record
-                AnOrder.OrderId = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderId"]);
-                AnOrder.OrderTotal = Convert.ToDecimal(DB.DataTable.Rows[Index]["OrderTotal"]);
-                AnOrder.DatePlaced = Convert.ToDateTime(DB.DataTable.Rows[Index]["DatePlaced"]);
-                AnOrder.Purchased = Convert.ToBoolean(DB.DataTable.Rows[Index]["Purchased"]);
-                AnOrder.DeliveryAddress = Convert.ToString(DB.DataTable.Rows[Index]["DeliveryAddress"]);
-                AnOrder.NoOfItems = Convert.ToInt32(DB.DataTable.Rows[Index]["NoOfItems"]);
-                AnOrder.IsGift = Convert.ToBoolean(DB.DataTable.Rows[Index]["IsGift"]);
-                //add the record to the private data member
-                mOrderList.Add( AnOrder );
-                //point at the next record
-                Index++;
-            }
+            //populate the array list with the data table
+            PopulateArray(DB);
         }
 
         public int Add()
@@ -126,6 +103,50 @@ namespace ClassLibrary
             DB.AddParameter("@OrderId", mThisOrder.OrderId);
             //execute the stored procedure
             DB.Execute("sproc_tblOrder_Delete");
+        }
+
+        public void ReportByDeliveryAddress(string DeliveryAddress)
+        {
+            //filters the records based on a full or partial delivery address
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //send the DeliveryAddress parameter to the database
+            DB.AddParameter("@DeliveryAddress", DeliveryAddress);
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrder_FilterByDeliveryAddress");
+            //populate the array list with the data table
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //populates the array list based on the data table in the parameter DB
+            //variable for the index
+            Int32 Index = 0;
+            //variable to store the record count
+            Int32 RecordCount;
+            //get the count of records
+            RecordCount = DB.Count;
+            //clear the private array list
+            mOrderList = new List<clsOrder>();
+            //while there are records to process
+            while (Index < RecordCount)
+            {
+                //create a blank address object
+                clsOrder AnOrder = new clsOrder();
+                //read in the dields from the current record
+                AnOrder.OrderId = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderId"]);
+                AnOrder.OrderTotal = Convert.ToDecimal(DB.DataTable.Rows[Index]["OrderTotal"]);
+                AnOrder.DatePlaced = Convert.ToDateTime(DB.DataTable.Rows[Index]["DatePlaced"]);
+                AnOrder.Purchased = Convert.ToBoolean(DB.DataTable.Rows[Index]["Purchased"]);
+                AnOrder.DeliveryAddress = Convert.ToString(DB.DataTable.Rows[Index]["DeliveryAddress"]);
+                AnOrder.NoOfItems = Convert.ToInt32(DB.DataTable.Rows[Index]["NoOfItems"]);
+                AnOrder.IsGift = Convert.ToBoolean(DB.DataTable.Rows[Index]["IsGift"]);
+                //add the record to the private data member
+                mOrderList.Add(AnOrder);
+                //point at the next record
+                Index++;
+            }
         }
     }
 }
