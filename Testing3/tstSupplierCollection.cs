@@ -46,15 +46,35 @@ namespace Testing3
             AllSupplier.SupplierList = TestList;
             Assert.AreEqual(AllSupplier.SupplierList, TestList);
         }
-        [TestMethod]
-        public void CountPropertyOK()
-        {
-            clsSupplierCollection AllSupplier = new clsSupplierCollection();
-            Int32 SomeCount = 2;
-            AllSupplier.Count = SomeCount;
-            Assert.AreEqual(AllSupplier.Count, SomeCount);
+        
+            [TestMethod]
+            public void ListAndCount()
+            {
+                //create an instance of the class we want to create
+                clsSupplierCollection AllSupplier = new clsSupplierCollection();
+                //create some test data to assign to the property
+                //in this case the data needs to be a list of objects
+                List<clsSupplier> TestList = new List<clsSupplier>();
+                //Add an Item of test data
+                // create an item of test data
+                clsSupplier TestItem = new clsSupplier();
+                //set its properties
+                TestItem.SupplierId = 1;
+                TestItem.SupplierName = "RedBull";
+                TestItem.SupplierEmail = "RedBull@gmail.com";
+                TestItem.SupplierProducts = "RedBull Energy";
+                TestItem.SupplierAddress = "123 345";
+                TestItem.SupplierDeliveryDate = DateTime.Now;
+                TestItem.SupplierFromUk = true;
+                //add the item to test list
+                TestList.Add(TestItem);
+                //assign theb data to the property
+                AllSupplier.SupplierList = TestList;
+                //test to see that the two values are the same
+                Assert.AreEqual(AllSupplier.SupplierList, TestList);
+            }
 
-        }
+        
         [TestMethod]
         public void ThisSupplierPropertyOK()
         {
@@ -165,7 +185,7 @@ namespace Testing3
 
             TestItem.SupplierId = PrimaryKey;
             //modufy the test record 
-            TestItem.SupplierFromUk = false;
+            TestItem.SupplierFromUk = true;
             TestItem.SupplierName = "Another Name";
             TestItem.SupplierEmail = "Another Email";
             TestItem.SupplierAddress = "123 ABC";
@@ -230,7 +250,7 @@ namespace Testing3
             Assert.AreEqual(0, FilteredSupplier.Count);
 
         }
-        /*[TestMethod]
+        [TestMethod]
         public void ReportByPostCode(string PostCode)
         {
             //filters the records based on a full or partial post code
@@ -241,7 +261,12 @@ namespace Testing3
             DB.Execute("sproc_tblSupplier_FilterBySupplierAddress");
             PopulateArray(DB);
 
-        }*/
+        }
+private void PopulateArray(clsDataConnection dB)
+        {
+            throw new NotImplementedException();
+        }
+
         [TestMethod]
         public void ReportByPostCodeTestDataFound()
         {
@@ -250,12 +275,12 @@ namespace Testing3
             //variable to store the outcome 
             Boolean OK = true;
             FilteredSupplier.ReportByPostCode("yyy yyy");
-            if (FilteredSupplier.Count == 2)
+            if (FilteredSupplier.Count == 1)
             {
                 OK = false;
             }
-            //check to see that the first is 25
-            if (FilteredSupplier.SupplierList[1].SupplierId != 26)
+            //check to see that the first is 2
+            if (FilteredSupplier.SupplierList[1].SupplierId != 2)
             { OK = false; }
 
             else
