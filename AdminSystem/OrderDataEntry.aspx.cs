@@ -134,4 +134,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtNoOfItems.Text = OrderBook.ThisOrder.NoOfItems.ToString();
         chkIsGift.Checked = OrderBook.ThisOrder.IsGift;
     }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        //redirect to the list page
+        Response.Redirect("OrderList.aspx");
+    }
 }

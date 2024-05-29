@@ -29,7 +29,7 @@
             <asp:Label ID="lblDeliveryAddress" runat="server" style="z-index: 1; left: 42px; top: 167px; position: absolute; " Text="Delivery Address"></asp:Label>
         <asp:Label ID="lblNoOfItems" runat="server" style="z-index: 1; left: 42px; position: absolute; top: 202px;" Text="Number of items"></asp:Label>
         </p>
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 100px; top: 315px; position: absolute" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 100px; top: 315px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
         <asp:CheckBox ID="chkIsGift" runat="server" style="z-index: 1; left: 163px; top: 228px; position: absolute" Text="Is a Gift" />
         
         <p>
