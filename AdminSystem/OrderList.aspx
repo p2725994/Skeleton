@@ -25,6 +25,7 @@
         <asp:Label ID="lblFilter" runat="server" style="z-index: 1; left: 10px; top: 350px; position: absolute" Text="Enter a delivery address"></asp:Label>
         <asp:TextBox ID="txtFilter" runat="server" style="z-index: 1; left: 170px; top: 350px; position: absolute"></asp:TextBox>
         <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApplyFilter_Click" style="z-index: 1; left: 10px; top: 390px; position: absolute" Text="Apply Filter" />
+        <asp:Button ID="btnMainMenu" runat="server" OnClick="btnMainMenu_Click" style="top: 390px; left: 340px; position: absolute; height: 26px; width: 130px" Text="Return to Main Menu" Width="130px" />
     </form>
 </body>
 </html>

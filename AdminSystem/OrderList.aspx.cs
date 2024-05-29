@@ -31,6 +31,13 @@ public partial class _1_List : System.Web.UI.Page
             lstOrderList.DataBind();
             **/
         }
+
+        //create a new instance of clsOrderUser
+        clsOrderUser AnUser = new clsOrderUser();
+        //get data from the session object
+        AnUser = (clsOrderUser)Session["AnUser"];
+        //display the user name
+        Response.Write("Logged in as: " + AnUser.UserName);
     }
 
     void DisplayOrders()
@@ -128,5 +135,11 @@ public partial class _1_List : System.Web.UI.Page
         lstOrderList.DataTextField = "DeliveryAddress";
         //bind the data to the list
         lstOrderList.DataBind();
+    }
+
+    protected void btnMainMenu_Click(object sender, EventArgs e)
+    {
+        //redirect to the main menu
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
