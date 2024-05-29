@@ -11,4 +11,11 @@ public partial class SupplierLogin : System.Web.UI.Page
     {
 
     }
+    protected void btnLoginin_Click(object sender, EventArgs e)
+    {
+        //redirect to the data entry page 
+        Response.Redirect("SupplierDataEntry.aspx");
+
+    }
+
 }

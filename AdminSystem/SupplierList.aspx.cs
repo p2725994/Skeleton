@@ -13,14 +13,15 @@ public partial class _1_List : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         //get the number of the supplier to be processed
-        SupplierId = Convert.ToInt32(Session["SupplierId"]);
         if (IsPostBack == false)
         {
-            //if this is the not a new record
-            if (SupplierId != -1)
+            DisplaySupplier();
 
-            { DisplaySupplier(); }
         }
+        clsSupplierUser AnUser = new clsSupplierUser();
+        //get data from the session object 
+        AnUser = (clsSupplierUser)Session["AnUser"];
+        Response.Write("Logged in as" + AnUser.UserName);
 
 
     }
@@ -105,10 +106,10 @@ public partial class _1_List : System.Web.UI.Page
     protected void btnApplyFilter_Click(object sender, EventArgs e)
     {
         //create an instance of the address object
-         clsSupplierCollection Asupplier = new clsSupplierCollection();
+         clsSupplierCollection ASupplier = new clsSupplierCollection();
         //retrieve the value of post from the presentaion layer
-        Asupplier.ReportByPostCode(txtFilter.Text);
-        lstSupplierList.DataSource = Asupplier.SupplierList;
+        ASupplier.ReportBySupplierAddress(txtFilter.Text);
+        lstSupplierList.DataSource = ASupplier.SupplierList;
         //set the name of the primary key
         lstSupplierList.DataValueField = "SupplierId";
         //set the name of the field to display
@@ -124,9 +125,9 @@ public partial class _1_List : System.Web.UI.Page
         //create an instance of the supplier object 
         clsSupplierCollection ASupplier = new clsSupplierCollection();
         //set an empty string 
-        ASupplier.ReportByPostCode("");
+        ASupplier.ReportBySupplierAddress("");
         txtFilter.Text = "";
-           lstSupplierList.DataSource = ASupplier.SupplierList;
+          lstSupplierList.DataSource = ASupplier.SupplierList;
         lstSupplierList.DataValueField = "SupplierId";
         //set the name of the field to display
         lstSupplierList.DataTextField = "PostCode";

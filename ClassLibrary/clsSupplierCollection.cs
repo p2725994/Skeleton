@@ -7,23 +7,29 @@ namespace ClassLibrary
     {
         public clsSupplierCollection()
         {
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
 
 
+            //execute the stored procedures
+            DB.Execute("sproc_tblSupplier_SelectAll");
+
+            //get the count of the records
+            PopualateArray(DB);
+        }
+
+        void PopualateArray(clsDataConnection DB)
+        {
             //variable for the index
             Int32 Index = 0;
 
             //variable to store the record count
-            Int32 RecordCount = 0;
+            Int32 RecordCount;
 
-            //create an instance of the data connection
-            clsDataConnection DB = new clsDataConnection();
-
-            
-            //execute the stored procedures
-            DB.Execute("sproc_tblSupplier_SelectAll");
             //get the count of the records
-            PopualteArray(DB);
-        
+            RecordCount = DB.Count;
+
+            mSupplierList = new List<clsSupplier>();
 
             while (Index < RecordCount)
             {
@@ -31,13 +37,13 @@ namespace ClassLibrary
                 clsSupplier ASupplier = new clsSupplier();
 
                 //read in the fields for the current record
-                ASupplier.SupplierId = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierId"]);
-                ASupplier.SupplierName = Convert.ToString(DB.DataTable.Rows[0]["SupplierName"]);
-                ASupplier.SupplierEmail = Convert.ToString(DB.DataTable.Rows[0]["SupplierEmail"]);
-                ASupplier.SupplierAddress = Convert.ToString(DB.DataTable.Rows[0]["SupplierAddress"]);
-                ASupplier.SupplierProducts = Convert.ToString(DB.DataTable.Rows[0]["SupplierProducts"]);
-                ASupplier.SupplierDeliveryDate = Convert.ToDateTime(DB.DataTable.Rows[0]["SupplierDeliveryDate"]);
-                ASupplier.SupplierFromUk = Convert.ToBoolean(DB.DataTable.Rows[0]["SupplierFromUk"]);
+                ASupplier.SupplierId = Convert.ToInt32(DB.DataTable.Rows[Index]["SupplierId"]);
+                ASupplier.SupplierName = Convert.ToString(DB.DataTable.Rows[Index]["SupplierName"]);
+                ASupplier.SupplierEmail = Convert.ToString(DB.DataTable.Rows[Index]["SupplierEmail"]);
+                ASupplier.SupplierAddress = Convert.ToString(DB.DataTable.Rows[Index]["SupplierAddress"]);
+                ASupplier.SupplierProducts = Convert.ToString(DB.DataTable.Rows[Index]["SupplierProducts"]);
+                ASupplier.SupplierDeliveryDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["SupplierDeliverydate"]);
+                ASupplier.SupplierFromUk = Convert.ToBoolean(DB.DataTable.Rows[Index]["SupplierFromUk"]);
 
                 //add the record to the private data member
                 mSupplierList.Add(ASupplier);
@@ -46,6 +52,8 @@ namespace ClassLibrary
                 Index++;
             }
         }
+
+
 
         //private data member for supplier list
         List<clsSupplier> mSupplierList = new List<clsSupplier>();
@@ -112,6 +120,7 @@ namespace ClassLibrary
             //connect to the database 
             clsDataConnection DB = new clsDataConnection();
             //set the parameter for the stored procedure 
+            DB.AddParameter("@SupplierId", mThisSupplier.SupplierId);
             DB.AddParameter("@SupplierName", mThisSupplier.SupplierName);
             DB.AddParameter("@SupplierAddress", mThisSupplier.SupplierAddress);
             DB.AddParameter("@SupplierEmail", mThisSupplier.SupplierEmail);
@@ -129,47 +138,27 @@ namespace ClassLibrary
             DB.Execute("sproc_tblSupplier_Delete");
         }
 
-        public void ReportByPostCode(String v)
+        public void ReportBySupplierAddress(String SupplierAddress)
         {
             //filters the record based on a afull or partial post code
-        }
-        void PopualteArray(clsDataConnection DB)
-        {
-            //variable for the index
-            Int32 Index = 0;
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
 
-            //variable to store the record count
-            Int32 RecordCount = 0;
-            mSupplierList = new List<clsSupplier>();
+            //set the StaffEmail parameter to the database
+            DB.AddParameter("@SupplierAddress", SupplierAddress);
 
+            //execute the procedure
+            DB.Execute("sproc_tblSupplier_FilterBySupplierAddress");
 
-
-            while (Index < RecordCount)
-            {
-                //create a blank supplier
-                clsSupplier ASupplier = new clsSupplier();
-
-                //read in the fields for the current record
-                ASupplier.SupplierId = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierId"]);
-                ASupplier.SupplierName = Convert.ToString(DB.DataTable.Rows[0]["SupplierName"]);
-                ASupplier.SupplierEmail = Convert.ToString(DB.DataTable.Rows[0]["SupplierEmail"]);
-                ASupplier.SupplierAddress = Convert.ToString(DB.DataTable.Rows[0]["SupplierAddress"]);
-                ASupplier.SupplierProducts = Convert.ToString(DB.DataTable.Rows[0]["SupplierProducts"]);
-                ASupplier.SupplierDeliveryDate = Convert.ToDateTime(DB.DataTable.Rows[0]["SupplierDeliveryDate"]);
-                ASupplier.SupplierFromUk = Convert.ToBoolean(DB.DataTable.Rows[0]["SupplierFromUk"]);
-
-                //add the record to the private data member
-                mSupplierList.Add(ASupplier);
-
-                //point at the next record
-                Index++;
-            }
-        }
-
-        public void ReportByPostCode(object text)
-        {
-            throw new NotImplementedException();
+            //populate the array list with the data table
+            PopualateArray(DB);
         }
     }
 }
+
+       
+
+        
+   
+
 
