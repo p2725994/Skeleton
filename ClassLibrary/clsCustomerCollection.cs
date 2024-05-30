@@ -8,35 +8,11 @@ namespace ClassLibrary
         //constructor for the class
         public clsCustomerCollection()
         {
-            //variable for the class
-            Int32 Index = 0;
-            //var to store the record count
-            Int32 RecordCount = 0;
             //object for the data connect
             clsDataConnection DB = new clsDataConnection();
             //execute the procedure
             DB.Execute("sproc_tblCustomer_SelectAll");
-            //get the count of records
-            RecordCount = DB.Count;
-            //while there are records to process
-            while (Index < RecordCount) 
-            {
-                //create a blank Customer
-                clsCustomer ACustomer = new clsCustomer();
-                //read in the fields for the current record
-                ACustomer.Verified = Convert.ToBoolean(DB.DataTable.Rows[Index]["Verified"]);
-                ACustomer.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
-                ACustomer.CustomerFirstname = Convert.ToString(DB.DataTable.Rows[Index]["CustomerFirstname"]);
-                ACustomer.CustomerLastname = Convert.ToString(DB.DataTable.Rows[Index]["CustomerLastname"]);
-                ACustomer.CustomerEmail = Convert.ToString(DB.DataTable.Rows[Index]["CustomerEmail"]);
-                ACustomer.CustomerPhone = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerPhone"]);
-                ACustomer.CustomerBirthdate = Convert.ToDateTime(DB.DataTable.Rows[Index]["CustomerBirthdate"]);
-                mCustomerList.Add(ACustomer);
-                //point at the next record
-                Index++;
-            }
-
-
+            PopulateArray(DB);
         }
 
 
@@ -118,5 +94,45 @@ namespace ClassLibrary
             DB.AddParameter("@CustomerID", mThisCustomer.CustomerID);
             DB.Execute("sproc_tblCustomer_Delete");
         }
+
+        public void ReportByCustomerFirstname(string CustomerFirstname)
+        {
+            //filters the parameter based on a full or partial firstname
+            //connect to dtabase
+            clsDataConnection DB = new clsDataConnection();
+            //send the firstnbame parameter to the database
+            DB.AddParameter("@CustomerFirstname", CustomerFirstname);
+            DB.Execute("sproc_tblCustomers_FilterByCustomerFirstname");
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //variable for the class
+            Int32 Index = 0;
+            //var to store the record count
+            Int32 RecordCount = 0;
+            //get the count of records
+            RecordCount = DB.Count;
+            mCustomerList = new List<clsCustomer>();
+            //while there are records to process
+            while (Index < RecordCount)
+            {
+                //create a blank Customer
+                clsCustomer ACustomer = new clsCustomer();
+                //read in the fields for the current record
+                ACustomer.Verified = Convert.ToBoolean(DB.DataTable.Rows[Index]["Verified"]);
+                ACustomer.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
+                ACustomer.CustomerFirstname = Convert.ToString(DB.DataTable.Rows[Index]["CustomerFirstname"]);
+                ACustomer.CustomerLastname = Convert.ToString(DB.DataTable.Rows[Index]["CustomerLastname"]);
+                ACustomer.CustomerEmail = Convert.ToString(DB.DataTable.Rows[Index]["CustomerEmail"]);
+                ACustomer.CustomerPhone = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerPhone"]);
+                ACustomer.CustomerBirthdate = Convert.ToDateTime(DB.DataTable.Rows[Index]["CustomerBirthdate"]);
+                mCustomerList.Add(ACustomer);
+                //point at the next record
+                Index++;
+            }
+        }
+
     }
 }
