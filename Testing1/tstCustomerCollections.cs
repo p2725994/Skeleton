@@ -1,6 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using ClassLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using ClassLibrary;
 using System.Collections.Generic;
 
 namespace Testing1
@@ -159,5 +159,48 @@ namespace Testing1
             Assert.IsFalse(Found);
 
         }
+
+        [TestMethod]
+        public void ResportByCustomerFirstnameOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomerCollection FilterCustomers = new clsCustomerCollection();
+            FilterCustomers.ReportByCustomerFirstname("");
+            Assert.AreEqual(AllCustomers.Count, FilterCustomers.Count);
+
+        }
+
+        [TestMethod]
+        public void ReportBCustomerFirstnameNoneFound()
+        {
+            clsCustomerCollection FilterCustomers = new clsCustomerCollection();
+            FilterCustomers.ReportByCustomerFirstname("xxxxx");
+            Assert.AreEqual(0, FilterCustomers.Count);
+        }
+
+        [TestMethod]
+        public void ReprtByCustomerFirstnameTestDataFound()
+        {
+            clsCustomerCollection FilterCustomers = new clsCustomerCollection();
+            Boolean OK = true;
+            FilterCustomers.ReportByCustomerFirstname("ccccc");
+            if (FilterCustomers.Count == 2)
+            {
+                if (FilterCustomers.CustomerList[0].CustomerID != 1058)
+                {
+                    OK = false;
+                }
+                if (FilterCustomers.CustomerList[0].CustomerID != 1060)
+                {
+                    OK = false; 
+                }
+            }
+            else 
+            {
+                OK = false; 
+            }
+            Assert.IsTrue(OK);  
+        }
+
     }
 }
