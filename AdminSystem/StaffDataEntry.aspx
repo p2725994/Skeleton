@@ -35,7 +35,7 @@
             <asp:CheckBox ID="chkIsOnShift" runat="server" style="z-index: 1; left: 114px; top: 227px; position: absolute" Text="  On Shift" />
         </div>
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 14px; top: 326px; position: absolute" width="72px"></asp:Label>
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 103px; top: 274px; position: absolute; width: 59px" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 103px; top: 274px; position: absolute; width: 59px" Text="Cancel" OnClick="btnCancel_Click" />
         <p>
             &nbsp;</p>
         <p>
