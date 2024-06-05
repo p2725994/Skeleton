@@ -242,7 +242,7 @@ namespace Testing2
             Found = aStaff.Find(StaffNo);
 
             //check the StaffNo
-            if (aStaff.StaffEmail != "Aj@gmail.com")
+            if (aStaff.StaffEmail != "BG@gmail.com")
             {
                 OK = false;
             }
@@ -298,7 +298,7 @@ namespace Testing2
             Found = aStaff.Find(StaffNo);
 
             //check the StaffNo
-            if (aStaff.DateJoined != Convert.ToDateTime("01/01/2011"))
+            if (aStaff.DateJoined != Convert.ToDateTime("01/06/2024"))
             {
                 OK = false;
             }
