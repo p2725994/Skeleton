@@ -8,27 +8,9 @@ using System.Web.UI.WebControls;
 
 public partial class StockLogin : System.Web.UI.Page
 {
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        //if this  is the first time the page is displayed
-        if (!IsPostBack == false)
-        {
-            //update the list box
-            DisplayStocks();
-        }
-        //create an instance of the stock user class
-        clsStockUser AnUser = new clsStockUser();
-        //get data from the session object
-        AnUser = (clsStockUser)Session["AnUser"];
-        //display the user name
-        Response.Write("logged in as;"+ AnUser.UserName);
-        
-    }
+    
 
-    private void DisplayStocks()
-    {
-        throw new NotImplementedException();
-    }
+    
 
     protected void btnLogin_Click(object sender, EventArgs e)
     {
