@@ -240,7 +240,7 @@ namespace Testing4
             Boolean OK = true;
 
             //apply a product name that doesn't exist
-            FilteredStock.ReportByProduct_Name("R+sap tropical");
+            FilteredStock.ReportByProduct_Name("R+asap tropical");
             //check that the correct number of records are found
             if (FilteredStock.Count == 2)
             {

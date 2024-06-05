@@ -11,22 +11,22 @@ public partial class _1_List : System.Web.UI.Page
     Int32 Product_Id;
     protected void Page_Load(object sender, EventArgs e)
     {
-        //get the number of the address to be processed
-        Product_Id = Convert.ToInt32(Session["product_Id"]);
-
-
-
-        {
-            //if this is the first time the page is displayed
-            if (!IsPostBack == false)
-                //if this is not a new record
-                if (Product_Id != -1)
+      
+                //if this  is the first time the page is displayed
+                if (IsPostBack == false)
                 {
-                    //display the current data for the record
+                    //update the list box
                     DisplayStocks();
                 }
+                //create an instance of the stock user class
+                clsStockUser AnUser = new clsStockUser();
+                //get data from the session object
+                AnUser = (clsStockUser)Session["AnUser"];
+                //display the user name
+                Response.Write("logged in as;" + AnUser.UserName);
+
+            
         }
-    }
     private void DisplayStocks()
 
     {
@@ -42,14 +42,7 @@ public partial class _1_List : System.Web.UI.Page
         lstStockList.DataBind();
     }
 
-    protected void btnAdd_Click(object sender, EventArgs e)
-    {
-        //store -1 into the session object to indicate this is a new record
-        Session["Product_Id"] = -1;
-        //redirect to the data entry page
-        Response.Redirect("StockDataEntry.aspx");
 
-    }
     protected void btnEdit_Click(object sender, EventArgs e)
     {
         //variable to store the primary key value of the record to be edited
@@ -85,15 +78,15 @@ public partial class _1_List : System.Web.UI.Page
             //get the primary key value of the record delete
             Product_Id = Convert.ToInt32(lstStockList.SelectedValue);
             //store the data in the session object
-            Session[Product_Id] = Product_Id;
+            Session["Product_Id"] = Product_Id;
             //redirrect to delete page
-            Response.Redirect("StockDataEntry.aspx");
+            Response.Redirect("StockConfirmDelete.aspx");
 
         }
         else // if no record has been selected
         {
             //display an error message
-            lblError.Text = "Please select a record from the list to edit";
+            lblError.Text = "Please select a record from the list to delete";
 
         }
 
@@ -148,6 +141,14 @@ public partial class _1_List : System.Web.UI.Page
             lstStockList.DataBind();
 
         
+    }
+
+    protected void btnAdd_Click1(object sender, EventArgs e)
+    {
+        //store -1 into the session object to indicate this is a new record
+        Session["Product_Id"] = -1;
+        //redirect to the data entry page
+        Response.Redirect("StockDataEntry.aspx");
     }
 }
         

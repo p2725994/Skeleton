@@ -12,8 +12,7 @@ using System.Web.UI.WebControls;
 public partial class _1_DataEntry : System.Web.UI.Page
 {
     Int32 Product_Id;
-
-    public object DisplayStocks { get; private set; }
+    private int product_Id;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -137,18 +136,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
-
+        //create an instance of the stock class
         clsStocks aStock = new clsStocks();
-
+        //create variable to store primary key
         Int32 Product_Id;
-
+        //create a Boolean variable to store the results of the find operation
         Boolean Found = false;
-
+        //get the primary key entered by the user
         Product_Id = Convert.ToInt32(txtProduct_Id.Text);
         //find the record
         Found = aStock.Find(Product_Id);
         //if found
         if (Found == true)
+
+          
         {
             //display the values of the properties in the form
             txtProduct_Name.Text = aStock.Product_Name;
@@ -168,7 +169,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Response.Redirect("TeamMainMenu.aspx");
     }
 
-  
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        //redirect to the main menu page
+        Response.Redirect("StockList.aspx");
+    }
 }
 
       
