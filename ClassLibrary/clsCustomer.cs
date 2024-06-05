@@ -191,7 +191,7 @@ namespace ClassLibrary
 
             if (customerEmail.Length == 0) 
             {
-                Error = Error + "Email can not be blank";
+                Error = Error + "Email can not be blank : ";
             }
 
             //if email is >50 chars
@@ -201,9 +201,18 @@ namespace ClassLibrary
                 Error = Error + "The Email should not be more than 50 characters : ";
             }
 
+            if (customerPhone.Length == 0)
+            {
+                Error += "Please enter a valid phone number: ";
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(customerPhone, @"^\d+$"))
+            {
+                Error += "The phone number should contain only digits: ";
+            }
+
             //copy the customerbirthdate value to the DateTemp variable
             // validate birthdate
-            
+
             if (!DateTime.TryParse(customerBirthdate, out DateTemp))
             {
                 // if the birthdate is not a valid date
