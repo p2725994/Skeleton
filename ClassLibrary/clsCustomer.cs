@@ -159,8 +159,9 @@ namespace ClassLibrary
             String Error = "";
             //create a temporary variable  store the data values
             DateTime DateTemp;
-            // define maximum and minimum valid birthdates
+            // define  minimum valid birthdates
             DateTime minBirthdate = DateTime.Now.Date.AddYears(-16); // 16 years ago from today
+
        
             //if customerfirstname is blank
             if (customerFirstname.Length == 0)
@@ -188,7 +189,10 @@ namespace ClassLibrary
                 Error = Error + "The Lastname should not be more than 20 characters : ";
             }
 
-
+            if (customerEmail.Length == 0) 
+            {
+                Error = Error + "Email can not be blank";
+            }
 
             //if email is >50 chars
             if (customerEmail.Length > 50)
@@ -196,10 +200,6 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The Email should not be more than 50 characters : ";
             }
-
-
-
-
 
             //copy the customerbirthdate value to the DateTemp variable
             // validate birthdate

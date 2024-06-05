@@ -33,14 +33,15 @@
         <p>
             <asp:TextBox ID="txtCustomerBirthdate" runat="server" BorderColor="White" height="22px" style="z-index: 1; left: 201px; top: 250px; position: absolute" width="128px"></asp:TextBox>
             <asp:TextBox ID="txtCustomerLastname" runat="server" BorderColor="White" height="22px" style="z-index: 1; left: 201px; top: 138px; position: absolute" width="128px" OnTextChanged="txtCustomerLastname_TextChanged"></asp:TextBox>
+            <asp:Button ID="btnReturnMainMenu" runat="server" style="z-index: 1; left: 214px; top: 375px; position: absolute; width: 85px" Text="Main Menu" />
         </p>
         <p>
             <asp:CheckBox ID="chkVerified" runat="server" style="z-index: 1; left: 86px; top: 280px; position: absolute" Text="Verified" />
             <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 16px; top: 321px; position: absolute"></asp:Label>
         </p>
-        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 51px; top: 379px; position: absolute; width: 54px; height: 26px;" Text="OK" />
+        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 51px; top: 375px; position: absolute; width: 67px; height: 26px;" Text="OK" />
         <p>
-            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 110px; top: 379px; position: absolute" Text="Cancel" />
+            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 125px; top: 375px; position: absolute" Text="Cancel" height="26px" width="67px" />
         </p>
         <p>
             <asp:TextBox ID="txtCustomerID" runat="server" BorderColor="White" height="22px" OnTextChanged="txtCustomerID_TextChanged" style="z-index: 1; left: 201px; top: 70px; position: absolute" width="128px"></asp:TextBox>

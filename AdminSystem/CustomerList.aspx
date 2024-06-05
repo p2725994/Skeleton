@@ -19,7 +19,8 @@
         <p>
             &nbsp;</p>
         <p>
-            &nbsp;</p>
+            <asp:Button ID="btnReturnMainMenu" runat="server" height="21px" OnClick="btnReturnMainMenu_Click" style="z-index: 1; left: 265px; top: 368px; position: absolute" Text="Main Menu" width="92px" />
+        </p>
         <p>
             &nbsp;</p>
         <p>
