@@ -84,7 +84,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
 
         protected void btnCancel_Click(object sender, EventArgs e)
-        {
+        { //redirect to the main menu page
+        Response.Redirect("SupplierList.aspx");
 
         }
 
