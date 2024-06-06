@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ClassLibrary;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,11 +13,57 @@ public partial class SupplierLogin : System.Web.UI.Page
     {
 
     }
-    protected void btnLoginin_Click(object sender, EventArgs e)
-    {
-        //redirect to the data entry page 
-        Response.Redirect("SupplierDataEntry.aspx");
 
+    protected void btnLogin_Click(object sender, EventArgs e)
+    {
+        //create an instance of the staff user class
+        clsSupplierUser AnUser = new clsSupplierUser();
+
+        //create the variable to store the UserName and Password
+        string UserName = txtUserName.Text;
+        string Password = txtPassword.Text;
+
+        //create a Boolean variable to store the results of the find user operation
+        Boolean Found = false;
+
+        //get the UserName entered by the user
+        UserName = Convert.ToString(txtUserName.Text);
+
+        //get the Password entered by the user
+        Password = Convert.ToString(txtPassword.Text);
+
+        //find the record
+        Found = AnUser.FindUser(UserName, Password);
+
+        //add a session to capture the user name
+        Session["AnUser"] = AnUser;
+        //if Username/Password is empty
+        if (txtUserName.Text == "")
+        {
+            //record the error
+            lblError.Text = "Enter a UserName";
+        }
+        else if (txtPassword.Text == "")
+        {
+            //record the error
+            lblError.Text = "Enter a Password";
+        }
+        //if found
+        else if (Found == true)
+        {
+            //redirect to the List page
+            Response.Redirect("SupplierList.aspx");
+        }
+        else if (Found == false)
+        {
+            //record the error
+            lblError.Text = "Login details are incorrect. Please try again! ";
+        }
     }
 
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        //redirect to the main page
+        Response.Redirect("TeamMainMenu.aspx");
+    }
 }
