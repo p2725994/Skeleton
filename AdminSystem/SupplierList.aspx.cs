@@ -124,7 +124,7 @@ public partial class _1_List : System.Web.UI.Page
         lstSupplierList.DataSource = ASupplier.SupplierList;
         lstSupplierList.DataValueField = "SupplierId";
         //set the name of the field to display
-        lstSupplierList.DataTextField = "SupplierAddess";
+        lstSupplierList.DataTextField = "SupplierAddress";
         //bind the data to the list 
         lstSupplierList.DataBind();
 

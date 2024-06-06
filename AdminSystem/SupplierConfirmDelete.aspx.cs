@@ -17,16 +17,20 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
 
     protected void btnyes_Click(object sender, EventArgs e)
     {
+        //create a mew instance of supplier collection class
         clsSupplierCollection SupplierDataEntry = new clsSupplierCollection();
+        //find the record
         SupplierDataEntry.ThisSupplier.Find(SupplierId);
+        //delete the record
         SupplierDataEntry.Delete();
-        Response.Redirect("SupplierBookList.aspx");
+        //redirect back to the main page
+        Response.Redirect("SupplierList.aspx");
 
 
     }
 
     protected void btnNo_Click(object sender, EventArgs e)
     {
-        Response.Redirect("SupplierBookList.aspx");
+        Response.Redirect("SupplierList.aspx");
     }
 }
