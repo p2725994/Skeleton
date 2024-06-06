@@ -135,18 +135,23 @@ namespace ClassLibrary
         }
 
         public string Valid(
+            
             string supplierName, 
             string supplierEmail, 
             string supplierProducts,
             string supplierAddress, 
             string supplierDeliveryDate)
-        {
+        { 
+            //create a string variable to store the error 
             String Error = "";
+            //create a temp variable to store the data values
             DateTime DateTemp;
+            //if supplier name is empty
             if(supplierName.Length == 0)
             {
                 Error = Error + "The supplier name can not be left blank :";
             }
+            //supplier name must b less then 30 characters
             if (supplierName.Length > 30)
             {
                 Error = Error + "The supplier name must be less then 30 characters ";
@@ -154,7 +159,7 @@ namespace ClassLibrary
             }
            
             try
-            {
+            {//
                 DateTemp = Convert.ToDateTime(supplierDeliveryDate);
                 if (DateTemp < DateTime.Now.Date)
                 {
@@ -166,29 +171,34 @@ namespace ClassLibrary
                 }
             }
             catch
-            {
+            {//if email entered is empty
                 Error = Error + "The date was not valid date";
             }
             if (supplierEmail.Length == 0)
             {
                 Error = Error + "The email code may not be blank ";
             }
+            //if email is more then 40 character
             if (supplierEmail.Length > 40)
             {
                 Error = Error + "The post cannot be less then 40 character";
             }
+            //if address entered is empty
             if (supplierAddress.Length == 0)
             {
                 Error = Error + "The email code may not be blank ";
             }
+            //if addressis more then 10
             if (supplierAddress.Length > 10)
             {
                 Error = Error + "The post cannot be less then 40 character";
             }
+            //if product is empty
             if (supplierProducts.Length == 0)
             {
                 Error = Error + "The email code may not be blank ";
             }
+            //if products character is more than 50
             if (supplierProducts.Length > 50)
             {
                 Error = Error + "The post cannot be less then 40 character";
@@ -196,12 +206,6 @@ namespace ClassLibrary
 
 
             return Error;
-        }
-
-
-        public void Find(object supplierId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -1,10 +1,6 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework.Internal;
 using System;
-using System.IO;
-using System.Linq.Expressions;
-using Xunit.Sdk;
 
 namespace Testing3
 {
