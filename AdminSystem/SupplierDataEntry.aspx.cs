@@ -1,11 +1,12 @@
 ﻿using System;
+using ClassLibrary;
 using System.Activities.Expressions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ClassLibrary;
+
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
@@ -13,6 +14,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the number of supplier to be processed
+        SupplierId = Convert.ToInt32(Session["SupplierId"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (SupplierId != -1)
+            {
+                DisplaySupplier();
+            }
+        }
 
     }
 
@@ -61,7 +72,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
 
           
-            Response.Redirect("SupplierViewer.aspx");
+            Response.Redirect("SupplierList.aspx");
 
         }
         else

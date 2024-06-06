@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.ServiceModel.Channels;
 using System.Web;
@@ -9,13 +10,13 @@ using ClassLibrary;
 
 public partial class _1_List : System.Web.UI.Page
 {
-    Int32 SupplierId;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         //get the number of the supplier to be processed
         if (IsPostBack == false)
         {
-            DisplaySupplier();
+            DisplaySuppliers();
 
         }
         clsSupplierUser AnUser = new clsSupplierUser();
@@ -25,19 +26,19 @@ public partial class _1_List : System.Web.UI.Page
 
 
     }
-    private void DisplaySupplier()
+    private void DisplaySuppliers()
     {
         //create an instance of supplier Collection
-        clsSupplierCollection Supplier = new clsSupplierCollection();
+        clsSupplierCollection Suppliers = new clsSupplierCollection();
 
         //set the data source to list of Staff in collection
-        lstSupplierList.DataSource = Supplier.SupplierList;
+        lstSupplierList.DataSource = Suppliers.SupplierList;
 
         //set the name of primary key
         lstSupplierList.DataValueField = "SupplierId";
 
         //set the data field to display
-        lstSupplierList.DataTextField = "SupplierName";
+        lstSupplierList.DataTextField = "SupplierAddress";
 
         //bind the data to the list
         lstSupplierList.DataBind();
@@ -47,7 +48,7 @@ public partial class _1_List : System.Web.UI.Page
     {
         Session["SupplierId"] = -1;
         //redirect to the data entry page 
-        Response.Redirect("SupplierEntry.aspx");
+        Response.Redirect("SupplierDataEntry.aspx");
 
     }
 
@@ -93,27 +94,20 @@ public partial class _1_List : System.Web.UI.Page
 
     }
 
-    protected void lstSupplierList_SelectedIndexChanged(object sender, EventArgs e)
-    {
 
-    }
 
-    protected void TextBox1_TextChanged(object sender, EventArgs e)
-    {
-
-    }
 
     protected void btnApplyFilter_Click(object sender, EventArgs e)
     {
         //create an instance of the address object
-         clsSupplierCollection ASupplier = new clsSupplierCollection();
+        clsSupplierCollection ASupplier = new clsSupplierCollection();
         //retrieve the value of post from the presentaion layer
         ASupplier.ReportBySupplierAddress(txtFilter.Text);
         lstSupplierList.DataSource = ASupplier.SupplierList;
         //set the name of the primary key
         lstSupplierList.DataValueField = "SupplierId";
         //set the name of the field to display
-        lstSupplierList.DataTextField = "PostCode";
+        lstSupplierList.DataTextField = "SupplierAddress";
         //bind the data to the list 
         lstSupplierList.DataBind();
 
@@ -127,13 +121,18 @@ public partial class _1_List : System.Web.UI.Page
         //set an empty string 
         ASupplier.ReportBySupplierAddress("");
         txtFilter.Text = "";
-          lstSupplierList.DataSource = ASupplier.SupplierList;
+        lstSupplierList.DataSource = ASupplier.SupplierList;
         lstSupplierList.DataValueField = "SupplierId";
         //set the name of the field to display
-        lstSupplierList.DataTextField = "PostCode";
+        lstSupplierList.DataTextField = "SupplierAddess";
         //bind the data to the list 
         lstSupplierList.DataBind();
 
+
+    }
+
+    protected void lstSupplierList_SelectedIndexChanged(object sender, EventArgs e)
+    {
 
     }
 }
