@@ -97,7 +97,6 @@ namespace ClassLibrary
             }
         }
 
-        public object Public { get; private set; }
 
         public int Add()
         {
