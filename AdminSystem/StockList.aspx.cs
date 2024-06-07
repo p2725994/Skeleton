@@ -42,6 +42,13 @@ public partial class _1_List : System.Web.UI.Page
         lstStockList.DataBind();
     }
 
+    protected void btnAdd_Click1(object sender, EventArgs e)
+    {
+        //store -1 into the session object to indicate this is a new record
+        Session["Product_Id"] = -1;
+        //redirect to the data entry page
+        Response.Redirect("StockDataEntry.aspx");
+    }
 
     protected void btnEdit_Click(object sender, EventArgs e)
     {
@@ -143,13 +150,6 @@ public partial class _1_List : System.Web.UI.Page
         
     }
 
-    protected void btnAdd_Click1(object sender, EventArgs e)
-    {
-        //store -1 into the session object to indicate this is a new record
-        Session["Product_Id"] = -1;
-        //redirect to the data entry page
-        Response.Redirect("StockDataEntry.aspx");
-    }
 }
         
 
