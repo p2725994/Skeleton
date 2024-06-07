@@ -100,18 +100,25 @@ namespace ClassLibrary
 
         public int Add()
         {
-            //adds a record to the database on the value of mThisStock
-            //set the primary key value of the new record
-            mThisStock.Product_Id = 1;
-            //return the primarykey of the new record
-            return mThisStock.Product_Id;
+            //update an existing record based on the values of thisstock
+            //connect to the databse;
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the new stored procedure
+            DB.AddParameter("@Product_Name", mThisStock.Product_Name);
+            DB.AddParameter("@Product_Description", mThisStock.Product_Description);
+            DB.AddParameter("@Product_Quantity", mThisStock.Product_Quantity);
+            DB.AddParameter("@Product_Price", mThisStock.Product_Price);
+            DB.AddParameter("@Product_Expiry", mThisStock.Product_Expiry);
+            DB.AddParameter("@Available", mThisStock.Available);
+
+            //execute the stored procedure
+           return DB.Execute("sproc_tblStock_Insert");
         }
 
         public void Update()
         {
             //update an existing record based on the values of thisstock
-            //connect to the databse
-            ClsStockCollection Allstocks = new ClsStockCollection();
+            //connect to the databse;
             clsDataConnection DB = new clsDataConnection();
             //set the parameters for the new stored procedure
             DB.AddParameter("@Product_Id", mThisStock.Product_Id);
