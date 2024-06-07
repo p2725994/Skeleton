@@ -15,13 +15,14 @@
             <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click1" style="height: 25px; width: 75px;" />
             <asp:Button ID="btnEdit" runat="server" Text="Edit" style="height: 25px; width: 75px; margin-left: 10px;" OnClick="btnEdit_Click" />
             <asp:Button ID="btnDelete" runat="server" Text="Delete" OnClick="btnDelete_Click" style="height: 25px; width: 75px; margin-left: 10px;" />
+             <asp:Button ID="btnMainMenu" runat="server" OnClick="btnMainMenu_Click" style="top: 423px; left: 345px; position: absolute; height: 26px; width: 209px" Text="Return to Main Menu" />
         </div>
 
         <div class="filter-group">
             <asp:Label ID="lblEnterName" runat="server" Text="Enter a Name"></asp:Label>
             <asp:TextBox ID="txtFilter" runat="server" style="width: 150px;"></asp:TextBox>
-            <asp:Button ID="btnApplyFilter" runat="server" OnClick="BtnApplyFilter_Click" Text="Apply Filter" style="height: 25px; width: 100px;" />
             <asp:Button ID="btnClearFilter" runat="server" OnClick="BtnClearFilter_Click" Text="Clear Filter" style="height: 25px; width: 100px;" />
+            <asp:Button ID="btnApplyFilter" runat="server" OnClick="BtnApplyFilter_Click" Text="Apply Filter" style="height: 25px; width: 100px;" />
         </div>
 
         <asp:Label ID="lblError" runat="server" CssClass="error-label"></asp:Label>

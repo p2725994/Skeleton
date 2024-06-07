@@ -3,12 +3,13 @@ using System;
 
 public partial class _1_ConfirmDelete : System.Web.UI.Page
 {
-    public string Product_Id { get; private set; }
+
+    //variable to store the primary key value of the record to be deleted
+    Int32 Product_Id;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //variable to store the primary key value of the record to be deleted
-        Int32 Product_Id;
+      
 
         {
             //get the number of the Stock to be deleted from the session object

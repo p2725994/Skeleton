@@ -172,6 +172,12 @@ public partial class _1_List : System.Web.UI.Page
 
 
     }
+
+    protected void btnMainMenu_Click(object sender, EventArgs e)
+    {
+        //redirect the user to the stock login page
+        Response.Redirect("TeamMainMenu.aspx");
+    }
 }
         
 
