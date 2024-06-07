@@ -126,11 +126,9 @@ namespace Testing4
             Assert.AreEqual(Allstocks.ThisStock, TestItem);
 
         }
+        [TestMethod]
         public void UpdateMethodOK()
         {
-
-
-
             //create an instance of the class we want to create
             ClsStockCollection Allstocks = new ClsStockCollection();
             // create an item of test data
